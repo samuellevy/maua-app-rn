@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #14cc82;
+      }
+    </style>
+  </defs>
+  <g id="Symbol_33_1" data-name="Symbol 33 – 1" transform="translate(-96 -156)">
+    <g id="Bounding_Boxes" transform="translate(96 156)">
+      <path id="Path_161" data-name="Path 161" class="cls-1" d="M0,0H24V24H0Z"/>
+    </g>
+    <g id="Bounding_Boxes-2" data-name="Bounding_Boxes" transform="translate(96 156)">
+      <path id="Path_200" data-name="Path 200" class="cls-1" d="M0,0H24V24H0Z"/>
+    </g>
+    <g id="baseline-school-24px" transform="translate(96 157)">
+      <path id="Path_196" data-name="Path 196" class="cls-1" d="M0,0H24V24H0Z"/>
+      <path id="Path_197" data-name="Path 197" class="cls-2" d="M5,13.18v4L12,21l7-3.82v-4L12,17ZM12,3,1,9l11,6,9-4.91V17h2V9Z"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #14cc82;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Symbol_32_1" data-name="Symbol 32 – 1" transform="translate(-24 -156)">
+    <path id="Path_86" data-name="Path 86" class="cls-1" d="M10,20V14h4v6h5V12h3L12,3,2,12H5v8Z" transform="translate(24 157)"/>
+    <rect id="Rectangle_1575" data-name="Rectangle 1575" class="cls-2" width="24" height="24" transform="translate(24 156)"/>
+  </g>
+</svg>

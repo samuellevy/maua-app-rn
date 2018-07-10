@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #14cc82;
+      }
+
+      .cls-3 {
+        fill: #7b9995;
+        stroke: #14cc82;
+        stroke-width: 0.5px;
+      }
+    </style>
+  </defs>
+  <g id="Symbol_34_1" data-name="Symbol 34 – 1" transform="translate(-168 -156.5)">
+    <g id="Group_951" data-name="Group 951" transform="translate(-0.5 16)">
+      <path id="Path_99" data-name="Path 99" class="cls-1" d="M0,0H24V24H0Z" transform="translate(168.5 140.5)"/>
+      <g id="Group_540" data-name="Group 540" transform="translate(-2910 -1705)">
+        <path id="Path_98" data-name="Path 98" class="cls-2" d="M17.222,3.778h-.889V2H14.556V3.778H7.444V2H5.667V3.778H4.778A1.77,1.77,0,0,0,3.009,5.556L3,18a1.777,1.777,0,0,0,1.778,1.778H17.222A1.783,1.783,0,0,0,19,18V5.556A1.783,1.783,0,0,0,17.222,3.778Zm0,14.222H4.778V9.078H17.222Z" transform="translate(3079 1847)"/>
+      </g>
+    </g>
+    <path id="Path_225" data-name="Path 225" class="cls-3" d="M2.474,9.612l1.9-1.9L5.635,8.977,8.321,5.956,7.875,5.51,5.635,8.029,4.37,6.765,2,9.138Z" transform="translate(174.617 164.268)"/>
+  </g>
+</svg>
