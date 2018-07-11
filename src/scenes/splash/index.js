@@ -33,9 +33,9 @@ export default class Splash extends Component {
         // AsyncStorage.clear();
         let navigateTo;
         const token = await AsyncStorage.getItem('@CodeApi:token');
-        const remember = await AsyncStorage.getItem('@CodeApi:remember');
+        const remember = await AsyncStorage.getItem('@CodeApi:remember'); 
         if(token && remember == 'true') {
-            navigateTo = 'Player'; //or home to instantly enter
+            navigateTo = 'StatusSend'; //or home to instantly enter
         } else {
             navigateTo = 'Login';
         }
