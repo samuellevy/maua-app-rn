@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     contentStatu: { 
         marginTop: 20,
         flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     textStatu: {
         fontFamily: fonts.main,
@@ -123,15 +124,42 @@ const styles = StyleSheet.create({
     redStatus: {
         color: '#C71829'
     },
+    greyStatus: {
+        color: '#ADCCC7'
+    },
     box: {
         alignItems: "center",
-        width: 100,
     },
     itemStatu: { 
         alignItems: "center",
-        paddingLeft: 40,
-        paddingRight: 40, 
-    }
+        width: '45%',
+        justifyContent: 'space-around',
+    },
+    boxTitleStatu: {
+        width: "70%",
+        paddingTop: 20,
+        paddingBottom: 30,
+    },
+    titleStatu: {
+        fontFamily: fonts.main,
+        fontSize: 18,
+        textAlign: "center",
+        fontWeight: 'bold',
+        color: "#4D6662",
+    },
+    boxBtnSend: {
+        marginTop: 50,
+    },
+    btnSend: { 
+        backgroundColor: '#FFB100',
+        borderRadius: 50,
+        marginTop: 15, 
+        marginBottom: 25,
+        paddingTop: 10, 
+        paddingBottom: 10, 
+        paddingLeft: 30, 
+        paddingRight: 30, 
+    },
 })
 
 export default styles;
