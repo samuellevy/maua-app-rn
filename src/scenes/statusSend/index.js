@@ -26,7 +26,7 @@ export default class statusSend extends Component {
 
                     <View style={styles.contentQuiz}>
                         <View style={styles.content}> 
-
+ 
                             <View style={styles.boxTitleStatu}>
                                 <Text style={styles.titleStatu}>O que você achou do conteúdo desse módulo?</Text>
                             </View>
@@ -34,22 +34,30 @@ export default class statusSend extends Component {
                             <View style={styles.contentAllStatus}>
                                 <View style={styles.contentStatu}>
                                     <View style={styles.itemStatu}>
-                                        <MaterialIcon name="clear" size={25} style={styles.iconClear}></MaterialIcon> 
-                                        <Text style={[styles.textStatu, styles.greenStatus]}>Ótimo</Text>
+                                        <TouchableOpacity style={styles.box}>
+                                            <MaterialIcon name="sentiment-very-satisfied" size={65} style={styles.greenStatus}></MaterialIcon> 
+                                            <Text style={[styles.textStatu, styles.greenStatus]}>Ótimo</Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View style={styles.itemStatu}>
-                                        <MaterialIcon name="clear" size={25} style={styles.iconClear}></MaterialIcon>
-                                        <Text style={[styles.textStatu, styles.blueStatus]}>Bom</Text>
+                                        <TouchableOpacity style={styles.box}>
+                                            <MaterialIcon name="sentiment-very-satisfied" size={65} style={styles.blueStatus}></MaterialIcon>
+                                            <Text style={[styles.textStatu, styles.blueStatus]}>Bom</Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                                 <View style={styles.contentStatu}>
                                     <View style={styles.itemStatu}>
-                                        <MaterialIcon name="clear" size={25} style={styles.iconClear}></MaterialIcon>
-                                        <Text style={[styles.textStatu, styles.yellowStatus]}>Ruim</Text>
+                                        <TouchableOpacity style={styles.box}>
+                                            <MaterialIcon name="sentiment-very-satisfied" size={65} style={styles.yellowStatus}></MaterialIcon>
+                                            <Text style={[styles.textStatu, styles.yellowStatus]}>Ruim</Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View style={styles.itemStatu}>
-                                        <MaterialIcon name="clear" size={25} style={styles.iconClear}></MaterialIcon>
-                                        <Text style={[styles.textStatu, styles.redStatus]}>Muito ruim</Text>
+                                        <TouchableOpacity style={styles.box}>
+                                            <MaterialIcon name="sentiment-very-satisfied" size={65} style={styles.redStatus}></MaterialIcon>
+                                            <Text style={[styles.textStatu, styles.redStatus]}>Muito ruim</Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>

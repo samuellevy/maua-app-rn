@@ -99,26 +99,38 @@ const styles = StyleSheet.create({
     iconSliderSelect: {
         color: colors.yellow, 
     },
-    contentStatu: {
+    contentAllStatus: {
+        alignItems: "center",
+    },
+    contentStatu: { 
+        marginTop: 20,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+    },
+    textStatu: {
+        fontFamily: fonts.main,
+        fontSize: 13,
+        fontWeight: 'bold',
     },
     greenStatus: {
-        color: 'green'
+        color: '#14CC82'
     },
     blueStatus: {
-        color: 'blue'
+        color: '#00A6E3'
     },
     yellowStatus: {
-        color: 'yellow'
+        color: '#FFB100'
     },
     redStatus: {
-        color: 'red'
+        color: '#C71829'
+    },
+    box: {
+        alignItems: "center",
+        width: 100,
     },
     itemStatu: { 
         alignItems: "center",
         paddingLeft: 40,
-        paddingRight: 40,
+        paddingRight: 40, 
     }
 })
 
