@@ -16,6 +16,8 @@ import About from './components/about';
 import Button from '../../components/button';
 import FirstVideo from '../../scenes/firstVideo';
 import Regulamento from '../../scenes/regulamento';
+import Loading from '../../components/loading';
+
 import { colors, metrics, fonts } from '../../styles';
 
 import Card from './components/card';
@@ -88,9 +90,7 @@ export default class Home extends Component {
   render() {
     if(this.state.isLoading){
       return(
-        <View style={{flex: 1, padding: 20, alignItems: 'center'}}>
-        <ActivityIndicator/>
-        </View>
+        <Loading/>
       )
     }
     return (

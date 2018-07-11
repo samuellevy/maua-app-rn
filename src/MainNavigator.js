@@ -23,7 +23,7 @@ import Splash from './scenes/splash';
 import Password from './scenes/password';
 import Finish from './scenes/password/finish';
 import FeedBack from './scenes/feedback';
-// import Answers from './scenes/feedback/answers';
+import Answers from './scenes/questions/answers';
 import Profile from './scenes/profile';
 import Employe from './scenes/employee';
 // import addEmployee from './scenes/employee/addEmployee';
@@ -52,7 +52,6 @@ const RootScene = TabNavigator({
   // // addEmployee: {screen: addEmployee},
   // Employe: {screen: Employe},
   // FeedBack: {screen: FeedBack},
-  // Answers: {screen: Answers},
   // Sent: {screen: Sent},
   // Player: {screen: Player}
   
@@ -78,7 +77,8 @@ export default StackNavigator({
   Home: {screen: RootScene},
   Question: {screen: Questions},
   Result: {screen: Result},
-  StatusSend: {screen: StatusSend}
+  StatusSend: {screen: StatusSend},
+  Answers: {screen: Answers},
 }, {
   initialRouteName: 'Splash',
   // headerMode: 'none',
