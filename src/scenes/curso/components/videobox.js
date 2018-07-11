@@ -18,7 +18,7 @@ export default class VideoBox extends Component {
         return(
             <TouchableOpacity onPress={() => { navigation.navigate('Aula',{item}); this.setState({ screen: 'Aula' }) }} navigation={this.props.navigation}>
             <View style={styles.video}>
-                <Text style={[styles.status, item.progress=='Novo'?styles.statusNew:styles.statusCompleted]}>{item.progress.toUpperCase()}</Text>
+                <Text style={[styles.status, item.progress=='Módulo Novo'?styles.statusNew:styles.statusCompleted]}>{item.progress.toUpperCase()}</Text>
                 <View style = {styles.viewVideo}>
                     {/* <WebView source = {{ uri: 'https://www.youtube.com/embed/fBrOtR3pgPU' }} /> */}
                     <Image style={styles.thumbvideo} source={{ uri: 'https://i.ytimg.com/vi/'+item.video_url+'/hqdefault.jpg'}}/>
