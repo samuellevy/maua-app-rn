@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { colors, metrics, fonts } from '../../../../styles';
 
 const styles = StyleSheet.create({
@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     image:{
-        width: '100%',
+        // tela - margens * altura da imagem original / largura da imagem original
+        width: (Dimensions.get('screen').width - (metrics.paddings.dynamicDefault*2)),
+        height: ((Dimensions.get('screen').width - (metrics.paddings.dynamicDefault*2))*190)/328
     },
     congratBox:{
         backgroundColor: colors.yellow,
