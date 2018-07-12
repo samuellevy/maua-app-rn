@@ -54,7 +54,137 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: metrics.fonts.small,
         color: colors.white,
-    }
+    },
+    textBtn: {
+        color: colors.white, 
+    },
+    contentQuiz: {     
+        alignItems: 'center',
+    },
+    content: {
+        alignItems: 'center', 
+        justifyContent: 'space-between',
+        width: "90%",
+        backgroundColor: colors.white,
+    },
+    contentTop: {
+        width: "100%",
+        backgroundColor: colors.yellow,
+        paddingTop: 40,
+        paddingBottom: 30,
+    },
+    iconGreat: {
+        textAlign: "center",
+        color: colors.white,
+        paddingBottom: 10,
+    },
+    titleStatuFinish: {
+        fontFamily: fonts.main,
+        fontSize: 18,
+        textAlign: "center",
+        fontWeight: 'bold',
+        color: colors.white,
+    },
+    textTopFinish: {
+        color: colors.gray,
+        fontSize: 14,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        paddingTop: 50,
+        paddingLeft: 50,
+        paddingRight: 50,
+    },
+    btnResposta: { 
+        backgroundColor: '#FFB100',
+        borderRadius: 50,
+        marginTop: 10, 
+        marginBottom: 20, 
+        paddingTop: 10, 
+        paddingBottom: 10, 
+        paddingLeft: 30, 
+        paddingRight: 30, 
+    },
+    btnSair: { 
+        backgroundColor: 'transparent',
+        borderRadius: 50,
+        marginTop: 15, 
+        marginBottom: 25,
+        paddingTop: 10, 
+        paddingBottom: 10, 
+        paddingLeft: 30, 
+        paddingRight: 30, 
+        borderWidth: 0.8,
+        borderColor: colors.light,
+    },
+    btnColotGreen: {
+        textAlign: 'center',
+        color: colors.light,
+    },
+    boxBtnSend: {
+        
+    },
+
+    contentAllStatus: {
+        alignItems: "center",
+    },
+    contentStatu: { 
+        marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    textStatu: {
+        fontFamily: fonts.main,
+        fontSize: 13,
+        fontWeight: 'bold',
+    },
+    greenStatus: {
+        color: '#14CC82'
+    },
+    blueStatus: {
+        color: '#00A6E3'
+    },
+    yellowStatus: {
+        color: '#FFB100'
+    },
+    redStatus: {
+        color: '#C71829'
+    },
+    greyStatus: {
+        color: '#ADCCC7'
+    },
+    box: {
+        alignItems: "center",
+    },
+    itemStatu: { 
+        alignItems: "center",
+        width: '45%',
+        justifyContent: 'space-around',
+    },
+    boxTitleStatu: {
+        width: "70%",
+        paddingTop: 20,
+        paddingBottom: 30,
+    },
+    titleStatu: {
+        fontFamily: fonts.main,
+        fontSize: 18,
+        textAlign: "center",
+        fontWeight: 'bold',
+        color: "#4D6662",
+    },
+    boxBtnSend: {
+        marginTop: 50,
+    },
+    btnSend: { 
+        backgroundColor: '#FFB100',
+        borderRadius: 50,
+        marginTop: 15, 
+        marginBottom: 25,
+        paddingTop: 10, 
+        paddingBottom: 10, 
+        paddingLeft: 30, 
+        paddingRight: 30, 
+    },
 
 })
 
