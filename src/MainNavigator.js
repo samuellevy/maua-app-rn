@@ -32,6 +32,7 @@ import Aula from './scenes/curso/aula';
 import Questions from './scenes/questions'; 
 import FinishCurso from './scenes/finishCurse'; 
 import Result from './scenes/questions/components/result'; 
+import StatusSend from './scenes/statusSend';
 // import Player from './scenes/player';
 
 // Other confs
