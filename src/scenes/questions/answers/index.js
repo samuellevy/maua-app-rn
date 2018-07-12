@@ -27,9 +27,12 @@ export default class Answers extends Component {
     }
 
     componentDidMount(){
+        let navigation = this.props.navigation;
+        let dataSource = this.props.dataSource;
+        let dataAnswers = this.props.dataAnswers;
         const {params} = this.props.navigation.state;
-        this.setState({dataSource: params.dataSource, dataAnswers: params.dataAnswers});
-        console.log(params);
+        
+        this.setState({dataSource: dataSource, dataAnswers: dataAnswers});
     }
  
     getData = async () => {

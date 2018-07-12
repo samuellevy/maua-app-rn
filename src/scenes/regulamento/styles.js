@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { colors, metrics, fonts } from '../../styles';
 
-const styles = StyleSheet.create({
+const modal_styles = StyleSheet.create({
     content: {
         flex: 3,
         backgroundColor: '#E6F2F0', 
@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         height: 200, 
         alignItems: 'center', 
     },
-    boxTitleTop: { 
+    boxTitleTop: {
+        paddingTop: 10,
         alignItems: 'center', 
     },
     titleTop: {
@@ -117,4 +118,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default styles;
+export default modal_styles;

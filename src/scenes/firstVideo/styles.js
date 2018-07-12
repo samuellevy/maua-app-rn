@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         height: 200, 
         alignItems: 'center', 
     },
-    boxTitleTop: { 
+    boxTitleTop: {
+        paddingTop: 10,
         alignItems: 'center', 
     },
     titleTop: {

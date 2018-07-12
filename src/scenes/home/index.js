@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, AsyncStorage } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, AsyncStorage, Modal } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavIcon from '../../components/navigation/NavIcon';
 import styles from './styles';
+import modal_styles from '../regulamento/styles';
 
 import Header from '../../components/header';
 import Nav from '../../components/navigation';
@@ -15,8 +16,8 @@ import Blog from './components/blog';
 import About from './components/about';
 import Button from '../../components/button';
 import FirstVideo from '../../scenes/firstVideo';
-import Regulamento from '../../scenes/regulamento';
 import Loading from '../../components/loading';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import { colors, metrics, fonts } from '../../styles';
 
@@ -33,11 +34,12 @@ export default class Home extends Component {
   };
   
   state = {
-    accessFirst: '',
+    accessFirst: true,
     user:{
       name: null
     },
-    isLoading: true
+    isLoading: true,
+    modalScene: 'regulamento'
   };
   
   constructor (){ 
@@ -60,11 +62,9 @@ export default class Home extends Component {
       let accessFirst = await AsyncStorage.getItem('accessFirst')
       if(accessFirst == 'true') {
         this.setState({accessFirst: false})
-        console.log('Ja entro')
       } else {
         AsyncStorage.setItem('accessFirst', 'true'); 
         this.setState({accessFirst: true})
-        console.log('nunca entro')
       }
     } catch(error) {
       console.log(error)
@@ -79,25 +79,46 @@ export default class Home extends Component {
     }
   }
   
-  regulamento() {
-    if(this.state.accessFirst) {
-      return (
-        <Regulamento />
-      )
-    }
-  }
-  
   render() {
     if(this.state.isLoading){
       return(
         <Loading/>
       )
     }
+    if(this.state.accessFirst && this.state.modalScene == 'regulamento'){
+      return(
+        <View>
+          <Modal animationType="fade"      
+            transparent={true}
+            visible={this.state.visibleModal}
+            onRequestClose={() => { this.visibleModal(false); } }> 
+               <View style={modal_styles.contentModal}>
+                    <View style={modal_styles.modalTop}>
+                        <View style={modal_styles.boxTitleTop}>
+                            <Text style={modal_styles.titleTop}>REGULAMENTO</Text>
+                        </View>
+                    </View>
+ 
+                    <View style={modal_styles.modalBottom}>
+                        <ScrollView style={modal_styles.scrollview}>
+                            <Text style={modal_styles.textReg}>Curabitur eleifend, turpis sit amet dignissim aliquet, nisl arcu interdum nibh, vitae vestibulum nisl lacus varius quam. Phasellus lobortis iaculis sem non faucibus. In pharetra pellentesque scelerisque. Aliquam et mi imperdiet, accumsan dui nec, scelerisque mauris. Etiam gravida egestas dolor, at semper nulla euismod sit amet. Quisque sit amet nulla varius, sagittis mi at, aliquam lacus. Praesent at urna orci. Nam pretium dapibus purus, sit amet aliquam arcu sagittis id. Quisque vel tempus orci. Cras quis dolor sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse ac neque id tortor ornare finibus sit amet quis mauris. In in ligula ac ipsum convallis finibus vitae quis nibh. Vivamus varius, enim vel efficitur tempus, ex sem aliquet odio, non gravida leo quam non quam. </Text>
+                        </ScrollView>
+
+                        <View style={modal_styles.contentBtn}>
+                            <TouchableOpacity style={modal_styles.acessMod} onPress={() => {this.setState({visibleModal: false, modalScene: 'home'});}}>
+                                <Text style={modal_styles.textBtn}>ESTOU DE ACORDO</Text> 
+                            </TouchableOpacity> 
+                        </View>
+                    </View> 
+                </View>
+            </Modal>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         {/* <FirstVideo /> */}
         {this.modalFirst()}
-        {this.regulamento()}
         <ScrollView style={styles.scrollview}>
             
             <View style={styles.contentImage}>
