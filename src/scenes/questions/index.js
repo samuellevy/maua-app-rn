@@ -44,7 +44,7 @@ export default class Questions extends React.Component {
         parcials = this.state.parcials;
         if(this.state.questionKey + 1 < this.state.dataSource.length && !this.state.toFinish){
             // defining answers
-            var answers = this.state.dataAnswers.concat({id: this.state.questionKey, value: this.state.selectedAnswer, correct: this.state.dataSource[this.state.questionKey].value});
+            var answers = this.state.dataAnswers.concat({id: this.state.questionKey, question_id: this.state.dataSource[this.state.questionKey].id,  value: this.state.selectedAnswer, correct: this.state.dataSource[this.state.questionKey].value});
             this.setState({dataAnswers: answers});
             if(this.state.selectedAnswer == this.state.dataSource[this.state.questionKey].value){
                 parcials++;
@@ -60,7 +60,7 @@ export default class Questions extends React.Component {
             });
         }
         else if(this.state.questionKey + 1 == this.state.dataSource.length && !this.state.toFinish){
-            var answers = this.state.dataAnswers.concat({id: this.state.questionKey, value: this.state.selectedAnswer, correct: this.state.dataSource[this.state.questionKey].value});
+            var answers = this.state.dataAnswers.concat({id: this.state.questionKey, question_id: this.state.dataSource[this.state.questionKey].id,  value: this.state.selectedAnswer, correct: this.state.dataSource[this.state.questionKey].value});
             if(this.state.selectedAnswer == this.state.dataSource[this.state.questionKey].value){
                 parcials++;
                 console.log(parcials);
@@ -82,7 +82,7 @@ export default class Questions extends React.Component {
                 <Loading/>
             )
         }
-        if (this.state.toFinish){
+        if (this.state.toFinish){ 
             return(
                 <View style={styles.contentAll}> 
                     <View style={styles.contentModal}>
