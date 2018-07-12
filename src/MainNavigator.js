@@ -30,7 +30,7 @@ import Employe from './scenes/employee';
 import AboutCourse from './scenes/aboutCourse';
 import Aula from './scenes/curso/aula'; 
 import Questions from './scenes/questions'; 
-import StatusSend from './scenes/statusSend'; 
+import FinishCurso from './scenes/finishCurse'; 
 import Result from './scenes/questions/components/result'; 
 // import Player from './scenes/player';
 
@@ -78,7 +78,7 @@ export default StackNavigator({
   Home: {screen: RootScene},
   Question: {screen: Questions},
   Result: {screen: Result},
-  StatusSend: {screen: StatusSend}
+  FinishCurso: {screen: FinishCurso}
 }, {
   initialRouteName: 'Splash',
   // headerMode: 'none',
