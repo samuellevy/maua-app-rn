@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-
 import styles from './styles';
 
-import Answers from '../../answers';
+import rest from '../../../../services/rest';
 
 export default class Result extends Component {
     static navigationOptions = {
@@ -16,6 +14,23 @@ export default class Result extends Component {
         this.state = {
             isLoading: true,
         }
+    }
+
+    sendData(dataAnswers){
+        let answers = JSON.stringify({
+            answers: dataAnswers
+          });
+        
+        console.log('sending');
+        console.log(answers);
+        rest.post('/questions/answer', answers).then((rest)=>{
+            console.log(rest);
+        });
+    }
+
+    confirm(navigation, dataSource, dataAnswers){
+        this.sendData(dataAnswers);
+        navigation.navigate('Answers', {dataSource: dataSource, dataAnswers: dataAnswers});
     }
     
     render() {
@@ -39,7 +54,7 @@ export default class Result extends Component {
                 <View style={styles.contentBox}>
                     <Text style={styles.cardTitle}>Chame todo mundo!</Text>
                     <Text style={styles.cardText}>Uma maneira de acumular pontos é com todos os funcionários completando o módulo do mês. Não dê bobeira e incentive seus colegas!</Text>
-                    <TouchableOpacity onPress={() => {navigation.navigate('Answers', {dataSource: dataSource, dataAnswers: dataAnswers})}}>
+                    <TouchableOpacity onPress={() => {this.confirm(navigation, dataSource, dataAnswers)}}>
                         <View style={styles.button}>
                             <Text style={styles.buttonText}>{"Continuar".toUpperCase()}</Text>
                         </View>
