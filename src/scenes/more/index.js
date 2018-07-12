@@ -29,11 +29,11 @@ export default class More extends Component {
               <Item icon={'file-document-box'} title={'Regulamento'}/>
             </TouchableOpacity>
           </View> 
-          <View style={styles.border}>
+          {/* <View style={styles.border}>
             <TouchableOpacity>
               <Item icon={'earth'} title={'Blog'}/>
             </TouchableOpacity>
-          </View>
+          </View> */}
           <View style={styles.border}>
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('Contact'); this.setState({ screen: 'contact' }) }}>
               <Item icon={'comment-outline'} title={'Fale conosco'}/>

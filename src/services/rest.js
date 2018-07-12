@@ -23,11 +23,11 @@ var rest = {
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTUzMTQyMjk4MH0.pVB4W3Y8xlBjX_bdyVai-h_P54AuIlv08W9Cle246d8'
+            //   'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTUzMTQyMjk4MH0.pVB4W3Y8xlBjX_bdyVai-h_P54AuIlv08W9Cle246d8'
             },
             body: body,
         };
-        // if(token) object.headers['Authorization'] = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTUzMTQyMjk4MH0.pVB4W3Y8xlBjX_bdyVai-h_P54AuIlv08W9Cle246d8`;
+        if(token) object.headers['Authorization'] = `Bearer ${token}`;
         return fetch(url, object).then((res) => res.json());
     },
 };

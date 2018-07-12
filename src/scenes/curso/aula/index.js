@@ -67,8 +67,8 @@ export default class Curso extends Component {
                         </View>
 
                         <View style={styles.boxTest}>
-                            <TouchableOpacity style={styles.startTest} onPress={() => { navigation.navigate('Question');}}>
-                                <Text style={styles.textBtn}>FAZER O TESTE</Text> 
+                            <TouchableOpacity style={styles.startTest} onPress={() => { navigation.navigate('Question', {item: item.id});}}>
+                                <Text style={styles.textBtn}>RESPONDER QUIZ</Text> 
                             </TouchableOpacity>
                         </View>
                     </View>

@@ -23,7 +23,7 @@ export default class Contact extends Component {
           </Text>
           <Text style={styles.txtDescription}>Possui algum comentário, dúvida ou sugestão? Entre em contato com a gente!</Text>
           <View style={styles.inputBox}>
-            <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Escreva sua mensagem' placeholderTextColor={colors.gray} multiline={true} onChangeText={(text) => this.setState({ text })}/>
+            <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Escreva sua mensagem' placeholderTextColor={colors.gray} multiline={true} onChangeText={(text) => this.setState({ text })} returnKeyType='send'/>
           </View>
         </View>
         <View style={styles.boxSend}>

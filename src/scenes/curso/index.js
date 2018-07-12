@@ -14,7 +14,7 @@ export default class ListCurso extends Component {
         header: null,
     };
     state={
-        courses: []
+        courses: [],
     }
 
     constructor (){
@@ -31,6 +31,11 @@ export default class ListCurso extends Component {
         } catch (response){
             this.setState({ errorMessage: response.data.message });
         }
+    }
+
+    componentWillReceiveProps(){
+        this.getData();
+        this.forceUpdate();
     }
 
     render() {

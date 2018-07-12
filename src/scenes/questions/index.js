@@ -23,10 +23,12 @@ export default class Questions extends React.Component {
 
     static navigationOptions = {
         header: null
-    };    
+    };
     
     componentDidMount(){
-        rest.get('/questions/get/2').then((rest)=>{
+        const {params} = this.props.navigation.state;
+
+        rest.get('/questions/get/'+params.item).then((rest)=>{
             this.setState({
                 isLoading: false,
                 dataSource: rest.questions
@@ -86,7 +88,7 @@ export default class Questions extends React.Component {
             return(
                 <View style={styles.contentAll}> 
                     <View style={styles.contentModal}>
-                        <TouchableOpacity style={styles.clearBtn} onPress={() => {goBack()}}>
+                        <TouchableOpacity style={styles.clearBtn} onPress={() => {this.props.navigation.navigate('Curso', {update: true}); }}>
                             <MaterialIcon name="clear" size={25} style={styles.iconClear}></MaterialIcon>
                         </TouchableOpacity>
                         <View style={styles.titleModulo}>
@@ -101,7 +103,7 @@ export default class Questions extends React.Component {
             return(
                 <View style={styles.contentAll}> 
                     <View style={styles.contentModal}>
-                        <TouchableOpacity style={styles.clearBtn} onPress={() => {goBack()}}>
+                        <TouchableOpacity style={styles.clearBtn} onPress={() => {this.props.navigation.navigate('Curso', {update: true}); }}>
                             <MaterialIcon name="clear" size={25} style={styles.iconClear}></MaterialIcon>
                         </TouchableOpacity>
                         <View style={styles.titleModulo}>

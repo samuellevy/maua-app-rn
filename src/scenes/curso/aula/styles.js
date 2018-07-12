@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     },
     startTest: {
         width: 170,
-        backgroundColor: '#ADCCC7',
+        backgroundColor: colors.yellow,
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop: 5,
