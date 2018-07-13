@@ -87,11 +87,7 @@ export default class Home extends Component {
 
   sendLojista() {
     if(this.state.nameLojista !== null && this.state.emailLojista !== null && this.state.celularLojista !== null) {
-      console.log(this.state.nameLojista)
-      console.log(this.state.emailLojista)
-      console.log(this.state.celularLojista)
-      this.setState({visibleModal: false})
-      this.forceUpdate();
+      this.setState({visibleModal: false, modalScene: 'home'})
     } else {
       Alert.alert(
           "Algo aconteceu!",
@@ -102,6 +98,13 @@ export default class Home extends Component {
           { cancelable: false }
       )
     }
+  }
+  
+  agreeTerms(){
+    this.setState({
+        visibleModal: false,
+        modalScene: 'form'
+    });
   }
   
   render() {
@@ -130,7 +133,7 @@ export default class Home extends Component {
                         </ScrollView>
 
                         <View style={modal_styles.contentBtn}>
-                            <TouchableOpacity style={modal_styles.acessMod} onPress={() => {this.setState({visibleModal: false, modalScene: 'home'});}}>
+                            <TouchableOpacity style={modal_styles.acessMod} onPress={() => {this.agreeTerms()}}>
                                 <Text style={modal_styles.textBtn}>ESTOU DE ACORDO</Text> 
                             </TouchableOpacity> 
                         </View>
@@ -141,13 +144,9 @@ export default class Home extends Component {
       )
     }
 
-    if(this.state.dataSource.role == 'Lojista' && this.state.screen == "form"){
+    if(this.state.dataSource.role == 'Lojista' && this.state.modalScene == "form"){
       return(
-        <View>
-          <Modal animationType="fade"      
-          transparent={true}
-          visible={this.state.visibleModal}
-          onRequestClose={() => { this.visibleModal(false); } }> 
+        <View style={formLojista.container} >
               <View style={formLojista.contentModal}>
                   <View style={formLojista.modalTop}>
                       <View style={formLojista.boxTitleTop}>
@@ -180,7 +179,6 @@ export default class Home extends Component {
                       </View>
                   </View> 
               </View>
-          </Modal>
         </View>
       )
     }

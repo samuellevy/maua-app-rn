@@ -2,20 +2,13 @@ import { StyleSheet } from 'react-native';
 import { colors, metrics, fonts } from '../../styles';
 
 const styles = StyleSheet.create({
-    content: {
-        flex: 3,
-        backgroundColor: '#E6F2F0', 
+    container:{
+        flex: 1
     },
     modalTop: {
         backgroundColor: colors.white,
         paddingBottom: 15,
     },
-    contentModal: {
-        flex: 3,
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        justifyContent: 'center',
-        padding: 20,
-    }, 
     contentPie: {  
         height: 200, 
         alignItems: 'center', 
