@@ -47,7 +47,7 @@ export default class Curso extends Component {
 
         return (
             <View style={styles.container}>
-                <ScrollView contentContainerStyle={styles.cursoInfo}>
+                <ScrollView contentContainerStyle={[styles.cursoInfo]}>
                     <View style={styles.containerCurso}>
                         <View style={styles.boxTitle}>
                             <Title textContent={'CURSO DE CAPACITAÇÃO'} />

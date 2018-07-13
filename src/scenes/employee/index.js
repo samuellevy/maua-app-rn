@@ -8,7 +8,7 @@ import styles from './styles';
 
 import Header from '../../components/header';
 import Nav from '../../components/navigation';
-import api from '../../services/api';
+import rest from '../../services/rest';
 
 import TitleTop from '../../components/title/primary';
 import ListUser from './components/listEmployee';
@@ -30,16 +30,24 @@ export default class Employee extends Component {
 	}
 
     getUserData = async () => {
-        try{
-            const response = await api.get('/users/list'); 
-            var arrayUser = response.data.users;
-			console.log(arrayUser)
-			console.log('try')
-            this.setState({arrayUser: arrayUser});
-        } catch (response){
-			console.log('catch')
-            this.setState({ errorMessage: response.data.message });
-        }
+        // try{
+        //     const response = await api.get('/users/list'); 
+        //     var arrayUser = response.data.users;
+		// 	console.log(arrayUser)
+		// 	console.log('try')
+        //     this.setState({arrayUser: arrayUser});
+        // } catch (response){
+		// 	console.log('catch')
+        //     this.setState({ errorMessage: response.data.message });
+		// }
+		
+		rest.get('/users/list').then((rest)=>{
+			console.log('aqui')
+			this.setState({
+			  	isLoading: false,
+			  	arrayUser: rest.users
+			});
+		})
     }
 
 	listFunc() {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, AsyncStorage, Modal } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, AsyncStorage, Modal, TextInput, Alert } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavIcon from '../../components/navigation/NavIcon';
 import styles from './styles';
 import modal_styles from '../regulamento/styles';
+import formLojista from '../formLojista/styles';
 
 import Header from '../../components/header';
 import Nav from '../../components/navigation';
@@ -35,6 +36,9 @@ export default class Home extends Component {
   
   state = {
     accessFirst: true,
+    nameLojista: null,
+    emailLojista: null,
+    celularLojista: null,
     user:{
       name: null
     },
@@ -54,6 +58,8 @@ export default class Home extends Component {
         dataSource: rest.user,
         user: rest.user
       });
+      console.log('aquiiiiiiiiiii')
+      console.log(this.state.dataSource)
     })
   }
 
@@ -75,6 +81,25 @@ export default class Home extends Component {
     if(this.state.accessFirst) {
       return (
         <FirstVideo />
+      )
+    }
+  }
+
+  sendLojista() {
+    if(this.state.nameLojista !== null && this.state.emailLojista !== null && this.state.celularLojista !== null) {
+      console.log(this.state.nameLojista)
+      console.log(this.state.emailLojista)
+      console.log(this.state.celularLojista)
+      this.setState({visibleModal: false})
+      this.forceUpdate();
+    } else {
+      Alert.alert(
+          "Algo aconteceu!",
+          "Nem todos os campos foram preenchido corretamente.",
+              [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')}
+              ],
+          { cancelable: false }
       )
     }
   }
@@ -115,6 +140,51 @@ export default class Home extends Component {
         </View>
       )
     }
+
+    if(this.state.dataSource.role == 'Lojista' && this.state.screen == "form"){
+      return(
+        <View>
+          <Modal animationType="fade"      
+          transparent={true}
+          visible={this.state.visibleModal}
+          onRequestClose={() => { this.visibleModal(false); } }> 
+              <View style={formLojista.contentModal}>
+                  <View style={formLojista.modalTop}>
+                      <View style={formLojista.boxTitleTop}>
+                          <Text style={formLojista.titleTop}>ATUALIZE SEUS DADOS</Text>
+                      </View>
+                  </View>
+
+                  <View style={formLojista.modalBottom}>
+                      <ScrollView style={formLojista.scrollview}>
+                          <View style={formLojista.contentForm}>
+                              <View style={formLojista.boxInput}> 
+                                  <Text style={formLojista.inputText}>Nome</Text>
+                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu nome"} onChangeText={(nameLojista) => this.setState({nameLojista})} value={this.state.nameLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                              </View>
+                              <View style={formLojista.boxInput}> 
+                                  <Text style={formLojista.inputText}>E-mail</Text>
+                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu email"} onChangeText={(emailLojista) => this.setState({emailLojista})} value={this.state.emailLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                              </View>
+                              <View style={formLojista.boxInput}> 
+                                  <Text style={formLojista.inputText}>Celular</Text>
+                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu celular"} onChangeText={(celularLojista) => this.setState({celularLojista})} value={this.state.celularLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                              </View>
+                          </View>
+                      </ScrollView>
+
+                      <View style={formLojista.contentBtn}>
+                          <TouchableOpacity style={formLojista.acessMod} onPress={() => {this.sendLojista()}}>
+                              <Text style={formLojista.textBtn}>ATUALIZAR</Text> 
+                          </TouchableOpacity> 
+                      </View>
+                  </View> 
+              </View>
+          </Modal>
+        </View>
+      )
+    }
+    
     return (
       <View style={styles.container}>
         {/* <FirstVideo /> */}

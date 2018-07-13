@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     containerCurso: {
-        marginBottom: 40,
+        marginBottom: 80,
     }
 });
 
