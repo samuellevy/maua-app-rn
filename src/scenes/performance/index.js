@@ -9,7 +9,8 @@ import General from './components/general';
 import LastUpdate from './components/lastupdate';
 import Sales from './components/sales';
 import History from './components/history';
-import api from '../../services/api';
+import rest from '../../services/rest';
+import Loading from '../../components/loading';
 
 export default class Performance extends Component {
     static navigationOptions = {
@@ -19,30 +20,33 @@ export default class Performance extends Component {
         },
     };
 
-    state={
-        points:[],
-        total:null,
-        ranking:null,
-        percent:null,
-    }
-
-    constructor (){
-        super();
-        this.getData();
-    }
-    
-
-    getData = async () => {
-        try{
-            const response = await api.get('/points/get');
-            this.setState({points: response.data.points,total: response.data.total,ranking: response.data.ranking});
-            console.log(response.data.points);
-        } catch (response){
-            this.setState({ errorMessage: response.data.message });
+    constructor(props){
+        super(props);
+        this.state = {
+            isLoading: true,
+            points:[],
+            total:null,
+            ranking:null,
+            percent:null,
+            dataSource:[]
         }
     }
 
+    componentWillMount(){
+        rest.get('/public/infos').then((rest)=>{
+            this.setState({
+                isLoading: false,
+                dataSource: rest,
+            });
+        })
+    }
+
     render() {
+        if(this.state.isLoading){
+            return(
+                <Loading/>
+            )
+        }
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollview}>
@@ -51,19 +55,15 @@ export default class Performance extends Component {
                     </Text>
 
                     <Text style={styles.subtitle}>Vendas Mensais</Text>
-                    <Sales percent={this.state.percent}/>
+                    <Sales item={this.state.dataSource.sales}/>
                     <Text style={styles.subtitle}>Desempenho Geral</Text>
-                    <General total={this.state.total} ranking={this.state.ranking}/>
-                    <LastUpdate />
+                    <General ranking={this.state.dataSource.store.ranking} total={this.state.dataSource.store.points}/>
+                    {/* <LastUpdate /> */}
                     <Text style={styles.subtitle}>Histórico</Text>
                     <View style={styles.historyBox}>
-                    {this.state.points.map((item,key) => (
-                        <History key={'history_'+key} child={key<this.state.points.length?'not-last':'last'} date={item.date} description={item.title} score={item.point}/>
-                    ))}
-                        {/* <History child='not-last' date='07/18' description='Meta mensal atingida - 100%' score='50'/>
-                        <History child='not-last' date='06/18' description='Módulo completado' score='100'/>
-                        <History child='not-last' date='06/18' description='Cadastro de funcionários' score='25'/>
-                        <History child='last' date='06/18' description='Módulo completado' score='20'/> */}
+                        {this.state.dataSource.points.map((item,key) => (
+                            <History key={'history_'+key} child={key<this.state.points.length?'not-last':'last'} date={item.date} description={item.title} score={item.point}/>
+                        ))}
                     </View>
                 </ScrollView>
             </View>

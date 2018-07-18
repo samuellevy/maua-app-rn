@@ -10,14 +10,41 @@ import TitlePrimary from '../../components/title/primary';
 import Rankingbox from './components/rankingbox';
 
 import { colors, metrics, fonts } from '../../styles';
+import rest from '../../services/rest';
+import Loading from '../../components/loading';
 
 export default class AboutCourse extends Component {
     static navigationOptions = {
         title: 'products',
         headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
     };
-  
+    constructor(props){
+        super(props);
+        this.state = {
+            isLoading: true,
+            points:[],
+            total:null,
+            ranking:null,
+            percent:null,
+            dataSource:[]
+        }
+    }
+
+    componentWillMount(){
+        rest.get('/pages/get/about').then((rest)=>{
+            this.setState({
+                isLoading: false,
+                dataSource: rest,
+            });
+        })
+    }
+
     render() {
+        if(this.state.isLoading){
+            return(
+                <Loading/>
+            )
+        }
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollview}>
@@ -27,7 +54,7 @@ export default class AboutCourse extends Component {
 
                     <View style = {styles.viewVideo}>
                         {/* <WebView source = {{ uri: 'https://www.youtube.com/embed/fBrOtR3pgPU' }} /> */}
-                        <Image style={styles.thumbvideo} source={{ uri: 'https://i.ytimg.com/vi/CSZxjQwDKF0/hqdefault.jpg'}}/>
+                        <Image style={styles.thumbvideo} source={{ uri: 'https://i.ytimg.com/vi/'+this.state.dataSource.page.url+'/hqdefault.jpg'}}/>
                     </View>
 
                     <Text style={styles.titleSecondary}>Pontuação</Text>

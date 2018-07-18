@@ -9,16 +9,17 @@ export default class Blog extends Component {
     };
 
     render() {
+        let item = this.props.item;
         let color = this.props.color;
         return (
             <View style={styles.container}>
                 <View style={styles.description}>
                     <Text style={styles.text}>
-                        Está com dúvidas? Assista ao vídeo de introdução ao Curso de Capacitação.
+                        {item.description}
                     </Text>
                 </View>
                 <View style={styles.viewVideo}>
-                    <WebView source={{ uri: 'https://www.youtube.com/embed/fBrOtR3pgPU' }} />
+                    <WebView source={{ uri: 'https://www.youtube.com/embed/'+item.url }} />
                 </View>
             </View>
         );

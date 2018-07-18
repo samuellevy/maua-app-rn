@@ -52,14 +52,12 @@ export default class Home extends Component {
   }
   
   componentDidMount(){
-    rest.get('/public/home').then((rest)=>{
+    rest.get('/public/infos').then((rest)=>{
       this.setState({
         isLoading: false,
-        dataSource: rest.user,
+        dataSource: rest,
         user: rest.user
       });
-      console.log('aquiiiiiiiiiii')
-      console.log(this.state.dataSource)
     })
   }
 
@@ -202,7 +200,7 @@ export default class Home extends Component {
             
             <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('Performance');}}>
                 <Card title={'Desempenho'} icon={'today'} color={colors.blue}>
-                    <Performance/>
+                    <Performance item={this.state.dataSource.sales} />
                     <CardFooter color={colors.blue} url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }}>{'Acompanhe o desempenho da loja'.toUpperCase()}</CardFooter>
                 </Card>
             </TouchableOpacity>
@@ -210,13 +208,13 @@ export default class Home extends Component {
             <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('Curso');}}>
                 <Card title={'Curso de Capacitação'} icon={'video-library'} color={colors.yellow}>
                     <Course/>
-                    <CardFooter>{'Ir para o módulo'.toUpperCase()}</CardFooter>
+                    <CardFooter>{'Ir para curso'.toUpperCase()}</CardFooter>
                 </Card>
             </TouchableOpacity>
             
             <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('Curso');}}>
                 <Card title={'Blog'} icon={'public'} color={colors.purple}>
-                    <Blog/>
+                    <Blog item={this.state.dataSource.post}/>
                     <View style={{paddingTop: 10, paddingBottom: 20}}>
                         <TouchableOpacity onPress={this.signIn}>
                             <Button title={'Ir para o Blog'} size={60} color={colors.purple}/>
@@ -227,7 +225,7 @@ export default class Home extends Component {
             
             <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('AboutCourse'); }}>
                 <Card title={'Sobre o Programa'} icon={'info-outline'} color={colors.dark}>
-                    <About/>
+                    <About item={this.state.dataSource.page}/>
                     <CardFooter>{'Saiba mais'.toUpperCase()}</CardFooter>
                 </Card>
             </TouchableOpacity>
