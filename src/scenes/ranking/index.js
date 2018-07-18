@@ -51,14 +51,10 @@ export default class Ranking extends Component {
                         <Text style={styles.title}>
                             {'Ranking das lojas'.toUpperCase()}
                         </Text>
-                        {this.state.dataSource.stores.map((item, key) => (
-                            key==0?
-                                <WinnerCard store={item.name} score={item.total}/>:''
-                        ))}
+                        <WinnerCard store={this.state.dataSource.stores[0].name} score={this.state.dataSource.stores[0].total}/>
                         <View style={styles.otherPlaces}>
                         {this.state.dataSource.stores.map((item, key) => (
-                            key>0?
-                            <Card url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }} status={item.ranking==this.state.dataSource.my_store.ranking?'user':'non-user'} title={item.ranking + 'º Lugar'} image={item.ranking+'-ranking'} store={item.name} score={item.total}/>:''
+                            key > 0 && <Card key={'card_'+key} url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }} status={item.ranking==this.state.dataSource.my_store.ranking?'user':'non-user'} title={item.ranking + 'º Lugar'} image={item.ranking+'-ranking'} store={item.name} score={item.total}/>
                         ))}
                         </View>
                     </View>
