@@ -26,7 +26,7 @@ import FeedBack from './scenes/feedback';
 import Answers from './scenes/questions/answers';
 import Profile from './scenes/profile';
 import Employe from './scenes/employee';
-// import addEmployee from './scenes/employee/addEmployee';
+import addEmployee from './scenes/employee/addEmployee';
 import AboutCourse from './scenes/aboutCourse';
 import Aula from './scenes/curso/aula'; 
 import Questions from './scenes/questions'; 
@@ -50,7 +50,7 @@ const RootScene = TabNavigator({
   Contact: {screen: Contact},
   AboutCourse: {screen: AboutCourse},
   Profile: {screen: Profile},
-  // addEmployee: {screen: addEmployee},
+  addEmployee: {screen: addEmployee},
   Employe: {screen: Employe},
   FeedBack: {screen: FeedBack},
   // Sent: {screen: Sent},

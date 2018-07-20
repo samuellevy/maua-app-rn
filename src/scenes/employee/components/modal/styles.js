@@ -37,8 +37,6 @@ const styles = StyleSheet.create({
     },
     btnExit: {
         backgroundColor: colors.white,
-        fontSize: 12,
-        fontWeight: "bold",
         borderRadius: 3,
         borderColor: colors.error,
         borderWidth: 2,
@@ -53,8 +51,6 @@ const styles = StyleSheet.create({
     },
     btnConfirm: {
         backgroundColor: colors.light,
-        fontSize: 12,
-        fontWeight: "bold",
         borderRadius: 3,
         borderColor: colors.light,
         borderWidth: 2,

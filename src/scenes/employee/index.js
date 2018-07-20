@@ -30,17 +30,6 @@ export default class Employee extends Component {
 	}
 
     getUserData = async () => {
-        // try{
-        //     const response = await api.get('/users/list'); 
-        //     var arrayUser = response.data.users;
-		// 	console.log(arrayUser)
-		// 	console.log('try')
-        //     this.setState({arrayUser: arrayUser});
-        // } catch (response){
-		// 	console.log('catch')
-        //     this.setState({ errorMessage: response.data.message });
-		// }
-		
 		rest.get('/users/list').then((rest)=>{
 			console.log('aqui')
 			this.setState({
@@ -56,7 +45,7 @@ export default class Employee extends Component {
 				{this.state.arrayUser.map((arrayUser, index) => {
 					return(
 						<View key={index}>
-							<TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate('addEmployee', {user: arrayUser.id});}}>
+							<TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate('addEmployee', {userId: arrayUser.id})} }>
 								<ListUser icon={arrayUser.completed} nameUser={arrayUser.name} message={arrayUser.course_status} />
 							</TouchableOpacity>
 						</View>
@@ -73,21 +62,15 @@ export default class Employee extends Component {
 					<TitleTop textContent={'FUNCIONÁRIOS'} />
  
 					<View style={styles.addEmplayee}>
-						<TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('addEmployee'); this.setState({ screen: 'addEmployee' }) }}>
+						<TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('addEmployee', {userId: null})} }>
 							<View style={styles.boxIcon}>
 								<MaterialIcon name="add" size={15} style={styles.iconClear}></MaterialIcon>
 							</View>
 							<Text style={styles.textBtn}>ADICIONAR FUNCIONÁRIO</Text>
 						</TouchableOpacity>
 					</View> 
-					   
-					{/* <TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate('addEmployee');}}>
-						<ListUser icon={true} nameUser="Ronald Junger" mensager="Todos os módulos foram completos!" />
-					</TouchableOpacity> */}
+					
 					{this.listFunc()}
-					{/* <ListUser icon={false} idUser={2} nameUser="Kayalla Pontes" mensager="Nunca acessou ao curso!" navigator={() => {this.props.navigation.navigate('addEmployee', this.state.id);}}/>
-					<ListUser icon={false} idUser={3} nameUser="Samuel Levy" mensager="Ainda não completou o módulo desse mês." navigator={() => {this.props.navigation.navigate('addEmployee', this.state.id);}}/>
-					<ListUser icon={false} idUser={4} nameUser="Vinicius Machado" mensager="Está atrasado no curso: faltam 2 módulos!" navigator={() => {this.props.navigation.navigate('addEmployee', this.state.id);}}/> */}
 				</ScrollView>
 			</View>
 	    ); 
