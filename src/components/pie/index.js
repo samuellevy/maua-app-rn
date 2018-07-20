@@ -8,7 +8,7 @@ import Pie from  'react-native-pie';
 export default class Home extends Component {
 	state = {
 		percentValue: 0,
-		percent: this.props.percent
+		percent: parseInt(this.props.percent)
 	}
     
 	componentDidMount() {
@@ -16,7 +16,7 @@ export default class Home extends Component {
             this, 'animatePie', () => 
             {
 				deltaPercent = this.state.percent / 10;
-                if(this.state.percentValue != this.state.percent){
+                if(this.state.percentValue < this.state.percent){
                     this.setState({percentValue: this.state.percentValue+deltaPercent})
                 }
             }

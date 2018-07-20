@@ -5,6 +5,8 @@ import styles from './styles';
 import WinnerCard from './components/winnercard';
 import Card from './components/card';
 import { metrics, colors } from '../../styles';
+import rest from '../../services/rest';
+import Loading from '../../components/loading';
 
 export default class Ranking extends Component {
     static navigationOptions = {
@@ -14,7 +16,34 @@ export default class Ranking extends Component {
         },
     };
 
-    render() { 
+    constructor(props){
+        super(props);
+        this.state = {
+            isLoading: true,
+            points:[],
+            total:null,
+            ranking:null,
+            percent:null,
+            dataSource:[]
+        }
+    }
+
+    componentWillMount(){
+        rest.get('/public/ranking').then((rest)=>{
+            this.setState({
+                isLoading: false,
+                dataSource: rest,
+            });
+        })
+    }
+
+    render() {
+        if(this.state.isLoading){
+            return(
+                <Loading/>
+            )
+        }
+
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollview}>
@@ -22,11 +51,11 @@ export default class Ranking extends Component {
                         <Text style={styles.title}>
                             {'Ranking das lojas'.toUpperCase()}
                         </Text>
-                        <WinnerCard store='Casa Fort Distribuidora' score='430'/>
+                        <WinnerCard store={this.state.dataSource.stores[0].name} score={this.state.dataSource.stores[0].total}/>
                         <View style={styles.otherPlaces}>
-                           <Card url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }} status='non-user' title='2º Lugar' image='2-ranking' store='Duas Irmãs Materiais' score='420'/>
-                           <Card url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }} status='non-user' title='3º Lugar' image='3-ranking' store='Fornecedora Caçula' score='380'/>
-                           <Card url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }} status='user' title='4º Lugar' image='4-ranking' store='Loja Golveia Construção' score='360'/>
+                        {this.state.dataSource.stores.map((item, key) => (
+                            key > 0 && <Card key={'card_'+key} url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }} status={item.ranking==this.state.dataSource.my_store.ranking?'user':'non-user'} title={item.ranking + 'º Lugar'} image={item.ranking+'-ranking'} store={item.name} score={item.total}/>
+                        ))}
                         </View>
                     </View>
                 </ScrollView>

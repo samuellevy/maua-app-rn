@@ -10,24 +10,25 @@ export default class Performance extends Component {
     };
 
     render() {
+        let item = this.props.item;
         return (
             <View style={styles.container}>
                 <View style={styles.splitLeft}>
-                    <Text style={styles.text}>Falta apenas <Text style={{ fontWeight: "bold" }}>20%</Text> para sua loja completar a meta do mês!</Text>
-                    <Text style={styles.dateTitle}>{'Agosto de 2018'.toUpperCase()}</Text>
+                <Text style={styles.text}>{item.percent>60?'Quase lá! Falta apenas ':'Vamos lá! Ainda falta '}<Text style={{ fontWeight: "bold" }}>{100 - item.percent}%</Text> para sua loja completar a meta do mês!</Text>
+                    <Text style={styles.dateTitle}>{(item.month_name + ' de ' + item.year).toUpperCase()}</Text>
                     <View style={styles.table}>
                         <View>
                             <Text style={styles.tableTitle}>Meta do mês</Text>
-                            <Text style={styles.tableText}>56 sacos</Text>
+                            <Text style={styles.tableText}>{item.goal} sacos</Text>
                         </View>
                         <View>
                             <Text style={styles.tableTitle}>Vendas</Text>
-                            <Text style={styles.tableText}>48 sacos</Text>
+                            <Text style={styles.tableText}>{item.quantity} sacos</Text>
                         </View>
                     </View>
                 </View>
                 <View style={styles.splitRight}>
-                    <Pie percent={"80"} />
+                    <Pie percent={item.percent} />
                 </View>
             </View>
         );

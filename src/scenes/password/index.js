@@ -87,9 +87,9 @@ export default class Password extends Component {
                                     </View>
                             </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Finish'); this.setState({ screen: 'Finish' }) }}>
+                        {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate('Finish'); this.setState({ screen: 'Finish' }) }}>
                             <Text>VER Finish</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                 </View>
             </View>
         );
