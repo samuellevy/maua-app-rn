@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     otherPlaces:{
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        // width: 200,
     }
 });
 

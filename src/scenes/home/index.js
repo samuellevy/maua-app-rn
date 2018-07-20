@@ -48,6 +48,7 @@ export default class Home extends Component {
   
   constructor (){ 
     super();
+    this.componentDidMount();
     this.firstAccess();
   }
   
@@ -71,7 +72,7 @@ export default class Home extends Component {
         this.setState({accessFirst: true})
       }
     } catch(error) {
-      console.log(error)
+      
     }
   }
   
@@ -106,6 +107,8 @@ export default class Home extends Component {
   }
   
   render() {
+    console.log('blablablabla')
+    console.log(this.state.dataSource)
     if(this.state.isLoading){
       return(
         <Loading/>
@@ -141,7 +144,6 @@ export default class Home extends Component {
         </View>
       )
     }
-
     if(this.state.dataSource.role == 'Lojista' && this.state.modalScene == "form"){
       return(
         <View style={formLojista.container} >
