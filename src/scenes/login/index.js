@@ -68,13 +68,13 @@ export default class Login extends Component {
                 </View>
                 <View style={styles.boxWelcome}>
                     <Text style={styles.txtWelcome}>Bem-vindo! :)</Text>
-                    <Text style={styles.txtInitial}>Para começar, insira abaixo seu CPF e a senha.</Text>
+                    <Text style={styles.txtInitial}>Para começar, insira abaixo seu login e senha.</Text>
                     { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
                 </View>
                 <View style={styles.boxLogin}>
                         <View style={styles.inputBox}>
                             <MaterialIcon name="person" size={25} style={styles.inputIcon} />
-                            <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='E-mail' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={username => this.setState({username})} value={this.state.username!=null?this.state.username:''} returnKeyType='done'/>
+                            <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Login' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={username => this.setState({username})} value={this.state.username!=null?this.state.username:''} returnKeyType='done'/>
                         </View>
                         <View style={styles.inputBox}>
                             <MaterialIcon name="lock" size={25} style={styles.inputIcon} />
