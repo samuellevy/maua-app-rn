@@ -37,7 +37,7 @@ export default class Splash extends Component {
         if(token && remember == 'true') {
             navigateTo = 'Home'; //or home to instantly enter
         } else {
-            navigateTo = 'Login';
+            navigateTo = 'FirstLogin';
         }
         timer.setTimeout(
             this, 'fakeLoading', () => 
