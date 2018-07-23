@@ -91,7 +91,7 @@ export default class AboutCourse extends Component {
 
                     <Text style={styles.titleSecondary}>Prêmios</Text>
 
-                    <Text style={styles.text}>Nossa premiação é mensal e ganha quem acumular mais pontos! Os funcionários das 4 lojas que mais pontuaram ao final de cada mês serão <Text style={styles.destaqueGreen}>recompensados com vouchers.</Text></Text>
+                    <Text style={styles.text}>Nossa premiação é mensal e ganha quem acumular mais pontos! Os funcionários das 4 lojas que mais pontuaram ao final de cada mês serão <Text style={styles.destaqueGreen}>recompensados com dinheiro via Vale Presente.</Text></Text>
 
                     <Rankingbox />
 

@@ -86,6 +86,9 @@ export default class addEmployee extends Component {
                                         <Text style={styles.inputText}>E-MAIL</Text>
                                         <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} placeholder={arrayUser.email} placeholderTextColor={colors.textColor}/>
                                     </View>
+                                    <View style={{flexDirection: 'row'}}>
+                                        <Text style={{fontSize: 11, paddingTop: 10,}}>A senha do seu funcionário é </Text><Text style={{fontWeight: 'bold',fontSize: 11, paddingTop: 10,}}>quementendevende</Text>
+                                    </View>
                                 </View>
                             }
                         </View>
