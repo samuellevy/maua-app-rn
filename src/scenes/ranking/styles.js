@@ -25,8 +25,16 @@ const styles = StyleSheet.create({
     otherPlaces:{
         flex: 1,
         flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
         // width: 200,
-    }
+    },
+    blankSpaces: {
+        position: 'relative',
+        width: '30%',
+        paddingVertical: 10,
+        backgroundColor: 'tomato',
+    },
 });
 
 export default styles;
