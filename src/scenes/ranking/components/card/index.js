@@ -17,13 +17,23 @@ export default class Card extends Component {
     let url   = this.props.url;
 
     switch(image){
+      case '1-ranking':
+        switch (status) {
+          case 'non-user':
+            url = require('../../../../../assets/img/1-ranking.png');
+            break;
+          case 'user':
+            url = require('../../../../../assets/img/1-ranking-user.png');
+            break;
+        }
+      break;
       case '2-ranking':
         switch (status) {
           case 'non-user':
             url = require('../../../../../assets/img/2-ranking.png');
             break;
           case 'user':
-            url = require('../../../../../assets/img/2-ranking-active.png');
+            url = require('../../../../../assets/img/2-ranking-user.png');
             break;
         }
       break;
@@ -33,7 +43,7 @@ export default class Card extends Component {
             url = require('../../../../../assets/img/3-ranking.png');
             break;
           case 'user':
-            url = require('../../../../../assets/img/3-ranking-active.png');
+            url = require('../../../../../assets/img/3-ranking-user.png');
             break;
         }
       break;
@@ -43,18 +53,23 @@ export default class Card extends Component {
             url = require('../../../../../assets/img/4-ranking.png');
             break;
           case 'user':
-            url = require('../../../../../assets/img/4-ranking-active.png');
+            url = require('../../../../../assets/img/4-ranking-user.png');
             break;
         }
       break;
+      case '5-ranking':
+        url = require('../../../../../assets/img/5-ranking.png');
+      break;
+
+
     }
  
     switch (status) {
       case 'user':
-        color = colors.light;
+        color = colors.yellow;
         break;
       case 'non-user':
-        color = colors.gray;
+        color = colors.light;
         break;
     }
 

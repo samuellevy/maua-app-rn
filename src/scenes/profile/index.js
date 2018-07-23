@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 // import TextInputMask from 'react-native-text-input-mask';
 const timer = require('react-native-timer');
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,6 +9,7 @@ import { colors, metrics, fonts } from '../../styles';
 import styles from './styles';
  
 import TitleTop from '../../components/title/primary';
+import ModalSucces from './components'
 
 import api from '../../services/api';
 
@@ -52,6 +53,18 @@ export default class Profile extends Component {
                 tel: this.state.tel,
                 senha: this.state.senha
             });
+
+            // return <View><ModalSucces mensager={"Cadastrado"} /></View>
+            Alert.alert(
+                "Perfil editado",
+                "Todas as alterações foram feitas com sucesso",
+                    [
+                        // this.btnAlertConfirm(confirm),
+                        // this.btnAlertCancel(cancel)
+                        {text: 'OK', onPress: () => console.log('OK Pressed')}
+                    ],
+                { cancelable: false }
+            )
 
             console.log(response.data);
         } catch (response){

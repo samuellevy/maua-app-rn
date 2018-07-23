@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import styles from './styles';
 
-import WinnerCard from './components/winnercard';
 import Card from './components/card';
+import BlankSpace from './components/blankspace';
 import { metrics, colors } from '../../styles';
 import rest from '../../services/rest';
 import Loading from '../../components/loading';
@@ -51,11 +51,12 @@ export default class Ranking extends Component {
                         <Text style={styles.title}>
                             {'Ranking das lojas'.toUpperCase()}
                         </Text>
-                        <WinnerCard store={this.state.dataSource.stores[0].name} score={this.state.dataSource.stores[0].total}/>
                         <View style={styles.otherPlaces}>
-                        {this.state.dataSource.stores.map((item, key) => (
-                            key > 0 && <Card key={'card_'+key} url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }} status={item.ranking==this.state.dataSource.my_store.ranking?'user':'non-user'} title={item.ranking + 'º Lugar'} image={item.ranking+'-ranking'} store={item.name} score={item.total}/>
-                        ))}
+                            {this.state.dataSource.stores.map((item, key) => (
+                                key >= 0 && <Card key={'card_'+key} url={() => { this.props.navigation.navigate('Performance'); this.setState({ screen: 'Performance' }) }} status={item.ranking==this.state.dataSource.my_store.ranking?'user':'non-user'} title={item.ranking + 'º Lugar'} image={item.ranking+'-ranking'} store={item.name} score={item.total}/>
+                            ))}
+                            <BlankSpace />
+                            <BlankSpace />
                         </View>
                     </View>
                 </ScrollView>

@@ -39,6 +39,8 @@ export default class Home extends Component {
     nameLojista: null,
     emailLojista: null,
     celularLojista: null,
+    dataSource: null,
+    typeUser: null,
     user:{
       name: null
     },
@@ -48,6 +50,7 @@ export default class Home extends Component {
   
   constructor (){ 
     super();
+    this.componentDidMount();
     this.firstAccess();
   }
   
@@ -56,7 +59,8 @@ export default class Home extends Component {
       this.setState({
         isLoading: false,
         dataSource: rest,
-        user: rest.user
+        user: rest.user,
+        typeUser: rest.user.role
       });
     })
   }
@@ -71,7 +75,7 @@ export default class Home extends Component {
         this.setState({accessFirst: true})
       }
     } catch(error) {
-      console.log(error)
+      
     }
   }
   
@@ -99,6 +103,8 @@ export default class Home extends Component {
   }
   
   agreeTerms(){
+    console.log('click reg')
+    console.log(this.state.typeUser)
     this.setState({
         visibleModal: false,
         modalScene: 'form'
@@ -141,8 +147,7 @@ export default class Home extends Component {
         </View>
       )
     }
-
-    if(this.state.dataSource.role == 'Lojista' && this.state.modalScene == "form"){
+    if(this.state.typeUser == 'Lojista' && this.state.modalScene == "form"){
       return(
         <View style={formLojista.container} >
               <View style={formLojista.contentModal}>

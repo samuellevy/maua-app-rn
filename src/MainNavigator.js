@@ -33,6 +33,7 @@ import Questions from './scenes/questions';
 import FinishCourse from './scenes/finishCourse'; 
 import Result from './scenes/questions/components/result'; 
 import StatusSend from './scenes/statusSend';
+import FirstLogin from './scenes/firstlogin';
 // import Player from './scenes/player';
 
 // Other confs
@@ -80,7 +81,8 @@ export default StackNavigator({
   Result: {screen: Result},
   StatusSend: {screen: StatusSend},
   Answers: {screen: Answers},
-  FinishCourse: {screen: FinishCourse}
+  FinishCourse: {screen: FinishCourse},
+  FirstLogin: {screen: FirstLogin}
 }, {
   initialRouteName: 'Splash',
   // headerMode: 'none',
