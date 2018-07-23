@@ -50,7 +50,6 @@ export default class Questions extends React.Component {
             this.setState({dataAnswers: answers});
             if(this.state.selectedAnswer == this.state.dataSource[this.state.questionKey].value){
                 parcials++;
-                console.log(parcials);
                 this.setState({parcials: parcials});
                 this.setState({percent: (parcials*100)/this.state.dataSource.length});
             }
@@ -65,7 +64,6 @@ export default class Questions extends React.Component {
             var answers = this.state.dataAnswers.concat({id: this.state.questionKey, question_id: this.state.dataSource[this.state.questionKey].id,  value: this.state.selectedAnswer, correct: this.state.dataSource[this.state.questionKey].value});
             if(this.state.selectedAnswer == this.state.dataSource[this.state.questionKey].value){
                 parcials++;
-                console.log(parcials);
                 this.setState({parcials: parcials});
                 this.setState({percent: (parcials*100)/this.state.dataSource.length});
             }

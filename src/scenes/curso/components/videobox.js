@@ -21,6 +21,8 @@ export default class VideoBox extends Component {
         let navigation = this.props.navigation;
         let item = this.props.item;
         
+        console.log(item)
+
         return(
             <TouchableOpacity onPress={() => {this.gotoClass(navigation, item);}} navigation={this.props.navigation}>
             <View style={styles.video}>
