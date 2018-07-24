@@ -90,7 +90,7 @@ export default class Home extends Component {
                 name: this.state.nameLojista,
                 email: this.state.emailLojista,
                 phone: this.state.celularLojista,
-                //first_access: 0,
+                first_access: 0,
             });
             
             console.log('sending');
