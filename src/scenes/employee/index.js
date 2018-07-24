@@ -29,6 +29,10 @@ export default class Employee extends Component {
 		arrayUser: [],
 	}
 
+    componentWillReceiveProps(){
+        this.forceUpdate();
+    }
+
     getUserData = async () => {
 		rest.get('/users/list').then((rest)=>{
 			console.log('aqui')
