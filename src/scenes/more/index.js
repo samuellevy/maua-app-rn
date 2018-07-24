@@ -3,9 +3,44 @@ import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
 
 import Item from './components/item';
+import rest from '../../services/rest';
 
 export default class More extends Component {
+  state = {
+    typeUser: null
+  };
+
+  constructor (){ 
+    super();
+    this.componentDidMount();
+  }
+
+  componentDidMount(){
+    rest.get('/public/infos').then((rest)=>{
+        this.setState({
+            typeUser: rest.user.role
+        });
+    })
+  }
+
+  	lojistaItem() {
+    	return (
+      		<View>
+				{this.state.typeUser == "Lojista" &&
+					<View>
+						<View style={styles.border}>
+							<TouchableOpacity onPress={() => { this.props.navigation.navigate('Employe'); this.setState({ screen: 'Employe' })}}>
+								<Item icon={'account-multiple-outline'} title={'Funcionários'}/>
+							</TouchableOpacity>
+						</View>
+					</View>
+				}
+      		</View>
+    	);
+  	}
+
   render() {
+    console.log(this.state.typeUser)
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollview}>
@@ -14,11 +49,7 @@ export default class More extends Component {
               <Item icon={'border-color'} title={'Editar perfil'}/>
             </TouchableOpacity>
           </View> 
-          <View style={styles.border}>
-            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Employe'); this.setState({ screen: 'Employe' })}}>
-              <Item icon={'account-multiple-outline'} title={'Funcionários'}/>
-            </TouchableOpacity>
-          </View> 
+          {this.lojistaItem()}
           <View style={styles.border}>
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('AboutCourse'); this.setState({ screen: 'AboutCourse' })}}>
               <Item icon={'information-outline'} title={'Sobre o programa'}/>

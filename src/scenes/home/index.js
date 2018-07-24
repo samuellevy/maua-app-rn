@@ -51,56 +51,67 @@ export default class Home extends Component {
   constructor (){ 
     super();
     this.componentDidMount();
-    this.firstAccess();
   }
   
-  componentDidMount(){
-    rest.get('/public/infos').then((rest)=>{
-      this.setState({
-        isLoading: false,
-        dataSource: rest,
-        user: rest.user,
-        typeUser: rest.user.role
-      });
-    })
-  }
-
-  firstAccess = async () => {
-    try {
-      let accessFirst = await AsyncStorage.getItem('accessFirst')
-      if(accessFirst == 'true') {
-        this.setState({accessFirst: false})
-      } else {
-        AsyncStorage.setItem('accessFirst', 'true'); 
-        this.setState({accessFirst: true})
-      }
-    } catch(error) {
-      
+    componentDidMount(){
+        this.firstAccess();
+        rest.get('/public/infos').then((rest)=>{
+            this.setState({
+                isLoading: false,
+                dataSource: rest,
+                user: rest.user,
+                typeUser: rest.user.role
+            });
+        })
     }
-  }
+
+    firstAccess() {
+        let firstAccess = null;
+
+        rest.get('/users/me').then((rest)=>{
+            console.log('send');
+            console.log(rest.user.first_access);
+            firstAccess = rest.user.first_access;
+            this.setState({accessFirst: firstAccess})
+        });
+    }
   
-  modalFirst() {
-    if(this.state.accessFirst) {
-      return (
-        <FirstVideo />
-      )
+    modalFirst() {
+        if(this.state.accessFirst) {
+            return (
+                <FirstVideo />
+            )
+        }
     }
-  }
 
-  sendLojista() {
-    if(this.state.nameLojista !== null && this.state.emailLojista !== null && this.state.celularLojista !== null) {
-      this.setState({visibleModal: false, modalScene: 'home'})
-    } else {
-      Alert.alert(
-          "Algo aconteceu!",
-          "Nem todos os campos foram preenchido corretamente.",
-              [
-                  {text: 'OK', onPress: () => console.log('OK Pressed')}
-              ],
-          { cancelable: false }
-      )
+    sendLojista() {
+        if(this.state.nameLojista !== null && this.state.emailLojista !== null && this.state.celularLojista !== null) {
+            let lojista = JSON.stringify({
+                name: this.state.nameLojista,
+                email: this.state.emailLojista,
+                phone: this.state.celularLojista,
+                //first_access: 0,
+            });
+            
+            console.log('sending');
+            console.log(lojista);
+            rest.post('/users/edit/me', lojista).then((rest)=>{
+                console.log('send');
+                console.log(rest);
+            });
+
+            this.setState({visibleModal: false, modalScene: 'home'})
+        } else {
+            Alert.alert(
+                "Algo aconteceu!",
+                "Nem todos os campos foram preenchido corretamente.",
+                    [
+                        {text: 'OK', onPress: () => console.log('OK Pressed')}
+                    ],
+                { cancelable: false }
+            )
+        }
     }
-  }
   
   agreeTerms(){
     console.log('click reg')
