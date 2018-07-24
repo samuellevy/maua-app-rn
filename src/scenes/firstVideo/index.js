@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, WebView, Image, TouchableOpacity, Modal, ListView, Button } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import styles from './styles';  
+import styles from './styles';
+
+import rest from '../../services/rest';
+import Loading from '../../components/loading';
 
 export default class Finish extends Component {
     contentTop = (video) => {
@@ -15,14 +18,37 @@ export default class Finish extends Component {
     }
 
     state = {
-        modalVisible: false
+        modalVisible: false,
+    }
+
+    constructor(props){
+        super(props);
+        this.state = {
+            isLoading: true,
+            dataSource:[]
+        }
     }
 
     setModalVisible(visible) { 
         this.setState({modalVisible: visible});
     }
+
+    componentDidMount(){
+        rest.get('/pages/get/about').then((rest)=>{
+            this.setState({
+                isLoading: false,
+                dataSource: rest,
+                typeUser: rest.user.role
+            });
+        })
+    }
  
-    render() {   
+    render() {
+        if(this.state.isLoading){
+            return(
+                <Loading/>
+            )
+        }
         return (
             <Modal animationType="fade"      
             transparent={true}
@@ -43,7 +69,7 @@ export default class Finish extends Component {
                         <Text style={styles.textReg}>Assista o vídeo para entender como funciona o nosso programa.</Text>
                         
                         <View style={styles.viewVideo}>
-                            <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube-nocookie.com/embed/N1SQr8gnuuE?rel=0&amp;showinfo=0' }} />
+                            <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube-nocookie.com/embed/'+this.state.dataSource.page.url+'/?rel=0&amp;showinfo=0' }} />
                         </View>
 
                         <View style={styles.contentBtn}>
