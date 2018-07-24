@@ -36,6 +36,7 @@ export default class AboutCourse extends Component {
             this.setState({
                 isLoading: false,
                 dataSource: rest,
+                typeUser: rest.user.role
             });
         })
     }
@@ -114,8 +115,6 @@ export default class AboutCourse extends Component {
     }
 
     render() {
-        console.log("type user")
-        console.log(this.state.typeUser)
         if(this.state.isLoading){
             return(
                 <Loading/>
@@ -129,9 +128,9 @@ export default class AboutCourse extends Component {
                     <Text style={styles.text}>Olá! Veja nosso vídeo e entenda tudo sobre o Programa de Incentivo Cimento Mauá.</Text>
 
                     <View style = {styles.viewVideo}>
-                        {/* <WebView source = {{ uri: 'https://www.youtube.com/embed/fBrOtR3pgPU' }} /> */}
-                        <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube-nocookie.com/embed/N1SQr8gnuuE?rel=0&amp;showinfo=0' }} />
-                        {/* <Image style={styles.thumbvideo} source={{ uri: 'https://i.ytimg.com/vi/'+this.state.dataSource.page.url+'/hqdefault.jpg'}}/> */}
+                    
+                        <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube-nocookie.com/embed/'+this.state.dataSource.page.url+'?rel=0&amp;showinfo=0' }} />
+                    
                     </View>
 
                     <Text style={styles.titleSecondary}>Pontuação</Text>
