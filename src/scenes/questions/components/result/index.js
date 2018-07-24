@@ -25,16 +25,28 @@ export default class Result extends Component {
             scene: 'result'
         }
     }
-    sendFeedback(){
+
+    sendFeedback(dataSource){
         this.setState({
             scene: 'finishCourse'
+        });
+        console.log('Result');
+        console.log(this.state.statusOption);
+
+        let feedback = JSON.stringify({
+            question_id: dataSource[0].id,
+            rating: this.state.statusOption
+        });
+    
+        rest.post('/public/sendfeedback', feedback).then((rest)=>{
+            console.log(rest);
         });
     }
 
     sendData(dataAnswers){
         let answers = JSON.stringify({
             answers: dataAnswers
-          });
+        });
         
         console.log('sending');
         console.log(answers);
@@ -137,7 +149,7 @@ export default class Result extends Component {
                             </View>
 
                             <View style={styles.boxBtnSend}>
-                                <TouchableOpacity style={[styles.btnSend]} onPress={() => {this.sendFeedback()}}>
+                                <TouchableOpacity style={[styles.btnSend]} onPress={() => {this.sendFeedback(dataSource)}}>
                                     <Text style={styles.textBtn}>CONFIRMAR RESPOSTA</Text>
                                 </TouchableOpacity>
                             </View>
