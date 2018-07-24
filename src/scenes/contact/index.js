@@ -5,6 +5,7 @@ import { colors } from '../../styles';
 import { View } from 'react-native';
 import Title from '../../components/title/primary';
 import Button from '../../components/button';
+import ModalTeste from '../../components/modal/modalRank';
 import rest from '../../services/rest';
 
 import styles from './styles';
@@ -30,6 +31,8 @@ export default class Contact extends Component {
   render() {
     return (
       <View style={styles.container}>
+
+        <ModalTeste title={"PARABÉNS!"} numberRank={2} description={"Sua loja está perto de atingir a meta! Falta apenas 10% para sua loja completar a meta do mês."}/>
         <View>
           <Text style={styles.title}>
             {'Fale Conosco'.toUpperCase()}
