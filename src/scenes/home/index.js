@@ -193,8 +193,8 @@ export default class Home extends Component {
                                   <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu celular"} onChangeText={(celularLojista) => this.setState({celularLojista})} value={this.state.celularLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
                               </View>
                               <View style={formLojista.boxInput}> 
-                                  <Text style={formLojista.inputText}>Senha</Text>
-                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite sua senha"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                                  <Text style={formLojista.inputText}>Nova Senha</Text>
+                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite sua nova senha"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
                               </View>
                       </View>
 
