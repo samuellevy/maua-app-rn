@@ -95,7 +95,6 @@ const modal_styles = StyleSheet.create({
     imageBg: {
         width: 300,
         height: 200,
-        textAlign: "center"
     },
     textReg: {
         lineHeight: 20,

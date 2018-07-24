@@ -32,7 +32,7 @@ export default class Contact extends Component {
     return (
       <View style={styles.container}>
 
-        <ModalTeste title={"PARABÉNS!"} numberRank={2} description={"Sua loja está perto de atingir a meta! Falta apenas 10% para sua loja completar a meta do mês."}/>
+        {/* <ModalTeste title={"PARABÉNS!"} numberRank={2} description={"Sua loja está perto de atingir a meta! Falta apenas 10% para sua loja completar a meta do mês."}/> */}
         <View>
           <Text style={styles.title}>
             {'Fale Conosco'.toUpperCase()}

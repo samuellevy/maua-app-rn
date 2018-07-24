@@ -39,6 +39,7 @@ export default class Home extends Component {
     nameLojista: null,
     emailLojista: null,
     celularLojista: null,
+    passwordLojista: null,
     dataSource: null,
     typeUser: null,
     user:{
@@ -90,6 +91,7 @@ export default class Home extends Component {
                 name: this.state.nameLojista,
                 email: this.state.emailLojista,
                 phone: this.state.celularLojista,
+                password: this.state.passwordLojista,
                 first_access: 0,
             });
             
@@ -158,9 +160,10 @@ export default class Home extends Component {
         </View>
       )
     }
-    if(this.state.typeUser == 'Lojista' && this.state.modalScene == "form"){
+    if(this.state.modalScene == "form"){
       return(
         <View style={formLojista.container} >
+            <ScrollView style={formLojista.scrollview}>
               <View style={formLojista.contentModal}>
                   <View style={formLojista.modalTop}>
                       <View style={formLojista.boxTitleTop}>
@@ -169,8 +172,7 @@ export default class Home extends Component {
                   </View>
 
                   <View style={formLojista.modalBottom}>
-                      <ScrollView style={formLojista.scrollview}>
-                          <View style={formLojista.contentForm}>
+                        <View style={formLojista.contentForm}>
                               <View style={formLojista.boxInput}> 
                                   <Text style={formLojista.inputText}>Nome</Text>
                                   <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu nome"} onChangeText={(nameLojista) => this.setState({nameLojista})} value={this.state.nameLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
@@ -183,8 +185,11 @@ export default class Home extends Component {
                                   <Text style={formLojista.inputText}>Celular</Text>
                                   <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu celular"} onChangeText={(celularLojista) => this.setState({celularLojista})} value={this.state.celularLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
                               </View>
-                          </View>
-                      </ScrollView>
+                              <View style={formLojista.boxInput}> 
+                                  <Text style={formLojista.inputText}>Senha</Text>
+                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu celular"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                              </View>
+                      </View>
 
                       <View style={formLojista.contentBtn}>
                           <TouchableOpacity style={formLojista.acessMod} onPress={() => {this.sendLojista()}}>
@@ -193,6 +198,7 @@ export default class Home extends Component {
                       </View>
                   </View> 
               </View>
+              </ScrollView> 
         </View>
       )
     }
