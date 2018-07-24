@@ -40,10 +40,25 @@ export default class Curso extends Component {
         )
     }
 
+    btnCurso(item) {
+        if(item.progress !== "Completo") {
+            return(
+                <View style={styles.boxTest}>
+                    <TouchableOpacity style={styles.startTest} onPress={() => { navigation.navigate('Question', {item: item.id});}}>
+                        <Text style={styles.textBtn}>RESPONDER QUIZ</Text> 
+                    </TouchableOpacity>
+                </View>
+            );
+        }
+    }
+
     render() {
         const { navigation } = this.props;
         const item = navigation.getParam('item', 'NO-ID');
         const testStart = null;
+
+        console.log('teste')
+        console.log(item)
 
         return (
             <View style={styles.container}>
@@ -66,11 +81,7 @@ export default class Curso extends Component {
                             <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube.com/embed/'+item.video_url+'?controls=0&fs=0&rel=0&showinfo=0' }} />
                         </View>
 
-                        <View style={styles.boxTest}>
-                            <TouchableOpacity style={styles.startTest} onPress={() => { navigation.navigate('Question', {item: item.id});}}>
-                                <Text style={styles.textBtn}>RESPONDER QUIZ</Text> 
-                            </TouchableOpacity>
-                        </View>
+                        {this.btnCurso(item)}
                     </View>
                 </ScrollView>
                 <Nav />

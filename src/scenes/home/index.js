@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, AsyncStorage, Modal, TextInput, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, Linking ,AsyncStorage, Modal, TextInput, Alert } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavIcon from '../../components/navigation/NavIcon';
 import styles from './styles';
@@ -102,7 +102,14 @@ export default class Home extends Component {
                 console.log(rest);
             });
 
-            this.setState({visibleModal: false, modalScene: 'home'})
+            Alert.alert(
+                "Obrigado!",
+                "Seus dados foram atualizados com sucesso.",
+                    [
+                        {text: 'OK', onPress: () => {this.setState({visibleModal: false, modalScene: 'home'})}}
+                    ],
+                { cancelable: false }
+            )
         } else {
             Alert.alert(
                 "Algo aconteceu!",
@@ -238,7 +245,7 @@ export default class Home extends Component {
                 <Card title={'Blog'} icon={'public'} color={colors.purple}>
                     <Blog item={this.state.dataSource.post}/>
                     <View style={{paddingTop: 10, paddingBottom: 20}}>
-                        <TouchableOpacity onPress={this.signIn}>
+                        <TouchableOpacity onPress={()=>{ Linking.openURL(this.state.dataSource.post.url)}}>
                             <Button title={'Ir para o Blog'} size={60} color={colors.purple}/>
                         </TouchableOpacity>
                     </View>
