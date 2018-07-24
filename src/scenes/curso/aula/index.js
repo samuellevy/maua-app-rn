@@ -40,7 +40,7 @@ export default class Curso extends Component {
         )
     }
 
-    btnCurso(item) {
+    btnCurso(item, navigation) {
         if(item.progress !== "Completo") {
             return(
                 <View style={styles.boxTest}>
@@ -56,10 +56,7 @@ export default class Curso extends Component {
         const { navigation } = this.props;
         const item = navigation.getParam('item', 'NO-ID');
         const testStart = null;
-
-        console.log('teste')
-        console.log(item)
-
+        
         return (
             <View style={styles.container}>
                 <ScrollView contentContainerStyle={[styles.cursoInfo]}>
@@ -81,7 +78,7 @@ export default class Curso extends Component {
                             <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube.com/embed/'+item.video_url+'?controls=0&fs=0&rel=0&showinfo=0' }} />
                         </View>
 
-                        {this.btnCurso(item)}
+                        {this.btnCurso(item, navigation)}
                     </View>
                 </ScrollView>
                 <Nav />

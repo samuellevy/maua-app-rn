@@ -27,7 +27,7 @@ export default class RankingBox extends Component {
                         <Text style={[styles.splitText, styles.splitTextScore, styles.textGree]}>R$ 250,00</Text>
                     </View>
                 </View>
-                {/* <View style={styles.box}>
+                <View style={styles.box}>
                     <View style={styles.split}>
                         <View style={[styles.splitTitleBox, styles.splitTitleBoxLeft, styles.colorGree]}>
                             <Text style={styles.splitTitle}>{'3º LUGAR'.toUpperCase()}</Text>
@@ -42,7 +42,7 @@ export default class RankingBox extends Component {
                         </View>
                         <Text style={[styles.splitText, styles.splitTextScore, styles.textGree]}>R$ 100,00</Text>
                     </View>
-                </View> */}
+                </View>
             </View>
         );
     }

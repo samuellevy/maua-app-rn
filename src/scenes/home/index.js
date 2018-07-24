@@ -194,7 +194,7 @@ export default class Home extends Component {
                               </View>
                               <View style={formLojista.boxInput}> 
                                   <Text style={formLojista.inputText}>Senha</Text>
-                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu celular"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite sua senha"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
                               </View>
                       </View>
 
