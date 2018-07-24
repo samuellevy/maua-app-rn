@@ -34,8 +34,8 @@ export default class Finish extends Component {
                             style={styles.image}
                             source={require('../../../../assets/img/checked.png')}
                         />
-                        <Text style={styles.txtWelcome}>E-mail enviado!</Text>
-                        <Text style={styles.txtInitial}>Fique ligado no seu e-mail para redefinir sua senha.</Text>
+                        <Text style={styles.txtWelcome}>Senha alterada com sucesso!</Text>
+                        <Text style={styles.txtInitial}>Volte à tela de login e conecte-se com a nova senha.</Text>
                     </View>
                 </View>
             </View>
