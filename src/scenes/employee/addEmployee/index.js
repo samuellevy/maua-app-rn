@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Alert, TextInput } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import NavIcon from '../../../components/navigation/NavIcon';
@@ -34,6 +34,9 @@ export default class addEmployee extends Component {
         nome: null,
         cpf: null,
         email: null,
+        nomeNew: null,
+        emailNew: null,
+        phoneNew: null,
         // params: [{'user':null}],
         arrayUser: []
     } 
@@ -113,6 +116,34 @@ export default class addEmployee extends Component {
             this.setState({viewSection:true})
         }
     }
+
+    ClickAddFunc() {
+        this.setState({visibleModal: false})
+        
+        let newUser = JSON.stringify({
+            name: this.state.nomeNew,
+            email: this.state.emailNew,
+            phone: this.state.phoneNew,
+        });
+        
+        console.log('sending');
+        console.log(newUser);
+        rest.post('/users/add', newUser).then((rest)=>{
+            console.log('send');
+            console.log(rest);
+        });
+
+        Alert.alert(
+            "Useario cadastrado!",
+            "Um novo funcionario foi cadastrado",
+                [
+                    {text: 'OK', onPress: () => {this.props.navigation.navigate('Employe')}}
+                ],
+            { cancelable: false }
+        )
+
+    }
+
   	render() {
         const { navigation } = this.props;
         const userId = navigation.getParam('userId', 'NO-ID');
@@ -123,7 +154,7 @@ export default class addEmployee extends Component {
                     {/* <AlertBox mensager={"Alterações salvas!"}/>  */}
     
                     <ScrollView style={{marginBottom: 50, padding: 18}}>
-                        <TitleTop textContent={'ADITAR PERFIL'} />
+                        <TitleTop textContent={'DITAR PERFIL'} />
     
                         {this.formData(userId)}
     
@@ -151,29 +182,29 @@ export default class addEmployee extends Component {
                     {/* <AlertBox mensager={"Alterações salvas!"}/>  */}
     
                     <ScrollView style={{marginBottom: 50, padding: 18}}>
-                        <TitleTop textContent={'ADICIONAR FUNCIONÁRIOS'} />
+                        <TitleTop textContent={'ADICIONAR FUNCIO222NÁRIOS'} />
     
                         <View style={styles.contentAddUser}>
                             <View>
                                 <View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>NOME</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nome) => this.setState({nome})} placeholderTextColor={colors.textColor}/>
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nomeNew) => this.setState({nomeNew})} placeholderTextColor={colors.textColor}/>
                                     </View>
                                     <View style={styles.boxInput}> 
-                                        <Text style={styles.inputText}>CPF</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(cpf) => this.setState({cpf})} placeholderTextColor={colors.textColor}/>
+                                        <Text style={styles.inputText}>TELEFONE</Text>
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(phoneNew) => this.setState({phoneNew})} placeholderTextColor={colors.textColor}/>
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>E-MAIL</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} placeholderTextColor={colors.textColor}/>
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(emailNew) => this.setState({emailNew})} placeholderTextColor={colors.textColor}/>
                                     </View>
                                 </View>
                             </View>
                         </View> 
     
                         <View style={styles.addEmplayee}>
-                            <TouchableOpacity style={styles.addBtn} onPress={() => {this.setState({visibleModal: false})} }>
+                            <TouchableOpacity style={styles.addBtn} onPress={() => {this.ClickAddFunc()} }>
                                 <View style={styles.boxIcon}>
                                     <MaterialIcon name="add" size={15} style={styles.iconAdd}></MaterialIcon>
                                 </View>
