@@ -9,6 +9,8 @@ export default class ParcialResult extends Component {
         visibleModal: true
     }
 
+    //nao sendo usado
+
     render() {
         return (
             <View>
