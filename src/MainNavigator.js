@@ -55,7 +55,7 @@ const RootScene = TabNavigator({
   addEmployee: {screen: addEmployee},
   Employe: {screen: Employe},
   FeedBack: {screen: FeedBack},
-  ModalExample: {screen: ModalExample},
+  // ModalExample: {screen: ModalExample},
   // Sent: {screen: Sent},
   // Player: {screen: Player}
   
