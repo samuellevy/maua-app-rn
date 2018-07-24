@@ -17,6 +17,7 @@ export default class Rule extends Component {
     };
 
     state = {
+        typeUser: null,
         modal: [
             {
                 titleModal: 'FALTA POUCO!',
@@ -34,6 +35,7 @@ export default class Rule extends Component {
     
     constructor(props){
         super(props);
+        this.componentDidMount();
         this.state = {
             isLoading: true,
             points:[],
@@ -42,6 +44,14 @@ export default class Rule extends Component {
             percent:null,
             dataSource:[]
         }
+    }
+    
+    componentDidMount(){
+        rest.get('/public/infos').then((rest)=>{
+            this.setState({
+                typeUser: rest.user.role
+            });
+        })
     }
 
     componentWillMount(){

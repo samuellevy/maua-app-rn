@@ -8,7 +8,7 @@ export default class Header extends Component {
     };
 
     render() {
-        const { goBack } = this.props.navigation;
+        // const { goBack } = this.props.navigation;
  
         return (
             <View style={styles.header}>

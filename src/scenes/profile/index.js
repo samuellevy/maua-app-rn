@@ -50,7 +50,7 @@ export default class Profile extends Component {
         try{
             const response = await api.post('/users/edit/me',{
                 name: this.state.name,
-                tel: this.state.tel,
+                phone: this.state.tel,
                 senha: this.state.senha
             });
 
@@ -95,7 +95,7 @@ export default class Profile extends Component {
                         <View style={styles.boxInput}> 
                             <Text style={styles.inputTextGreen}>TEL.</Text>
                             <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(tel) => this.setState({tel})} value={this.state.tel} placeholderTextColor={colors.textColor} returnKeyType='done'/>
-
+                            
                             {/* <TextInputMask
                             refInput={ref => { this.input = ref }}
                             onChangeText={(formatted, extracted) => {
