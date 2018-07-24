@@ -18,7 +18,7 @@ export default class FeedBack extends Component {
             <View style={styles.container}>
                 <ScrollView style={styles.scrollview}>
                     <View style={styles.contentDescription}>
-                        <Title textContent={"CURSO DE CAPACITAÇÃO"} />
+                        <Title textContent={"CURSO DE CAPACITAÇÃO"} style={{paddingLeft: 15}}/>
                         <Text style={styles.title}>MÓDULO 03</Text>
                         <Text style={styles.descriptionTitle}>Cimento CP II: tudo o que você precisa saber </Text> 
                         <Text style={styles.description}>Conheça a categoria de cimentos ideal para obras internas e acabamento.</Text> 
