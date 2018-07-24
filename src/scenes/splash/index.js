@@ -35,7 +35,7 @@ export default class Splash extends Component {
         const token = await AsyncStorage.getItem('@CodeApi:token');
         const remember = await AsyncStorage.getItem('@CodeApi:remember'); 
         if(token && remember == 'true') {
-            navigateTo = 'Contact'; //or home to instantly enter
+            navigateTo = 'Ranking'; //or home to instantly enter
         } else {
             navigateTo = 'Login';
         }
