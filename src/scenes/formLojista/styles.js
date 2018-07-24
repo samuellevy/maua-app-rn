@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     scrollview: {
-        // height: 400,      
+        // height: 400,
+        marginBottom: 50
     },
     description: {
         fontSize: 14,
