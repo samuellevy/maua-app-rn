@@ -16,10 +16,10 @@ export default class ModalExample extends Component {
         modal: [
             {
                 titleModal: 'FALTA POUCO!',
-                icon: 'school',
+                icon: null,
                 iconColor: '#fff',
                 colorTop: '#00985B',
-                video: null,
+                video: 'https://www.youtube-nocookie.com/embed/N1SQr8gnuuE?rel=0&amp;showinfo=0',
                 textBtn: 'ACESSAR CURSO',
                 titleDescription: 'Módulo 3: Cimento texturizado',
                 description: 'Você tem módulos a fazer no curso de capacitação. Complete-os agora e acumule pontos para sua loja.',

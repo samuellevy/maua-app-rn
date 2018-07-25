@@ -22,6 +22,15 @@ const styles = StyleSheet.create({
         top: -30,
         borderRadius: 3,
     },
+    congratBoxGray:{
+        backgroundColor: colors.gray,
+        marginHorizontal: 12,
+        paddingVertical: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+        top: -30,
+        borderRadius: 3,
+    },
     congratText:{
         color: colors.white,
         fontSize: metrics.fonts.medium,

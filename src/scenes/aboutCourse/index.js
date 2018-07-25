@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, WebView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavIcon from '../../components/navigation/NavIcon';
 import styles from './styles';
@@ -8,6 +8,7 @@ import Header from '../../components/header';
 import Nav from '../../components/navigation';
 import TitlePrimary from '../../components/title/primary';
 import Rankingbox from './components/rankingbox';
+import stylePrime from './components/rankingbox/styles';
 
 import { colors, metrics, fonts } from '../../styles';
 import rest from '../../services/rest';
@@ -35,8 +36,82 @@ export default class AboutCourse extends Component {
             this.setState({
                 isLoading: false,
                 dataSource: rest,
+                typeUser: rest.user.role
             });
         })
+    }
+
+    typeUserSelect() {
+        if(this.state.typeUser == 'Lojista') {
+            return (
+                <View>
+                    <View style={stylePrime.container}>
+                        <Text style={styles.titleSecondary}>Premiação final do lojista</Text>
+
+                        <View style={stylePrime.box}>
+                            <View style={stylePrime.split}>
+                                <View style={[stylePrime.splitTitleBox, stylePrime.splitTitleBoxLeft]}>
+                                    <Text style={stylePrime.splitTitle}>{'1º LUGAR'.toUpperCase()}</Text>
+                                </View>
+                                <View style={stylePrime.boxSplitText}>
+                                    <Text style={[stylePrime.splitText, stylePrime.textYellow]}>R$ 1500,00</Text>
+                                </View>
+                            </View>
+                            <View style={stylePrime.split}>
+                                <View style={[stylePrime.splitTitleBox, stylePrime.splitTitleBoxRight, stylePrime.colorGree]}>
+                                    <Text style={stylePrime.splitTitle}>{'2º LUGAR'.toUpperCase()}</Text>
+                                </View>
+                                <Text style={[stylePrime.splitText, stylePrime.splitTextScore, stylePrime.textGree]}>R$ 1000,00</Text>
+                            </View>
+                        </View>
+
+                        <Text style={styles.titleSecondary}>Premiação final do vendedor</Text>
+
+                        <View style={stylePrime.box}>
+                            <View style={stylePrime.split}>
+                                <View style={[stylePrime.splitTitleBox, stylePrime.splitTitleBoxLeft]}>
+                                    <Text style={stylePrime.splitTitle}>{'1º LUGAR'.toUpperCase()}</Text>
+                                </View>
+                                <View style={stylePrime.boxSplitText}>
+                                    <Text style={[stylePrime.splitText, stylePrime.textYellow]}>R$ 700,00</Text>
+                                </View>
+                            </View>
+                            <View style={stylePrime.split}>
+                                <View style={[stylePrime.splitTitleBox, stylePrime.splitTitleBoxRight, stylePrime.colorGree]}>
+                                    <Text style={stylePrime.splitTitle}>{'2º LUGAR'.toUpperCase()}</Text>
+                                </View>
+                                <Text style={[stylePrime.splitText, stylePrime.splitTextScore, stylePrime.textGree]}>R$ 500,00</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            );
+        } else {
+            return (
+                <View>
+                    <View style={stylePrime.container}>
+                        <Text style={styles.titleSecondary}>Premiação final do vendedor</Text>
+
+                        <View style={stylePrime.box}>
+                            <View style={stylePrime.split}>
+                                <View style={[stylePrime.splitTitleBox, stylePrime.splitTitleBoxLeft]}>
+                                    <Text style={stylePrime.splitTitle}>{'1º LUGAR'.toUpperCase()}</Text>
+                                </View>
+                                <View style={stylePrime.boxSplitText}>
+                                    <Text style={[stylePrime.splitText, stylePrime.textYellow]}>R$ 700,00</Text>
+                                </View>
+                            </View>
+                            <View style={stylePrime.split}>
+                                <View style={[stylePrime.splitTitleBox, stylePrime.splitTitleBoxRight, stylePrime.colorGree]}>
+                                    <Text style={stylePrime.splitTitle}>{'2º LUGAR'.toUpperCase()}</Text>
+                                </View>
+                                <Text style={[stylePrime.splitText, stylePrime.splitTextScore, stylePrime.textGree]}>R$ 500,00</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            );
+        }
     }
 
     render() {
@@ -48,13 +123,16 @@ export default class AboutCourse extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollview}>
-                    <TitlePrimary textContent={"O QUE É O PROGRAMA"} />
+                    <View style={{marginLeft: 13}}>
+                        <TitlePrimary textContent={"O QUE É O PROGRAMA"} />
+                    </View>
 
                     <Text style={styles.text}>Olá! Veja nosso vídeo e entenda tudo sobre o Programa de Incentivo Cimento Mauá.</Text>
 
                     <View style = {styles.viewVideo}>
-                        {/* <WebView source = {{ uri: 'https://www.youtube.com/embed/fBrOtR3pgPU' }} /> */}
-                        <Image style={styles.thumbvideo} source={{ uri: 'https://i.ytimg.com/vi/'+this.state.dataSource.page.url+'/hqdefault.jpg'}}/>
+                    
+                        <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube-nocookie.com/embed/'+this.state.dataSource.page.url+'?rel=0&amp;showinfo=0' }} />
+                    
                     </View>
 
                     <Text style={styles.titleSecondary}>Pontuação</Text>
@@ -91,13 +169,15 @@ export default class AboutCourse extends Component {
 
                     <Text style={styles.titleSecondary}>Prêmios</Text>
 
-                    <Text style={styles.text}>Nossa premiação é mensal e ganha quem acumular mais pontos! Os funcionários das 4 lojas que mais pontuaram ao final de cada mês serão <Text style={styles.destaqueGreen}>recompensados com vouchers.</Text></Text>
+                    <Text style={styles.text}>Nossa premiação é mensal e ganha quem acumular mais pontos! Os funcionários das 4 lojas que mais pontuaram ao final de cada mês serão <Text style={styles.destaqueGreen}>recompensados com dinheiro via Vale Presente.</Text></Text>
 
                     <Rankingbox />
 
-                    <Text style={styles.titleSecondary}>Premiação final</Text>
+                    {/* <Text style={styles.titleSecondary}>Premiação final</Text>
 
-                    <Rankingbox />
+                    <Rankingbox /> */} 
+
+                    {this.typeUserSelect()}
                 </ScrollView>
             </View>
         );

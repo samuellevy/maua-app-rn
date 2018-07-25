@@ -32,13 +32,14 @@ export default class modal extends Component {
     //     }
     // }
 
-    postData = async (idUser) => {
+    deleteUser = async (idUser) => {
         try{
             const response = await api.post('/users/remove',{
                 id: idUser
             });
             this.setState({visibleModal: false})
             console.log(response.data);
+            this.props.navigation.navigate('Employe');
         } catch (response){
             console.log(response)
             this.setState({ errorMessage: response.data.message });
@@ -69,7 +70,7 @@ export default class modal extends Component {
                                 <Text style={styles.textBtnExit}>SAIR</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.btnConfirm}  onPress={() => this.postData(idUser)}>
+                            <TouchableOpacity style={styles.btnConfirm}  onPress={() => this.deleteUser(idUser)}>
                                 <Text style={styles.textBtnConfirm}>CONFIRMAR</Text>
                             </TouchableOpacity>
                         </View>

@@ -15,7 +15,7 @@ export default class Sales extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.splitLeft}>
-                    <Text style={styles.text}>{item.percent>60?'Quase lá! Falta apenas ':'Vamos lá! Ainda falta '}<Text style={{ fontWeight: "bold" }}>{100 - item.percent}%</Text> para sua loja completar a meta do mês!</Text>
+                    <Text style={styles.text}>{item.percent>60?'Quase lá! Falta apenas ':'Vamos lá! Falta '}<Text style={{ fontWeight: "bold" }}>{100 - item.percent}%</Text> para sua loja completar a meta do mês!</Text>
                     <Text style={styles.dateTitle}>{(item.month_name + ' de ' + item.year).toUpperCase()}</Text>
                     <View style={styles.table}>
                         <View>

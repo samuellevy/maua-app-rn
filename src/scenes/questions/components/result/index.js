@@ -25,16 +25,28 @@ export default class Result extends Component {
             scene: 'result'
         }
     }
-    sendFeedback(){
+
+    sendFeedback(dataSource){
         this.setState({
             scene: 'finishCourse'
+        });
+        console.log('Result');
+        console.log(this.state.statusOption);
+
+        let feedback = JSON.stringify({
+            question_id: dataSource[0].id,
+            rating: this.state.statusOption
+        });
+    
+        rest.post('/public/sendfeedback', feedback).then((rest)=>{
+            console.log(rest);
         });
     }
 
     sendData(dataAnswers){
         let answers = JSON.stringify({
             answers: dataAnswers
-          });
+        });
         
         console.log('sending');
         console.log(answers);
@@ -47,8 +59,10 @@ export default class Result extends Component {
         });
     }
 
-    confirm(dataAnswers){
-        this.sendData(dataAnswers);
+    confirm(dataAnswers, percent){
+        if(percent > 60){
+            this.sendData(dataAnswers);
+        }
         this.setState({
             scene: 'statusSend'
         });
@@ -74,27 +88,60 @@ export default class Result extends Component {
             case 'loading':
             break;
             case 'result':
-                return (
-                    <View style={styles.card}>
-                        <View style={styles.imageBox}>
-                            <Image style={styles.image} source={require('../../../../../assets/img/resultBanner.png')}/>
+                if(percent>59){
+                    return (
+                        <View style={styles.card}>
+                            <View style={styles.imageBox}>
+                                <Image style={styles.image} source={require('../../../../../assets/img/resultBanner.png')}/>
+                                {/* <Image style={styles.image} source={require('../../../../../assets/img/correct.png')}/> */}
+                            </View>
+                            <View style={styles.congratBox}> 
+                                <Text style={styles.congratText}><Text style={{ fontWeight: "bold" }}>Parabéns!</Text></Text>
+                                <Text style={styles.congratText}>
+                                    Você acertou <Text style={{ fontWeight: "bold" }}>{percent}%</Text> do teste!
+                                </Text>
+                            </View>
+                            <View style={styles.contentBox}>
+                                <Text style={styles.cardTitle}>Chame todo mundo!</Text>
+                                <Text style={styles.cardText}>Uma maneira de acumular pontos é com todos os funcionários completando o módulo do mês. Não dê bobeira e incentive seus colegas!</Text>
+                                
+                                <TouchableOpacity onPress={() => {this.confirm(dataAnswers, percent)}}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.buttonText}>{"Continuar".toUpperCase()}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+            
                         </View>
-                        <View style={styles.congratBox}> 
-                            <Text style={styles.congratText}><Text style={{ fontWeight: "bold" }}>Parabéns!</Text></Text>
-                            <Text style={styles.congratText}>Você acertou <Text style={{ fontWeight: "bold" }}>{percent}%</Text> do teste!</Text>
+                    );
+                } else{
+                    return (
+                        <View style={styles.card}>
+                            <View style={styles.imageBox}>
+                                {/* <Image style={styles.image} source={require('../../../../../assets/img/resultBanner.png')}/> */}
+                                <Image style={styles.image} source={require('../../../../../assets/img/incorrect.png')}/>
+                            </View>
+                            <View style={styles.congratBoxGray}> 
+                                <Text style={styles.congratText}><Text style={{ fontWeight: "bold" }}>Ops!</Text></Text>
+                                <Text style={styles.congratText}>
+                                    Você acertou apenas <Text style={{ fontWeight: "bold" }}>{percent}%</Text> do teste.
+                                </Text>
+                            </View>
+                            <View style={styles.contentBox}>
+                                <Text style={styles.cardTitle}>Vamos tentar de novo?</Text>
+                                <Text style={styles.cardText}>Assista à videoaula e tente novamente.</Text>
+                                
+                                <TouchableOpacity onPress={() => {this.confirm(dataAnswers, percent)}}>
+                                    <View style={styles.button}>
+                                        <Text style={styles.buttonText}>{"Continuar".toUpperCase()}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+            
                         </View>
-                        <View style={styles.contentBox}>
-                            <Text style={styles.cardTitle}>Chame todo mundo!</Text>
-                            <Text style={styles.cardText}>Uma maneira de acumular pontos é com todos os funcionários completando o módulo do mês. Não dê bobeira e incentive seus colegas!</Text>
-                            <TouchableOpacity onPress={() => {this.confirm(dataAnswers)}}>
-                                <View style={styles.button}>
-                                    <Text style={styles.buttonText}>{"Continuar".toUpperCase()}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-        
-                    </View>
-                );
+                    );
+                }
+                
             break;
             case 'statusSend':
                 return(
@@ -137,7 +184,7 @@ export default class Result extends Component {
                             </View>
 
                             <View style={styles.boxBtnSend}>
-                                <TouchableOpacity style={[styles.btnSend]} onPress={() => {this.sendFeedback()}}>
+                                <TouchableOpacity style={[styles.btnSend]} onPress={() => {this.sendFeedback(dataSource)}}>
                                     <Text style={styles.textBtn}>CONFIRMAR RESPOSTA</Text>
                                 </TouchableOpacity>
                             </View>

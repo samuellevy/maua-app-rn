@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, AsyncStorage, Modal, TextInput, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, Linking ,AsyncStorage, Modal, TextInput, Alert } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavIcon from '../../components/navigation/NavIcon';
 import styles from './styles';
@@ -39,6 +39,9 @@ export default class Home extends Component {
     nameLojista: null,
     emailLojista: null,
     celularLojista: null,
+    passwordLojista: null,
+    dataSource: null,
+    typeUser: null,
     user:{
       name: null
     },
@@ -48,57 +51,80 @@ export default class Home extends Component {
   
   constructor (){ 
     super();
-    this.firstAccess();
+    this.componentDidMount();
   }
   
-  componentDidMount(){
-    rest.get('/public/infos').then((rest)=>{
-      this.setState({
-        isLoading: false,
-        dataSource: rest,
-        user: rest.user
-      });
-    })
-  }
-
-  firstAccess = async () => {
-    try {
-      let accessFirst = await AsyncStorage.getItem('accessFirst')
-      if(accessFirst == 'true') {
-        this.setState({accessFirst: false})
-      } else {
-        AsyncStorage.setItem('accessFirst', 'true'); 
-        this.setState({accessFirst: true})
-      }
-    } catch(error) {
-      console.log(error)
+    componentDidMount(){
+        this.firstAccess();
+        rest.get('/public/infos').then((rest)=>{
+            this.setState({
+                isLoading: false,
+                dataSource: rest,
+                user: rest.user,
+                typeUser: rest.user.role
+            });
+        })
     }
-  }
+
+    firstAccess() {
+        let firstAccess = null;
+
+        rest.get('/users/me').then((rest)=>{
+            console.log('send');
+            console.log(rest.user.first_access);
+            firstAccess = rest.user.first_access;
+            this.setState({accessFirst: firstAccess})
+        });
+    }
   
-  modalFirst() {
-    if(this.state.accessFirst) {
-      return (
-        <FirstVideo />
-      )
+    modalFirst() {
+        if(this.state.accessFirst) {
+            return (
+                <FirstVideo />
+            )
+        }
     }
-  }
 
-  sendLojista() {
-    if(this.state.nameLojista !== null && this.state.emailLojista !== null && this.state.celularLojista !== null) {
-      this.setState({visibleModal: false, modalScene: 'home'})
-    } else {
-      Alert.alert(
-          "Algo aconteceu!",
-          "Nem todos os campos foram preenchido corretamente.",
-              [
-                  {text: 'OK', onPress: () => console.log('OK Pressed')}
-              ],
-          { cancelable: false }
-      )
+    sendLojista() {
+        if(this.state.nameLojista !== null && this.state.emailLojista !== null && this.state.celularLojista !== null) {
+            let lojista = JSON.stringify({
+                name: this.state.nameLojista,
+                email: this.state.emailLojista,
+                phone: this.state.celularLojista,
+                password: this.state.passwordLojista,
+                first_access: 0,
+            });
+            
+            console.log('sending');
+            console.log(lojista);
+            rest.post('/users/edit/me', lojista).then((rest)=>{
+                console.log('send');
+                console.log(rest);
+            });
+
+            Alert.alert(
+                "Obrigado!",
+                "Seus dados foram atualizados com sucesso.",
+                    [
+                        {text: 'OK', onPress: () => {this.setState({visibleModal: false, modalScene: 'home'})}}
+                    ],
+                { cancelable: false }
+            )
+        } else {
+            Alert.alert(
+                "Algo aconteceu!",
+                "Nem todos os campos foram preenchido corretamente.",
+                    [
+                        {text: 'OK', onPress: () => console.log('OK Pressed')}
+                    ],
+                { cancelable: false }
+            )
+        }
     }
-  }
   
   agreeTerms(){
+    console.log('click reg')
+    console.log(this.state.typeUser)
     this.setState({
         visibleModal: false,
         modalScene: 'form'
@@ -127,7 +153,7 @@ export default class Home extends Component {
  
                     <View style={modal_styles.modalBottom}>
                         <ScrollView style={modal_styles.scrollview}>
-                            <Text style={modal_styles.textReg}>Curabitur eleifend, turpis sit amet dignissim aliquet, nisl arcu interdum nibh, vitae vestibulum nisl lacus varius quam. Phasellus lobortis iaculis sem non faucibus. In pharetra pellentesque scelerisque. Aliquam et mi imperdiet, accumsan dui nec, scelerisque mauris. Etiam gravida egestas dolor, at semper nulla euismod sit amet. Quisque sit amet nulla varius, sagittis mi at, aliquam lacus. Praesent at urna orci. Nam pretium dapibus purus, sit amet aliquam arcu sagittis id. Quisque vel tempus orci. Cras quis dolor sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse ac neque id tortor ornare finibus sit amet quis mauris. In in ligula ac ipsum convallis finibus vitae quis nibh. Vivamus varius, enim vel efficitur tempus, ex sem aliquet odio, non gravida leo quam non quam. </Text>
+                            <Text style={modal_styles.textReg}>{this.state.dataSource.rules.content}</Text>
                         </ScrollView>
 
                         <View style={modal_styles.contentBtn}>
@@ -141,10 +167,10 @@ export default class Home extends Component {
         </View>
       )
     }
-
-    if(this.state.dataSource.role == 'Lojista' && this.state.modalScene == "form"){
+    if(this.state.modalScene == "form"){
       return(
         <View style={formLojista.container} >
+            <ScrollView style={formLojista.scrollview}>
               <View style={formLojista.contentModal}>
                   <View style={formLojista.modalTop}>
                       <View style={formLojista.boxTitleTop}>
@@ -153,8 +179,7 @@ export default class Home extends Component {
                   </View>
 
                   <View style={formLojista.modalBottom}>
-                      <ScrollView style={formLojista.scrollview}>
-                          <View style={formLojista.contentForm}>
+                        <View style={formLojista.contentForm}>
                               <View style={formLojista.boxInput}> 
                                   <Text style={formLojista.inputText}>Nome</Text>
                                   <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu nome"} onChangeText={(nameLojista) => this.setState({nameLojista})} value={this.state.nameLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
@@ -167,8 +192,11 @@ export default class Home extends Component {
                                   <Text style={formLojista.inputText}>Celular</Text>
                                   <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu celular"} onChangeText={(celularLojista) => this.setState({celularLojista})} value={this.state.celularLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
                               </View>
-                          </View>
-                      </ScrollView>
+                              <View style={formLojista.boxInput}> 
+                                  <Text style={formLojista.inputText}>Nova Senha</Text>
+                                  <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite sua nova senha"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                              </View>
+                      </View>
 
                       <View style={formLojista.contentBtn}>
                           <TouchableOpacity style={formLojista.acessMod} onPress={() => {this.sendLojista()}}>
@@ -177,6 +205,7 @@ export default class Home extends Component {
                       </View>
                   </View> 
               </View>
+              </ScrollView> 
         </View>
       )
     }
@@ -216,7 +245,7 @@ export default class Home extends Component {
                 <Card title={'Blog'} icon={'public'} color={colors.purple}>
                     <Blog item={this.state.dataSource.post}/>
                     <View style={{paddingTop: 10, paddingBottom: 20}}>
-                        <TouchableOpacity onPress={this.signIn}>
+                        <TouchableOpacity onPress={()=>{ Linking.openURL(this.state.dataSource.post.url)}}>
                             <Button title={'Ir para o Blog'} size={60} color={colors.purple}/>
                         </TouchableOpacity>
                     </View>

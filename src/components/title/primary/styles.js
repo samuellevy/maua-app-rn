@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         color: colors.primary,
         paddingBottom: 10,
         fontFamily: fonts.main,
-        paddingHorizontal: metrics.title.primary.padding
+        // paddingHorizontal: metrics.title.primary.padding
     },
 });
 

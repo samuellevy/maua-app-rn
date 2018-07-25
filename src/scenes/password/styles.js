@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
     },
     header: {
         width: '100%',
-        position: 'absolute',
-        paddingVertical: 10,
+        paddingVertical: 25,
         paddingHorizontal: 20,
         top: 0,
     },

@@ -3,10 +3,10 @@ import { colors, metrics, fonts } from '../../styles';
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1
+        flex: 1,
+        backgroundColor: colors.white,
     },
     modalTop: {
-        backgroundColor: colors.white,
         paddingBottom: 15,
     },
     contentPie: {  
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         padding: 20, 
         paddingLeft: 30,
         paddingRight: 30,
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
         elevation: 2,
         shadowColor: colors.black,
         shadowOpacity: 0.2,
@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     scrollview: {
-        height: 300,      
+        // height: 400,
+        marginBottom: 50
     },
     description: {
         fontSize: 14,
@@ -108,15 +109,43 @@ const styles = StyleSheet.create({
     textBtn: {
         color: "#ffffff",
     },
-    input: {
-        borderRadius: 4,
-        borderWidth: 0.5,
-        borderColor: '#d6d7da',
-        marginBottom: 10,
+    // input: {
+    //     borderRadius: 4,
+    //     borderWidth: 0.5,
+    //     borderColor: '#d6d7da',
+    //     marginBottom: 10,
+    // },
+    // inputText: {
+    //     paddingBottom: 10,
+    // },
+
+    
+    boxInput: {
+        flex: 1,
+        flexDirection: 'row', 
+        alignItems: 'center',
+        borderBottomColor: '#ADCCC7',
+        borderBottomWidth: 2,
+        paddingTop: 15,
+        paddingLeft: 10,
+        paddingRight: 10, 
     },
     inputText: {
-        paddingBottom: 10,
-    }
+        width: "20%",
+        fontSize: 10,
+        color: colors.fontColor,
+    }, 
+    inputTextGreen: {
+        width: "20%",
+        fontSize: 10, 
+        color: colors.light,
+    }, 
+    input: {
+        width: "80%",
+        fontSize: 14,
+        color: colors.gray, 
+        padding: 20,
+    },
 })
 
 export default styles;

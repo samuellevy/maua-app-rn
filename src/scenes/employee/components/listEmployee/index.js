@@ -23,9 +23,9 @@ export default class Employee extends Component {
                 </View>
 
                 <View style={styles.boxIconEdit}>
-                    <TouchableOpacity style={styles.clearBtn}>
+                    <View style={styles.clearBtn}>
                         <MaterialIcon name="create" size={25} style={styles.iconEdit}></MaterialIcon>
-                    </TouchableOpacity>
+                    </View>
                 </View>
 			</View>
 	    ); 

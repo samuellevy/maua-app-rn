@@ -26,13 +26,15 @@ import FeedBack from './scenes/feedback';
 import Answers from './scenes/questions/answers';
 import Profile from './scenes/profile';
 import Employe from './scenes/employee';
-// import addEmployee from './scenes/employee/addEmployee';
+import addEmployee from './scenes/employee/addEmployee';
 import AboutCourse from './scenes/aboutCourse';
 import Aula from './scenes/curso/aula'; 
 import Questions from './scenes/questions'; 
 import FinishCourse from './scenes/finishCourse'; 
 import Result from './scenes/questions/components/result'; 
 import StatusSend from './scenes/statusSend';
+import FirstLogin from './scenes/firstlogin';
+// import ModalExample from './scenes/modalExample'
 // import Player from './scenes/player';
 
 // Other confs
@@ -50,9 +52,10 @@ const RootScene = TabNavigator({
   Contact: {screen: Contact},
   AboutCourse: {screen: AboutCourse},
   Profile: {screen: Profile},
-  // addEmployee: {screen: addEmployee},
+  addEmployee: {screen: addEmployee},
   Employe: {screen: Employe},
   FeedBack: {screen: FeedBack},
+  // ModalExample: {screen: ModalExample},
   // Sent: {screen: Sent},
   // Player: {screen: Player}
   
@@ -80,7 +83,8 @@ export default StackNavigator({
   Result: {screen: Result},
   StatusSend: {screen: StatusSend},
   Answers: {screen: Answers},
-  FinishCourse: {screen: FinishCourse}
+  FinishCourse: {screen: FinishCourse},
+  FirstLogin: {screen: FirstLogin}
 }, {
   initialRouteName: 'Splash',
   // headerMode: 'none',

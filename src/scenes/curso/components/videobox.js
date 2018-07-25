@@ -12,15 +12,18 @@ export default class VideoBox extends Component {
         this.setState({item:this.props.item});
     }
     gotoClass(navigation, item){
-        if(item.progress == 'Módulo Novo'){
+        // console.log(item)
+        // if(item.progress == 'Módulo Novo'){
             navigation.navigate('Aula',{item});
             this.setState({ screen: 'Aula' });
-        }
+        // }
     }
     render() {
         let navigation = this.props.navigation;
         let item = this.props.item;
         
+        // console.log(item)
+
         return(
             <TouchableOpacity onPress={() => {this.gotoClass(navigation, item);}} navigation={this.props.navigation}>
             <View style={styles.video}>
