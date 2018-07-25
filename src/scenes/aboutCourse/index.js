@@ -127,7 +127,7 @@ export default class AboutCourse extends Component {
                         <TitlePrimary textContent={"O QUE É O PROGRAMA"} />
                     </View>
 
-                    <Text style={styles.text}>Olá! Veja nosso vídeo e entenda tudo sobre o Programa de Incentivo Cimento Mauá.</Text>
+                    <Text style={styles.text}>Olá! Veja nosso vídeo e entenda tudo sobre a campanha de incentivo Quem entende Vende Mauá</Text>
 
                     <View style = {styles.viewVideo}>
                     
