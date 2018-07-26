@@ -86,8 +86,7 @@ export default class Answers extends Component {
         return ( 
             <ScrollView style={styles.scrollContent}>
                 <View style={styles.container}>
-                    <Title textContent={"CURSO DE CAPACITAÇÃO"} />
-                    <Text style={styles.title}>Módulo 03: Cimento CPII</Text>
+                    <Title textContent={"CURSO DE CAPACITAÇÃO"} style={{peddingLeft: 13}}/>
                     
                     <View style={styles.formAnswers}>
 

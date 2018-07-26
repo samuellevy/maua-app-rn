@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableOpacity, StatusBar } from 'react-native';
 import styles from './styles';
 
 export default class Header extends Component {
@@ -12,6 +12,7 @@ export default class Header extends Component {
  
         return (
             <View style={styles.header}>
+                <StatusBar translucent={true} /> 
                 <View style={styles.logoContainer}>
                     <TouchableOpacity onPress={()=>{}}>
                         <Image

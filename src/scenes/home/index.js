@@ -86,7 +86,6 @@ export default class Home extends Component {
         let firstAccess = null;
         
         rest.get('/users/me').then((rest)=>{
-            console.log('send');
             console.log(rest.user.first_access);
             firstAccess = rest.user.first_access;
             this.setState({accessFirst: firstAccess})
@@ -111,10 +110,8 @@ export default class Home extends Component {
                 first_access: 0,
             });
             
-            console.log('sending');
             console.log(lojista);
             rest.post('/users/edit/me', lojista).then((rest)=>{
-                console.log('send');
                 console.log(rest);
             });
             

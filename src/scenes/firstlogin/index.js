@@ -38,7 +38,6 @@ export default class FirstLogin extends Component {
             });
             
             const { user, token } = response.data.data;
-            console.log(this.state.remember);
             await AsyncStorage.multiSet([
                 ['@CodeApi:token', token],
                 ['@CodeApi:user', user],

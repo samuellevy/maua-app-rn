@@ -36,7 +36,6 @@ export default class Employee extends Component {
 
     getData(){
 		rest.get('/users/list').then((rest)=>{
-			console.log('rest')
 			this.setState({
 			  	isLoading: false,
 			  	arrayUser: rest.users
