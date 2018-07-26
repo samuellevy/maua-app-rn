@@ -45,7 +45,7 @@ export default class More extends Component {
       <View style={styles.container}>
         <ScrollView style={styles.scrollview}>
           <View style={styles.border}>
-            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Profile'); this.setState({ screen: 'Profile' })}}>
+            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Profile', this.props); this.setState({ screen: 'Profile' })}}>
               <Item icon={'border-color'} title={'Editar perfil'}/>
             </TouchableOpacity>
           </View> 

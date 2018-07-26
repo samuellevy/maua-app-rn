@@ -11,7 +11,10 @@ import styles from './styles';
 import TitleTop from '../../components/title/primary';
 import ModalSucces from './components'
 
+import Loading from '../../components/loading';
+
 import api from '../../services/api';
+import rest from '../../services/rest';
 
 
 export default class Profile extends Component {
@@ -26,6 +29,8 @@ export default class Profile extends Component {
         name:null,
         tel:null,
         senha:null,
+        isLoading: true,
+        reloading: false,
     }
 
     
@@ -34,18 +39,15 @@ export default class Profile extends Component {
         this.getData();
     }
 
-    getData = async () => {
-        try{
-            const response = await api.get('/users/me');
-            var user = response.data.user;
-            this.setState({loja:user.loja,email:user.email,name:user.name,tel:user.phone});
-            console.log(user);
-            this.setState({user: response.data.user});
-        } catch (response){
-            this.setState({ errorMessage: response.data.message });
+    getData(){
+        if(this.state.reloading){
+            this.setState({isLoading: true});
         }
+        rest.get('/users/me').then((rest)=>{
+            this.setState({dataSource: rest, isLoading: false, reloading: false, loja:rest.user.loja,email:rest.user.email,name:rest.user.name,tel:rest.user.phone});
+        });
     }
-
+    
     postData = async () => {
         try{
             const response = await api.post('/users/edit/me',{
@@ -61,7 +63,7 @@ export default class Profile extends Component {
                     [
                         // this.btnAlertConfirm(confirm),
                         // this.btnAlertCancel(cancel)
-                        {text: 'OK', onPress: () => console.log('OK Pressed')}
+                        {text: 'OK', onPress: () => {this.setState({reloading: true}); this.getData();}}
                     ],
                 { cancelable: false }
             )
@@ -71,8 +73,18 @@ export default class Profile extends Component {
             this.setState({ errorMessage: response.data.message });
         }
     }
+
+    componentWillReceiveProps(){
+		this.getData();
+        this.forceUpdate();
+    }
 	  
-  	render() {  
+  	render() {
+        if(this.state.isLoading){
+            return(
+                <Loading/>
+            )
+        }
     	return (    
 			<View style={styles.container}> 
 				<ScrollView style={{marginBottom: 60, padding: 18}}>   

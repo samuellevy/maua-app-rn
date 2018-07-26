@@ -5,6 +5,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import NavIcon from '../../../components/navigation/NavIcon';
 import styles from './styles';
 import { colors, metrics, fonts } from '../../../styles';
+import { TextInputMask } from 'react-native-masked-text'
 
 import Header from '../../../components/header';
 import Nav from '../../../components/navigation';
@@ -24,7 +25,7 @@ export default class addEmployee extends Component {
       
     constructor(props) {
         super(props);
-        this.getUserData();
+        this.getData();
     }
 
     state = {
@@ -32,16 +33,14 @@ export default class addEmployee extends Component {
         viewSection :false,
         idUser: 0,
         nome: null,
-        cpf: null,
         email: null,
         nomeNew: null,
         emailNew: null,
         phoneNew: null,
-        // params: [{'user':null}],
         arrayUser: []
     } 
 
-    getUserData = async () => {
+    getData = async () => {
 		rest.get('/users/list').then((rest)=>{
 			this.setState({
 			  	isLoading: false,
@@ -49,15 +48,6 @@ export default class addEmployee extends Component {
             });
 		})
     }
-
-    // deleteUser() {
-	// 	rest.get('/users/edit').then((rest)=>{
-	// 		this.setState({
-	// 		  	isLoading: false,
-	// 		  	arrayUser: rest.users
-    //         });
-	// 	})
-    // }
 
     deleteUser(idUser) {
 		rest.get('/users/remove').then((rest)=>{
@@ -82,15 +72,12 @@ export default class addEmployee extends Component {
                                         <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nome) => this.setState({nome})} placeholder={arrayUser.name} placeholderTextColor={colors.textColor}/>
                                     </View>
                                     <View style={styles.boxInput}> 
-                                        <Text style={styles.inputText}>CPF</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(cpf) => this.setState({cpf})} placeholder={arrayUser.cpf} placeholderTextColor={colors.textColor}/>
-                                    </View>
-                                    <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>E-MAIL</Text>
                                         <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} placeholder={arrayUser.email} placeholderTextColor={colors.textColor}/>
                                     </View>
-                                    <View style={{flexDirection: 'row'}}>
-                                        <Text style={{fontSize: 11, paddingTop: 10,}}>A senha do seu funcionário é </Text><Text style={{fontWeight: 'bold',fontSize: 11, paddingTop: 10,}}>quementendevende</Text>
+                                    <View style={styles.boxInput}> 
+                                        <Text style={styles.inputText}>TELEFONE</Text>
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(phone) => this.setState({phone})} placeholder={arrayUser.phone} placeholderTextColor={colors.textColor}/>
                                     </View>
                                 </View>
                             }
@@ -104,14 +91,14 @@ export default class addEmployee extends Component {
     renderBottomComponent(userId){
         if(this.state.viewSection) {
             return (
-                <ModalDelete id={userId}/>
+                <ModalDelete id={userId} navigation={this.props.navigation}/>
             )
         }
     } 
     
     buttonPress=()=>{
         if(this.state.viewSection == true) {
-            this.setState({viewSection:false}) 
+            this.setState({viewSection:false})
         } else {
             this.setState({viewSection:true})
         }
@@ -126,22 +113,54 @@ export default class addEmployee extends Component {
             phone: this.state.phoneNew,
         });
         
-        console.log('sending');
-        console.log(newUser);
         rest.post('/users/add', newUser).then((rest)=>{
-            console.log('send');
-            console.log(rest);
+
         });
 
         Alert.alert(
-            "Useario cadastrado!",
-            "Um novo funcionario foi cadastrado",
+            "Usuário cadastrado!",
+            "Um novo funcionário foi cadastrado",
                 [
-                    {text: 'OK', onPress: () => {this.props.navigation.navigate('Employe')}}
+                    {text: 'OK', onPress: () => {this.props.navigation.navigate('Employe', {reloading: true})}}
                 ],
             { cancelable: false }
         )
 
+    }
+
+    editUser(userId){
+        this.setState({visibleModal: false})
+        
+        let newUser = JSON.stringify({
+            id: userId,
+            name: this.state.nome,
+            phone: this.state.phone,
+            email: this.state.email,
+        });
+        
+        rest.post('/users/edit/'+userId, newUser).then((rest)=>{
+
+        });
+
+        Alert.alert(
+            "Usuário atualizado!",
+            "Suas alterações foram salvas com sucesso",
+                [
+                    {text: 'OK', onPress: () => {this.props.navigation.navigate('Employe', {reloading: true})}}
+                ],
+            { cancelable: false }
+        )
+
+    }
+
+    isValid() {
+        let valid = this.myDateText.isValid();
+        let rawValue = this.myDateText.getRawValue();
+    }
+
+    componentWillReceiveProps(){
+		this.getData();
+        this.forceUpdate();
     }
 
   	render() {
@@ -154,12 +173,12 @@ export default class addEmployee extends Component {
                     {/* <AlertBox mensager={"Alterações salvas!"}/>  */}
     
                     <ScrollView style={{marginBottom: 50, padding: 18}}>
-                        <TitleTop textContent={'DITAR PERFIL'} />
+                        <TitleTop textContent={'EDITAR FUNCIONÁRIO'} />
     
                         {this.formData(userId)}
     
                         <View style={styles.addEmplayee}>
-                            <TouchableOpacity style={styles.addBtn} onPress={() => {this.setState({visibleModal: false})} }>
+                            <TouchableOpacity style={styles.addBtn} onPress={() => {this.setState({visibleModal: false}); this.editUser(userId)} }>
                                 <View style={styles.boxIcon}>
                                     <MaterialIcon name="add" size={15} style={styles.iconAdd}></MaterialIcon>
                                 </View>
@@ -182,7 +201,7 @@ export default class addEmployee extends Component {
                     {/* <AlertBox mensager={"Alterações salvas!"}/>  */}
     
                     <ScrollView style={{marginBottom: 50, padding: 18}}>
-                        <TitleTop textContent={'ADICIONAR FUNCIO222NÁRIOS'} />
+                        <TitleTop textContent={'ADICIONAR FUNCIONÁRIO'} />
     
                         <View style={styles.contentAddUser}>
                             <View>
@@ -193,11 +212,14 @@ export default class addEmployee extends Component {
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>TELEFONE</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(phoneNew) => this.setState({phoneNew})} placeholderTextColor={colors.textColor}/>
+                                        <TextInputMask type={'cel-phone'} style={styles.input} underlineColorAndroid='transparent' onChangeText={(phoneNew) => this.setState({phoneNew})} placeholderTextColor={colors.textColor}/>
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>E-MAIL</Text>
                                         <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(emailNew) => this.setState({emailNew})} placeholderTextColor={colors.textColor}/>
+                                    </View>
+                                    <View style={{flexDirection: 'row'}}>
+                                        <Text style={{fontSize: 11, paddingTop: 10,}}>A senha do seu funcionário é </Text><Text style={{fontWeight: 'bold',fontSize: 11, paddingTop: 10,}}>quementendevende</Text>
                                     </View>
                                 </View>
                             </View>

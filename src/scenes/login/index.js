@@ -61,7 +61,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <ScrollView scrollEnabled={Platform.OS == 'ios'?false:true}>
+            <ScrollView scrollEnabled={Platform.OS == 'ios'?true:true}>
             <View style={styles.container}>
                 <View style={styles.boxHello}>
                     <Image source={require('../../../assets/img/marca2.png')} style={styles.imgMarca}/>

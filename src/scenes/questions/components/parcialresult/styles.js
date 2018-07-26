@@ -24,8 +24,9 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
     },
     image: {
-        width: ((Dimensions.get('window').width - 40)),
-        height: 200,
+        width: (Dimensions.get('screen').width - 40),
+        height: (53*(Dimensions.get('screen').width - 40))/100,
+        resizeMode: 'stretch'
     },
     titleTop: {
         paddingTop: 10,

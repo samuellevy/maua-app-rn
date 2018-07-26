@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, WebView, Modal } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import api from '../../../../services/api';
+import rest from '../../../../services/rest';
 
 import styles from './styles';
 
@@ -17,38 +17,20 @@ export default class modal extends Component {
         this.setState({modalVisible: visible});
     }
 
-    // delete(idUser) {
-    //     console.log("dasdadsadasd")
-    //     console.log(idUser)
-    //     try{
-    //         const response = await api.post('/users/remove',{
-    //             id: idUser
-    //         });
-    //         console.log('try')
-    //         console.log(response.data);
-    //     } catch (response){
-    //         console.log('catch')
-    //         this.setState({ errorMessage: response.data.message });
-    //     }
-    // }
-
-    deleteUser = async (idUser) => {
-        try{
-            const response = await api.post('/users/remove',{
-                id: idUser
-            });
-            this.setState({visibleModal: false})
-            console.log(response.data);
-            this.props.navigation.navigate('Employe');
-        } catch (response){
-            console.log(response)
-            this.setState({ errorMessage: response.data.message });
-            this.setState({visibleModal: false})
-        }
+    deleteUser (idUser, navigation) {
+        let data = JSON.stringify({
+            id: idUser,
+        });
+        
+        rest.post('/users/remove', data).then((rest)=>{
+            this.setState({visibleModal: false});
+            navigation.navigate('Employe', {reloading: true});
+        });
     }
 
     render() { 
         let idUser = this.props.id;
+        let navigation = this.props.navigation;
 
         return(
             <Modal animationType="fade"    
@@ -70,7 +52,7 @@ export default class modal extends Component {
                                 <Text style={styles.textBtnExit}>SAIR</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.btnConfirm}  onPress={() => this.deleteUser(idUser)}>
+                            <TouchableOpacity style={styles.btnConfirm}  onPress={() => this.deleteUser(idUser, navigation)}>
                                 <Text style={styles.textBtnConfirm}>CONFIRMAR</Text>
                             </TouchableOpacity>
                         </View>

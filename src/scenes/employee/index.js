@@ -21,7 +21,7 @@ export default class Employee extends Component {
 
     constructor(props) {
 		super(props);
-		this.getUserData();
+		this.getData();
     }
 
 	state = {
@@ -30,12 +30,13 @@ export default class Employee extends Component {
 	}
 
     componentWillReceiveProps(){
+		this.getData();
         this.forceUpdate();
     }
 
-    getUserData = async () => {
+    getData(){
 		rest.get('/users/list').then((rest)=>{
-			console.log('aqui')
+			console.log('rest')
 			this.setState({
 			  	isLoading: false,
 			  	arrayUser: rest.users
@@ -46,11 +47,11 @@ export default class Employee extends Component {
 	listFunc() {
 		return(
 			<View>
-				{this.state.arrayUser.map((arrayUser, index) => {
+				{this.state.arrayUser.map((user, index) => {
 					return(
 						<View key={index}>
-							<TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate('addEmployee', {userId: arrayUser.id})} }>
-								<ListUser icon={arrayUser.completed} nameUser={arrayUser.name} message={arrayUser.course_status} />
+							<TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate('addEmployee', {userId: user.id})} }>
+								<ListUser icon={user.completed} nameUser={user.name} message={user.course_status} />
 							</TouchableOpacity>
 						</View>
 					)
