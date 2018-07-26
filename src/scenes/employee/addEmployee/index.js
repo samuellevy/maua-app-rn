@@ -77,7 +77,7 @@ export default class addEmployee extends Component {
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>TELEFONE</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(phone) => this.setState({phone})} placeholder={arrayUser.phone} placeholderTextColor={colors.textColor}/>
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(phone) => this.setState({phone})} placeholder={arrayUser.phone} value={arrayUser.phone!=null?arrayUser.phone:''} placeholderTextColor={colors.textColor}/>
                                     </View>
                                 </View>
                             }
@@ -212,7 +212,7 @@ export default class addEmployee extends Component {
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>TELEFONE</Text>
-                                        <TextInputMask type={'cel-phone'} style={styles.input} underlineColorAndroid='transparent' onChangeText={(phoneNew) => this.setState({phoneNew})} placeholderTextColor={colors.textColor}/>
+                                        <TextInputMask type={'cel-phone'} style={styles.input} underlineColorAndroid='transparent' onChangeText={(phoneNew) => this.setState({phoneNew})} placeholderTextColor={colors.textColor} value={this.state.phoneNew!=null?this.state.phoneNew:''} />
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>E-MAIL</Text>

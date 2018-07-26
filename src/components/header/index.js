@@ -12,7 +12,7 @@ export default class Header extends Component {
  
         return (
             <View style={styles.header}>
-                <StatusBar translucent={true} /> 
+                <StatusBar translucent={false} /> 
                 <View style={styles.logoContainer}>
                     <TouchableOpacity onPress={()=>{}}>
                         <Image
