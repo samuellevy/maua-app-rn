@@ -61,42 +61,42 @@ export default class Login extends Component {
 
     render() {
         return (
-            <ScrollView scrollEnabled={Platform.OS == 'ios'?false:true}>
-            <View style={styles.container}>
-                <View style={styles.boxHello}>
-                    <Image source={require('../../../assets/img/marca2.png')} style={styles.imgMarca}/>
-                </View>
-                <View style={styles.boxWelcome}>
-                    <Text style={styles.txtWelcome}>Bem-vindo! :)</Text>
-                    <Text style={styles.txtInitial}>Para começar, insira abaixo seu login e senha.</Text>
-                    { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
-                </View>
-                <View style={styles.boxLogin}>
-                        <View style={styles.inputBox}>
-                            <MaterialIcon name="person" size={25} style={styles.inputIcon} />
-                            <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Login' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={username => this.setState({username})} value={this.state.username!=null?this.state.username:''} returnKeyType='done'/>
-                        </View>
-                        <View style={styles.inputBox}>
-                            <MaterialIcon name="lock" size={25} style={styles.inputIcon} />
-                            <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={password => !!password?this.setState({password: password}):this.setState({password: null})} secureTextEntry={true} returnKeyType='done'/>
-                        </View>
-                        <TouchableOpacity onPress={this.clickRemember}>
-                            <View style={styles.boxCheck}>
-                                <MaterialIcon name={this.state.remember?"check-box":"check-box-outline-blank"} size={25} style={styles.checkIcon} />
-                                <Text style={styles.txtKeep}>Mantenha-me conectado</Text> 
+            <ScrollView>
+                <View style={styles.container}>
+                    <View style={styles.boxHello}>
+                        <Image source={require('../../../assets/img/marca2.png')} style={styles.imgMarca}/>
+                    </View>
+                    <View style={styles.boxWelcome}>
+                        <Text style={styles.txtWelcome}>Bem-vindo! :)</Text>
+                        <Text style={styles.txtInitial}>Para começar, insira abaixo seu login e senha.</Text>
+                        { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
+                    </View>
+                    <View style={styles.boxLogin}>
+                            <View style={styles.inputBox}>
+                                <MaterialIcon name="person" size={25} style={styles.inputIcon} />
+                                <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Login' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={username => this.setState({username})} value={this.state.username!=null?this.state.username:''} returnKeyType='done'/>
                             </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={this.signIn} disabled={this.state.username!=null&&this.state.password!=null?false:true}>
-                            <View style={[styles.boxButton, this.state.username!=null&&this.state.password!=null?{backgroundColor: colors.primary}:{backgroundColor: colors.gray}]}>
-                                <Text style={styles.txtSign}>ENTRAR</Text>
+                            <View style={styles.inputBox}>
+                                <MaterialIcon name="lock" size={25} style={styles.inputIcon} />
+                                <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={password => !!password?this.setState({password: password}):this.setState({password: null})} secureTextEntry={true} returnKeyType='done'/>
                             </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Password'); this.setState({ screen: 'Password' }) }}>
-                            <Text style={styles.txtForgot}>ESQUECI MINHA SENHA</Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity onPress={this.clickRemember}>
+                                <View style={styles.boxCheck}>
+                                    <MaterialIcon name={this.state.remember?"check-box":"check-box-outline-blank"} size={25} style={styles.checkIcon} />
+                                    <Text style={styles.txtKeep}>Mantenha-me conectado</Text> 
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this.signIn} disabled={this.state.username!=null&&this.state.password!=null?false:true}>
+                                <View style={[styles.boxButton, this.state.username!=null&&this.state.password!=null?{backgroundColor: colors.primary}:{backgroundColor: colors.gray}]}>
+                                    <Text style={styles.txtSign}>ENTRAR</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Password'); this.setState({ screen: 'Password' }) }}>
+                                <Text style={styles.txtForgot}>ESQUECI MINHA SENHA</Text>
+                            </TouchableOpacity>
 
+                    </View>
                 </View>
-            </View>
             </ScrollView>
         );
     }

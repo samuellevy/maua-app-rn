@@ -21,7 +21,7 @@ export default class statusSend extends Component {
     }
 
     sendStatus() {
-        console.log(this.state.statusOption)
+        
     }
     
     render() {

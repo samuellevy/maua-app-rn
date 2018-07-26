@@ -35,7 +35,6 @@ export default class Employee extends Component {
 
     getUserData = async () => {
 		rest.get('/users/list').then((rest)=>{
-			console.log('aqui')
 			this.setState({
 			  	isLoading: false,
 			  	arrayUser: rest.users

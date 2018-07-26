@@ -60,8 +60,6 @@ export default class Rule extends Component {
                 isLoading: false,
                 dataSource: rest,
             });
-            console.log('Rule');
-            console.log(rest);
         })
     }
 
