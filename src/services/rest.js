@@ -1,8 +1,8 @@
 import { AsyncStorage } from 'react-native';
 
 var rest = {
-    url: 'http://192.168.2.71/rest/api',
-    // url: 'http://dev2.3aww.com.br/lafargemaua/api',
+    // url: 'http://192.168.2.71/rest/api',
+    url: 'http://dev2.3aww.com.br/lafargemaua/api',
     async get(action){
         const token = await AsyncStorage.getItem("@CodeApi:token");
         var url = this.url + action;

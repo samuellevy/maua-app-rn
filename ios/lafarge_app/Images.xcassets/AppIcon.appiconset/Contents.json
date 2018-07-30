@@ -7,15 +7,20 @@
       "scale" : "2x"
     },
     {
+      "idiom" : "iphone",
+      "size" : "20x20",
+      "scale" : "2x"
+    },
+    {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "icone-maua-iphone@60-1.png",
+      "filename" : "icone-maua-iphone@60.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "icone-maua-iphone@58.png",
+      "filename" : "icone-maua-iphone@58-1.png",
       "scale" : "2x"
     },
     {
@@ -33,20 +38,74 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "icone-maua-iphone@2x-1.png",
+      "filename" : "icone-maua-iphone@2x-3.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "icone-maua-iphone@2x.png",
+      "filename" : "icone-maua-iphone@2x-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "icone-maua-iphone@3x.png",
+      "filename" : "icone-maua-iphone@3x-1.png",
       "scale" : "3x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-iphone@20.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-iphone@40-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-iphone@29.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-iphone@58.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-iphone@40-4.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-iphone@80-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-iphone@76.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-ipad@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "icone-maua-ipad-pro@2x.png",
+      "scale" : "2x"
     },
     {
       "size" : "1024x1024",
