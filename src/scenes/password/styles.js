@@ -110,6 +110,9 @@ const styles = StyleSheet.create({
         color: colors.fontColor,
         paddingLeft: 40,
     },
+    inputPass: {
+        paddingLeft: 10,
+    },
     inputError:{
         borderColor: colors.error,
         borderBottomWidth: 1,

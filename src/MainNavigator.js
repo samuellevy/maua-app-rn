@@ -34,6 +34,8 @@ import FinishCourse from './scenes/finishCourse';
 import Result from './scenes/questions/components/result'; 
 import StatusSend from './scenes/statusSend';
 import FirstLogin from './scenes/firstlogin';
+import HomeManage from './scenes/homeManage';
+import CategoryManage from './scenes/categoryManage';
 // import ModalExample from './scenes/modalExample'
 import Player from './scenes/player';
 
@@ -55,6 +57,8 @@ const RootScene = TabNavigator({
   addEmployee: {screen: addEmployee},
   Employe: {screen: Employe},
   FeedBack: {screen: FeedBack},
+  HomeManage: {screen: HomeManage},
+  CategoryManage: {screen: CategoryManage},
   // ModalExample: {screen: ModalExample},
   // Sent: {screen: Sent},
   // Player: {screen: Player}
