@@ -35,7 +35,7 @@ import Result from './scenes/questions/components/result';
 import StatusSend from './scenes/statusSend';
 import FirstLogin from './scenes/firstlogin';
 // import ModalExample from './scenes/modalExample'
-// import Player from './scenes/player';
+import Player from './scenes/player';
 
 // Other confs
 console.disableYellowBox = true;

@@ -11,7 +11,7 @@ import Title from '../../../components/title/primary';
 import TitleSec from '../../../components/title/secondaryTitle';
 import Nav from '../../../components/navigation';
 import ModalBox from '../../../components/modal/alert';
-
+import Player from '../../player';
 import NavIcon from '../../../components/navigation/NavIcon';
 
 import api from '../../../services/api';
@@ -75,7 +75,8 @@ export default class Curso extends Component {
                         </Text>
 
                         <View style = {styles.viewVideo}>
-                            <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube.com/embed/'+item.video_url+'?controls=0&fs=0&rel=0&showinfo=0' }} />
+                            {/* <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube.com/embed/'+item.video_url+'?controls=0&fs=0&rel=0&showinfo=0' }} /> */}
+                            <Player style={styles.boxVideo} item={item}/>
                         </View>
 
                         {this.btnCurso(item, navigation)}

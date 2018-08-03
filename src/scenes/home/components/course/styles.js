@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 200,
     },
+    thumbvideo:{
+        width: '100%',
+        height: '100%'
+    },
     description:{
         flex: 1,
         position: 'relative',
