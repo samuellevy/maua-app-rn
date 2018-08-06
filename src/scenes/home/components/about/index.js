@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, WebView } from 'react-native';
+import { View, Text, WebView, Image } from 'react-native';
 
 import styles from './styles';
 import Player from '../../../player';
@@ -20,8 +20,9 @@ export default class Blog extends Component {
                     </Text>
                 </View>
                 <View style={styles.viewVideo}>
-                    <Player item={item}/>
+                    {/* <Player item={item}/> */}
                     {/* <WebView source={{ uri: 'https://www.youtube.com/embed/'+item.url }} /> */}
+                    <Image style={styles.thumbvideo} source={{ uri: 'https://i.ytimg.com/vi/'+item.video_url+'/hqdefault.jpg'}}/>
                 </View>
             </View>
         );

@@ -235,7 +235,7 @@ export default class Home extends Component {
                     
                     <SmallProfile user={this.state.user}/>
                     <RankingBox user={this.state.user}/>
-                    <LastUpdate/>
+                    <LastUpdate configs={this.state.dataSource.configs}/>
                     
                     <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('Performance');}}>
                         <Card title={'Desempenho'} icon={'today'} color={colors.blue}>

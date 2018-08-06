@@ -21,6 +21,8 @@ import { colors, metrics, fonts } from '../../styles';
 import Card from './components/card';
 import CardFooter from './components/cardfooter';
 
+import FirstVideo from '../../scenes/firstVideo';
+
 import api from '../../services/api';
 import rest from '../../services/rest';
 

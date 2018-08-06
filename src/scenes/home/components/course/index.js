@@ -54,8 +54,9 @@ export default class Course extends Component {
         return (
             <View style={styles.container}>
                 <View style = {styles.viewVideo}>
-                    <Player item={this.state.dataSource.course} style={{width: '100%', height: 200}}/>
+                    {/* <Player item={this.state.dataSource.course} style={{width: '100%', height: 200}}/> */}
                     {/* <WebView source = {{ uri: 'https://www.youtube.com/embed/'+this.state.dataSource.course.video_url }} /> */}
+                    <Image style={styles.thumbvideo} source={{ uri: 'https://i.ytimg.com/vi/'+this.state.dataSource.course.video_url+'/hqdefault.jpg'}}/>
                 </View>
                 <View style = {styles.description}>
                     <Text style={[styles.title, { color: color }]}>

@@ -75,8 +75,8 @@ export default class Curso extends Component {
                         </Text>
 
                         <View style = {styles.viewVideo}>
-                            {/* <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube.com/embed/'+item.video_url+'?controls=0&fs=0&rel=0&showinfo=0' }} /> */}
-                            <Player style={styles.boxVideo} item={item}/>
+                            <WebView style={styles.boxVideo} scrollEnabled={false} source = {{ uri: 'https://www.youtube.com/embed/'+item.video_url+'?controls=0&fs=0&rel=0&showinfo=0' }} />
+                            {/* <Player style={styles.boxVideo} item={item}/> */}
                         </View>
 
                         {this.btnCurso(item, navigation)}
