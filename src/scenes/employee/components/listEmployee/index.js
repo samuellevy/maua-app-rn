@@ -6,6 +6,7 @@ import styles from './styles';
 
 export default class Employee extends Component { 
   	render() {
+        let user = this.props.user;
         let iconSelect    = this.props.icon;
         let nameUser      = this.props.nameUser;
         let message      = this.props.message;
@@ -15,11 +16,11 @@ export default class Employee extends Component {
 			<View style={styles.container}> 
 				<View style={styles.boxUser}>
                     <View style={styles.boxName}>
-                        <Text style={styles.nameUser}>{nameUser}</Text>
-                        <MaterialIcon name={!iconSelect ? "error" : "done"} size={15} style={!iconSelect ? styles.iconAlert : styles.iconDone} color={"#ddd"}></MaterialIcon>
+                        <Text style={styles.nameUser}>{user.name}</Text>
+                        <MaterialIcon name={!user.completed ? "error" : "done"} size={15} style={!user.completed ? styles.iconAlert : styles.iconDone} color={"#ddd"}></MaterialIcon>
                     </View>
                     
-                    <Text style={styles.textInfo}>{message}</Text>
+                    <Text style={styles.textInfo}>{user.course_status}</Text>
                 </View>
 
                 <View style={styles.boxIconEdit}>

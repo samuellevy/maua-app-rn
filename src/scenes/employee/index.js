@@ -26,7 +26,7 @@ export default class Employee extends Component {
 
 	state = {
 		id: 1,
-		arrayUser: [],
+		dataSource: [],
 	}
 
     componentWillReceiveProps(){
@@ -38,7 +38,7 @@ export default class Employee extends Component {
 		rest.get('/users/list').then((rest)=>{
 			this.setState({
 			  	isLoading: false,
-			  	arrayUser: rest.users
+			  	dataSource: rest.users
 			});
 		})
     }
@@ -46,11 +46,11 @@ export default class Employee extends Component {
 	listFunc() {
 		return(
 			<View>
-				{this.state.arrayUser.map((user, index) => {
+				{this.state.dataSource.map((user, index) => {
 					return(
 						<View key={index}>
 							<TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate('addEmployee', {userId: user.id})} }>
-								<ListUser icon={user.completed} nameUser={user.name} message={user.course_status} />
+								<ListUser user={user} />
 							</TouchableOpacity>
 						</View>
 					)
@@ -65,7 +65,7 @@ export default class Employee extends Component {
 				<ScrollView style={{marginBottom: 50, padding: 18}}>
 					<TitleTop textContent={'FUNCIONÁRIOS'} />
  
-					<View style={styles.addEmplayee}>
+					<View style={styles.addEmployee}>
 						<TouchableOpacity style={styles.addBtn} onPress={() => { this.props.navigation.navigate('addEmployee', {userId: null})} }>
 							<View style={styles.boxIcon}>
 								<MaterialIcon name="add" size={15} style={styles.iconClear}></MaterialIcon>

@@ -63,7 +63,7 @@ export default class Profile extends Component {
                     [
                         // this.btnAlertConfirm(confirm),
                         // this.btnAlertCancel(cancel)
-                        {text: 'OK', onPress: () => {this.setState({reloading: true}); this.getData();}}
+                        {text: 'OK', onPress: () => {this.setState({reloading: true}); this.getData(); this.setState({senha: null});}}
                     ],
                 { cancelable: false }
             )

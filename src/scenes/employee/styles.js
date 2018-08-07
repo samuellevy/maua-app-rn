@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 18,
     },
-    addEmplayee: {
+    addEmployee: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,

@@ -47,11 +47,6 @@ export default class addEmployee extends Component {
         }
     } 
 
-    componentWillReceiveProps(){
-        
-    }
-
-
     getData = async () => {
 		rest.get('/users/list').then((rest)=>{
 			this.setState({
@@ -138,11 +133,6 @@ export default class addEmployee extends Component {
             { cancelable: false }
         )
 
-        this.setState({
-            nomeNew: null,
-            emailNew: null,
-            phoneNew: null
-        });
     }
 
     editUser(userId){
@@ -225,15 +215,15 @@ export default class addEmployee extends Component {
                                 <View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>NOME</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nomeNew) => this.setState({nomeNew})} value={this.state.nomeNew} placeholderTextColor={colors.textColor}/>
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nomeNew) => this.setState({nomeNew})} placeholderTextColor={colors.textColor}/>
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>TELEFONE</Text>
-                                        <TextInputMask type={'cel-phone'} style={styles.input} underlineColorAndroid='transparent' onChangeText={(phoneNew) => this.setState({phoneNew})} placeholderTextColor={colors.textColor} value={this.state.phoneNew!=null?this.state.phoneNew:''} value={this.state.phoneNew} />
+                                        <TextInputMask type={'cel-phone'} style={styles.input} underlineColorAndroid='transparent' onChangeText={(phoneNew) => this.setState({phoneNew})} placeholderTextColor={colors.textColor} value={this.state.phoneNew!=null?this.state.phoneNew:''} />
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>E-MAIL</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(emailNew) => this.setState({emailNew})} placeholderTextColor={colors.textColor} value={this.state.emailNew} />
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(emailNew) => this.setState({emailNew})} placeholderTextColor={colors.textColor}/>
                                     </View>
                                     <View style={{flexDirection: 'row'}}>
                                         <Text style={{fontSize: 11, paddingTop: 10,}}>A senha do seu funcionário é </Text><Text style={{fontWeight: 'bold',fontSize: 11, paddingTop: 10,}}>quementendevende</Text>

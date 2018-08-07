@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     image: {
-        height: 200,
-        width: null,
+        width: '100%',
+        height: 150,
         resizeMode: 'contain'
     }
 
