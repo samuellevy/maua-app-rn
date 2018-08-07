@@ -126,19 +126,14 @@ export default class Password extends Component {
                                     <Text style={styles.txtInitial}>Insira sua nova senha abaixo</Text>
                             </View>
                             <View style={styles.boxLogin}>
-                                {/* <View style={styles.inputBox}>
-                                    <MaterialCommunityIcon name="lock" size={20} style={[styles.inputIcon, this.state.errorMessage && this.state.password != null? styles.inputIconError : '']} />
-                                    <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} placeholder='Nova senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={password => this.setState({password})} value={this.state.password} autoCorrect={false}/>
-                                    { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
-                                </View> */}
                                 <View style={styles.inputBox}>
                                     {/* <MaterialCommunityIcon name="lock" size={20} style={[styles.inputIcon, this.state.errorMessage && this.state.password != null? styles.inputIconError : '']} /> */}
-                                    <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} placeholder='Nova senha' placeholderTextColor={colors.light} autoCapitalize='none' onChangeText={password => this.setState({password})} autoCorrect={false} returnKeyType={'done'}/>
-                                    {/* { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>} */}
+                                    <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input,styles.inputPass, this.state.errorMessage ? styles.inputError : '']} placeholder='Nova senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={password => this.setState({password})} value={this.state.password} autoCorrect={false}/>
+                                    { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
                                 </View>
                                 <View style={styles.inputBox}>
                                     {/* <MaterialCommunityIcon name="lock" size={20} style={[styles.inputIcon, this.state.errorMessage && this.state.confirm_password != null? styles.inputIconError : '']} /> */}
-                                    <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} placeholder='Confirmar nova senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={confirm_password => this.setState({confirm_password})} value={this.state.co} autoCorrect={false}/>
+                                    <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input,styles.inputPass, this.state.errorMessage ? styles.inputError : '']} placeholder='Confirmar nova senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={confirm_password => this.setState({confirm_password})} value={this.state.co} autoCorrect={false}/>
                                     { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
                                 </View>
                                 <TouchableOpacity onPress={()=>{this.sendData()}} disabled={this.state.email != null? false : true} >
