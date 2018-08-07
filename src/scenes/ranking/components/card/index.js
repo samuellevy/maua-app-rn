@@ -60,6 +60,9 @@ export default class Card extends Component {
       case '5-ranking':
         url = require('../../../../../assets/img/5-ranking.png');
       break;
+      default:
+        url = require('../../../../../assets/img/5-ranking.png');
+      break;
 
 
     }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, WebView } from 'react-native';
+import { View, Text, WebView, Image } from 'react-native';
 import Loading from '../../../../components/loading';
 import styles from './styles';
 import rest from '../../../../services/rest';
+import Player from '../../../player';
 
 export default class Course extends Component {
     static navigationOptions = {
@@ -27,6 +28,7 @@ export default class Course extends Component {
         rest.get('/courses/getLastCourse').then((rest)=>{
             if(rest.course!=null){
                 this.setState({dataSource: rest, isLoading: false});
+                console.log(rest);
             }else{
                 this.setState({disable: true, isLoading: false});
             }
@@ -52,7 +54,9 @@ export default class Course extends Component {
         return (
             <View style={styles.container}>
                 <View style = {styles.viewVideo}>
-                    <WebView source = {{ uri: 'https://www.youtube.com/embed/'+this.state.dataSource.course.video_url }} />
+                    {/* <Player item={this.state.dataSource.course} style={{width: '100%', height: 200}}/> */}
+                    {/* <WebView source = {{ uri: 'https://www.youtube.com/embed/'+this.state.dataSource.course.video_url }} /> */}
+                    <Image style={styles.thumbvideo} source={{ uri: 'https://i.ytimg.com/vi/'+this.state.dataSource.course.video_url+'/hqdefault.jpg'}}/>
                 </View>
                 <View style = {styles.description}>
                     <Text style={[styles.title, { color: color }]}>

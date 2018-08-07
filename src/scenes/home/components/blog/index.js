@@ -24,7 +24,7 @@ export default class Blog extends Component {
                 </View>
                 <Image
                     style={styles.image}
-                    source={{url: item.image}}
+                    source={{uri: item.image}}
                 />
             </View>
         );

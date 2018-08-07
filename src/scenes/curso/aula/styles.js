@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     viewVideo: {
-        width: ((Dimensions.get('window').width - 50) / 3) * 3.5,
+        width: ((Dimensions.get('window').width - 80) / 3) * 3.5,
         height: ((((Dimensions.get('window').width - 50) / 3) * 3.5) * 9)/16,
         overflow: 'hidden',
         marginTop: 20,
