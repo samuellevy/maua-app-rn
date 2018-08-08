@@ -261,13 +261,18 @@ export default class Home extends Component {
                             </View>
                         </Card>
                     </TouchableOpacity>
-                    
+
+                    {this.state.dataSource.user.role_id==7?
+                    <View/>
+                    :
                     <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('AboutCourse'); }}>
                         <Card title={'Sobre o Programa'} icon={'info-outline'} color={colors.dark}>
                             <About item={this.state.dataSource.page}/>
                             <CardFooter>{'Saiba mais'.toUpperCase()}</CardFooter>
                         </Card>
                     </TouchableOpacity>
+                    }
+                    
                 
                 </ScrollView>
             </View>
