@@ -60,7 +60,7 @@ export default class Result extends Component {
     }
 
     confirm(dataAnswers, percent){
-        if(percent > 60){
+        if(percent > 59){
             this.sendData(dataAnswers);
         }
         this.setState({
