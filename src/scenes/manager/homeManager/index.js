@@ -155,17 +155,17 @@ export default class HomeManage extends Component {
                     {/* <RankingBox user={this.state.user}/> */}
                     <LastUpdate/>
 
-                    <Card icon={'today'} color={'#00985B'} colorBg={'#14CC82'}>
-                        <ListCat categoria={'VERDE'} colorBg={'#14CC82'} colorBgIcon={'#00985B'}/>
-                        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
-                            <CardFooter color={'#14CC82'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
-                        </TouchableOpacity>
-                    </Card>
-
                     <Card icon={'today'} color={'#EAA203'} colorBg={'#14CC82'}> 
                         <ListCat categoria={'amarelo'} colorBg={'#FCB415'} colorBgIcon={'#EAA203'}/>
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
                             <CardFooter color={'#FCB415'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
+                        </TouchableOpacity>
+                    </Card>
+
+                    <Card icon={'today'} color={'#00985B'} colorBg={'#14CC82'}>
+                        <ListCat categoria={'VERDE'} colorBg={'#14CC82'} colorBgIcon={'#00985B'}/>
+                        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
+                            <CardFooter color={'#14CC82'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>
 
