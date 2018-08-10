@@ -10,6 +10,10 @@ export default class Blog extends Component {
         header: null
     };
 
+    trunc(text) {
+        return text.length > 20 ? `${text.substr(0, 27)}...` : text;
+    }
+
     render() {
         let categoria = this.props.categoria;
         let colorBg = this.props.colorBg;
@@ -30,7 +34,7 @@ export default class Blog extends Component {
                             <Text style={styles.textPosition}>1º</Text>
                         </View>
                         <View style={styles.nameUser}>
-                            <Text style={styles.textItem}>Rede MJ Oliveira Mundo dos…</Text>
+                            <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos sonhos')}</Text>
                         </View>
                         <View style={styles.ponts}>
                             <Text style={styles.textItem}>100 pt</Text>
@@ -42,7 +46,7 @@ export default class Blog extends Component {
                             <Text style={styles.textPosition}>2º</Text>
                         </View>
                         <View style={styles.nameUser}>
-                            <Text style={styles.textItem}>Rede MJ Oliveira Mundo dos…</Text>
+                            <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos sonhos')}</Text>
                         </View>
                         <View style={styles.ponts}>
                             <Text style={[styles.textItem]}>100 pt</Text>
@@ -54,7 +58,7 @@ export default class Blog extends Component {
                             <Text style={styles.textPosition}>2º</Text>
                         </View>
                         <View style={styles.nameUser}>
-                            <Text style={styles.textItem}>Rede MJ Oliveira Mundo dos…</Text>
+                            <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos sonhos')}</Text>
                         </View>
                         <View style={styles.ponts}>
                             <Text style={[styles.textItem]}>100 pt</Text>
@@ -66,11 +70,11 @@ export default class Blog extends Component {
                             <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>
                         </View>
                         <View style={styles.nameUser}>
-                            <Text style={styles.textItem}>Rede MJ Oliveira Mundo dos…</Text>
+                            <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos sonhos')}</Text>
                         </View>
                         <View style={styles.ponts}>
                             <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>
-                            <MaterialIcon name="chevron-right" size={18} style={[styles.alertRed, styles.iconArrow]}></MaterialIcon>
+                            {/* <MaterialIcon name="chevron-right" size={18} style={[styles.alertRed, styles.iconArrow]}></MaterialIcon> */}
                         </View>
                     </View>
                 </View>

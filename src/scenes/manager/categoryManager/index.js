@@ -82,6 +82,10 @@ export default class categoryManager extends Component {
         this.forceUpdate();
     }
 
+    trunc(text) {
+        return text.length > 20 ? `${text.substr(0, 27)}...` : text;
+    }
+
     render() {
         if(this.state.isLoading){
             return(
@@ -139,7 +143,7 @@ export default class categoryManager extends Component {
                                             <Text style={styles.textPosition}>1º</Text>
                                         </View>
                                         <View style={styles.nameUser}>
-                                            <Text style={styles.textItem}>Rede MJ Oliveira Mundo dos…</Text>
+                                            <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos Sonhos')}</Text>
                                         </View>
                                         <View style={styles.ponts}>
                                             <Text style={styles.textItem}>100 pt</Text>
@@ -152,7 +156,7 @@ export default class categoryManager extends Component {
                                         <Text style={styles.textPosition}>2º</Text>
                                     </View>
                                     <View style={styles.nameUser}>
-                                        <Text style={styles.textItem}>Rede MJ Oliveira Mundo dos…</Text>
+                                        <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos Sonhos')}</Text>
                                     </View>
                                     <View style={styles.ponts}>
                                         <Text style={[styles.textItem]}>100 pt</Text>
@@ -164,7 +168,7 @@ export default class categoryManager extends Component {
                                         <Text style={styles.textPosition}>2º</Text>
                                     </View>
                                     <View style={styles.nameUser}>
-                                        <Text style={styles.textItem}>Rede MJ Oliveira Mundo dos…</Text>
+                                        <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos Sonhos')}</Text>
                                     </View>
                                     <View style={styles.ponts}>
                                         <Text style={[styles.textItem]}>100 pt</Text>
@@ -176,11 +180,10 @@ export default class categoryManager extends Component {
                                         <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>
                                     </View>
                                     <View style={styles.nameUser}>
-                                        <Text style={styles.textItem}>Rede MJ Oliveira Mundo dos…</Text>
+                                        <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos Sonhos')}</Text>
                                     </View>
                                     <View style={styles.ponts}>
                                         <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>
-                                        <MaterialIcon name="chevron-right" size={18} style={[styles.alertRed, styles.iconArrow]}></MaterialIcon>
                                     </View>
                                 </View>
                             </View>

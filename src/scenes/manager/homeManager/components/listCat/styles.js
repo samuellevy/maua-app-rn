@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         position: 'relative',
         elevation: 2,
-        marginTop: 18
+        // marginTop: 18
     },
     boxTop: {
         flex: 1,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         color: colors.white,
         marginTop: 5,
         paddingBottom: 10,
-        paddingTop:15,
+        paddingTop:20,
     },
 
     viewBox: {
@@ -96,8 +96,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    nameUser: { 
+        width: '65%',
+    },
+    ponts: {
+        flexDirection: 'row',
+        width: '20%',
+    },
     position: {
         alignItems: 'center',
+        width: '15%',
     },
     iconArrow: {
         color: colors.regular,

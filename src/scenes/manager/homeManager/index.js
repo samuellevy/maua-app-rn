@@ -28,8 +28,7 @@ import rest from '../../../services/rest';
 
 export default class HomeManage extends Component {
     static navigationOptions = {
-        title: 'products',
-        headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
+        title: '',
     };
     
     state = {
@@ -156,25 +155,25 @@ export default class HomeManage extends Component {
                     {/* <RankingBox user={this.state.user}/> */}
                     <LastUpdate/>
 
-                    <Card icon={'today'} color={'#00985B'}>
+                    <Card icon={'today'} color={'#00985B'} colorBg={'#14CC82'}>
                         <ListCat categoria={'VERDE'} colorBg={'#14CC82'} colorBgIcon={'#00985B'}/>
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
-                            <CardFooter>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
+                            <CardFooter color={'#14CC82'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>
 
-                    <Card icon={'today'} color={'#EAA203'}> 
+                    <Card icon={'today'} color={'#EAA203'} colorBg={'#14CC82'}> 
                         <ListCat categoria={'amarelo'} colorBg={'#FCB415'} colorBgIcon={'#EAA203'}/>
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
-                            <CardFooter>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
+                            <CardFooter color={'#FCB415'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>
 
-                    <Card icon={'today'} color={'#161F1E'}>
+                    <Card icon={'today'} color={'#161F1E'} colorBg={'#14CC82'}>
                         <ListCat categoria={'preto'} colorBg={'#243331'} colorBgIcon={'#161F1E'}/>
 
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
-                            <CardFooter>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
+                            <CardFooter color={'#243331'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>
                 

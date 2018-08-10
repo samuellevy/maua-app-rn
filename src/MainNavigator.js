@@ -49,7 +49,6 @@ console.disableYellowBox = true;
 
 // Main navigator
 
-
 defaultNavigator = StackNavigator({
   Splash: {screen: Splash},
   Default: {screen: Default},

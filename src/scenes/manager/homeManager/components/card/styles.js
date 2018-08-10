@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     container:{
         // paddingTop: 10,
         position: 'relative',
-        marginTop: 10,
+        marginTop: 25,
     },
     card:{
         flex: 1,
