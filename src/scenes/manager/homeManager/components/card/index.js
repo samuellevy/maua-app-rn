@@ -12,11 +12,12 @@ export default class Card extends Component {
     // let title = this.props.title;
     let icon = this.props.icon;
     let color = this.props.color;
+    let colorBg = this.props.colorBg;
 
     const {children} = this.props;
     return (
       <View style={styles.container}>
-        <CardHeader icon={icon} color={color}/>
+        <CardHeader icon={icon} color={color} colorBg={colorBg}/>
         <View style={styles.card}>
           {/* {children} */}
           {React.Children.map(children, (child, i) => {

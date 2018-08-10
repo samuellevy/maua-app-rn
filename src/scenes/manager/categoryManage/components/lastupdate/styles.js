@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         fontSize: metrics.fonts.xsmall,
         color: colors.fontColor,
         paddingHorizontal: '5%',
+        paddingTop: 10
     },
 });
 

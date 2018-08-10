@@ -34,15 +34,17 @@ const styles = StyleSheet.create({
 
     //---------- Filter and update -----------
     allList: {
-        padding: 20,
+        padding: 10,
     },
     contentTopList: {
+        paddingLeft: 10,
+        paddingRight: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
     boxList: {
         flex: 1,
-        width: '96%',
+        width: '100%',
         marginTop: 20,
         borderRadius: 3,
         elevation: 2,
@@ -83,7 +85,6 @@ const styles = StyleSheet.create({
 
     //---------- style list user--------------
     items: {
-        // width: '90%',
         flexDirection: 'row', 
         justifyContent: 'space-between',
         borderBottomColor: colors.graylight,
@@ -96,6 +97,9 @@ const styles = StyleSheet.create({
         fontSize: metrics.fonts.medium,
         fontFamily: fonts.main,
         fontWeight: 'bold',
+    },
+    nameUser: { 
+        width: '65%',
     },
     textItem: {
         color: colors.fontColor,
@@ -112,10 +116,11 @@ const styles = StyleSheet.create({
     },
     ponts: {
         flexDirection: 'row',
-        alignItems: 'center',
+        width: '20%',
     },
     position: {
         alignItems: 'center',
+        width: '15%',
     },
     iconArrow: {
         color: colors.regular,

@@ -14,9 +14,10 @@ export default class CardHeader extends Component {
         // let title = this.props.title;
         let icon = this.props.icon;
         let color = this.props.color;
+        let colorBg = this.props.colorBg;
 
         return (
-            <View style={styles.box}>
+            <View style={[styles.box]}>
                 <View style={[styles.circle, {backgroundColor:color}]}>
                     <MaterialIcon name={icon} size={25} style={styles.icon} color={"#fff"}></MaterialIcon>
                 </View>

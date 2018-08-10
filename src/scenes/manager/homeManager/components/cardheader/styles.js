@@ -4,7 +4,7 @@ import { colors, metrics, fonts } from '../../../../../styles';
 const styles = StyleSheet.create({
     box:{
         position: 'absolute',
-        top: 0,
+        top: -15,
         width: '100%',
         elevation: 3,
         zIndex: 3,

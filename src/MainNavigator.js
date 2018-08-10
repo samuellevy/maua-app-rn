@@ -61,7 +61,7 @@ const RootScene = TabNavigator({
   Employe: {screen: Employe},
   FeedBack: {screen: FeedBack},
   HomeManager: {screen: HomeManager},
-  //CategoryManager: {screen: CategoryManager},
+  CategoryManager: {screen: CategoryManager},
   //StoreManager: {screen: StoreManager},
   Form: {screen: Form},
   // ModalExample: {screen: ModalExample},
