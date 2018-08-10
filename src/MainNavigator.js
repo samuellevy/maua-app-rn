@@ -23,7 +23,7 @@ import Splash from './scenes/splash';
 import Password from './scenes/password';
 import Finish from './scenes/password/finish';
 import FeedBack from './scenes/feedback';
-import Answers from './scenes/questions/answers';
+import Answers from './scenes/questions/answers'; 
 import Profile from './scenes/profile';
 import Employe from './scenes/employee';
 import addEmployee from './scenes/employee/addEmployee';
@@ -34,8 +34,9 @@ import FinishCourse from './scenes/finishCourse';
 import Result from './scenes/questions/components/result'; 
 import StatusSend from './scenes/statusSend';
 import FirstLogin from './scenes/firstlogin';
-// import HomeManage from './scenes/homeManage';
-// import CategoryManage from './scenes/categoryManage';
+import HomeManager from './scenes/manager/homeManager';
+import CategoryManager from './scenes/manager/categoryManage';
+import StoreManager from './scenes/manager/storeManager';
 
 import Form from './scenes/employee/form';
 // import ModalExample from './scenes/modalExample'
@@ -59,8 +60,9 @@ const RootScene = TabNavigator({
   addEmployee: {screen: addEmployee},
   Employe: {screen: Employe},
   FeedBack: {screen: FeedBack},
-  // HomeManage: {screen: HomeManage},
-  // CategoryManage: {screen: CategoryManage},
+  HomeManager: {screen: HomeManager},
+  //CategoryManager: {screen: CategoryManager},
+  //StoreManager: {screen: StoreManager},
   Form: {screen: Form},
   // ModalExample: {screen: ModalExample},
   // Sent: {screen: Sent},
