@@ -5,7 +5,17 @@ import styles from './styles';
 import Item from './components/item';
 import rest from '../../services/rest';
 
+import Header from '../../components/header';
+
 export default class More extends Component {
+  static navigationOptions = {
+    header: ({ navigation }) => (<Header navigation={navigation}/>),
+    title: 'Mais',
+    headerTintColor: 'white',
+    headerStyle: { backgroundColor: '#00985B', borderWidth: 1, borderBottomColor: 'white' },
+    headerTitleStyle: { color: 'white' },
+  };
+
   state = {
     typeUser: null,
     dataSource: []

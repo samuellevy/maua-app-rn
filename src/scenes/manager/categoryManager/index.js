@@ -18,7 +18,34 @@ export default class categoryManager extends Component {
         title: 'products',
         headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
     };
-    
+    pickerStyle = {
+        inputIOS: {
+            color: 'black',
+            paddingTop: 13,
+            paddingHorizontal: 10,
+            paddingBottom: 12,
+        },
+        inputAndroid: {
+            color: 'black',
+        },
+        placeholderColor: 'black',
+        underline: { borderTopWidth: 0 },
+        icon: {
+            position: 'absolute',
+            backgroundColor: 'transparent',
+            borderTopWidth: 5,
+            borderTopColor: '#00000099',
+            borderRightWidth: 5,
+            borderRightColor: 'transparent',
+            borderLeftWidth: 5,
+            borderLeftColor: 'transparent',
+            width: 0,
+            height: 0,
+            top: 20,
+            right: 15,
+        },
+    };
+
     state = {
         selectNav: true,
         dataSource: null,
@@ -79,13 +106,13 @@ export default class categoryManager extends Component {
                     <View style={styles.allList}>
                         <View style={styles.contentTopList}>
                             <View style={styles.filter}>
-                                <Text style={styles.textSelect}>{this.state.category}</Text>
+                                {/* <Text style={styles.textSelect}>{this.state.category}</Text> */}
 
                                 <RNPickerSelect
                                     selectedValue={this.state.category}
                                     placeholder={{}}
                                     onValueChange={itemValue => this.setState({ category: itemValue })}
-                                    // style={[pickerStyle, styles.select]}
+                                    style={this.pickerStyle}
                                     items={[
                                         { label: 'Novembro', value: 'Novembro' },
                                         { label: 'Dezembro', value: 'Dezembro' },

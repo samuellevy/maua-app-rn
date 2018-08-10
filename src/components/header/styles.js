@@ -12,6 +12,13 @@ const styles = StyleSheet.create({
     logo: {
         height: 50,
         resizeMode: 'contain'
+    },
+    arrowBack:{
+        position: 'absolute',
+        left: 20,
+        bottom: 20,
+        paddingHorizontal: 10,
+        zIndex: 9,
     }
 });
 

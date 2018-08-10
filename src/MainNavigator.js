@@ -35,8 +35,10 @@ import Result from './scenes/questions/components/result';
 import StatusSend from './scenes/statusSend';
 import FirstLogin from './scenes/firstlogin';
 import HomeManager from './scenes/manager/homeManager';
-import CategoryManager from './scenes/manager/categoryManage';
+import CategoryManager from './scenes/manager/categoryManager';
 import StoreManager from './scenes/manager/storeManager';
+import Default from './layouts/default';
+import Manager from './layouts/manager';
 
 import Form from './scenes/employee/form';
 // import ModalExample from './scenes/modalExample'
@@ -45,58 +47,27 @@ import Player from './scenes/player';
 // Other confs
 console.disableYellowBox = true;
 
-// My component
-const RootScene = TabNavigator({
-  Home: {screen: Home},
-  Curso: {screen: Curso},
-  Aula: {screen: Aula},
-  Performance: {screen: Performance},
-  Ranking: {screen: Ranking},
-  Rule: {screen: Rule},
-  More: {screen: More},
-  Contact: {screen: Contact},
-  AboutCourse: {screen: AboutCourse},
-  Profile: {screen: Profile},
-  addEmployee: {screen: addEmployee},
-  Employe: {screen: Employe},
-  FeedBack: {screen: FeedBack},
-  HomeManager: {screen: HomeManager},
-  //CategoryManager: {screen: CategoryManager},
-  //StoreManager: {screen: StoreManager},
-  Form: {screen: Form},
-  // ModalExample: {screen: ModalExample},
-  // Sent: {screen: Sent},
-  // Player: {screen: Player}
-  
-}, {
-  tabBarComponent: ({navigation}) => <Nav navigation={navigation} />,
-  initialRouteName: 'Home',
-  animationEnabled: true,
-  mode: "card",
-  tabBarPosition: 'bottom',
-  swipeEnabled: false,
-});
-RootScene.navigationOptions = {
-  header: ({ navigation }) => (<Header navigation={navigation}/>
-  ),
-};
-
 // Main navigator
-export default StackNavigator({
+
+
+defaultNavigator = StackNavigator({
   Splash: {screen: Splash},
+  Default: {screen: Default},
+  Manager: {screen: Manager},
   Login: {screen: Login}, // has a skip button that navigates to root
   Password: {screen: Password},
   Finish: {screen: Finish},
-  Home: {screen: RootScene},
   Question: {screen: Questions},
   Result: {screen: Result},
   StatusSend: {screen: StatusSend},
   Answers: {screen: Answers},
   FinishCourse: {screen: FinishCourse},
-  FirstLogin: {screen: FirstLogin}
+  FirstLogin: {screen: FirstLogin},
 }, {
   initialRouteName: 'Splash',
-  // headerMode: 'none',
+  headerMode: 'none',
   mode: 'modal',
   swipeEnabled: false,  
 });
+
+export default defaultNavigator;

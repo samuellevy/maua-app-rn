@@ -9,11 +9,10 @@ import Loading from '../../components/loading';
 
 export default class Rule extends Component {
     static navigationOptions = {
-        header: null,
-        tabBarIcon: ({ focused, tintColor }) => {
-            let iconName = `ios-options`;
-            return <NavIcon title={'Home'} icon={'home'}/>;
-        },
+		title: '',
+		headerTintColor: 'white',
+		headerStyle: { backgroundColor: '#00985B', borderWidth: 1, borderBottomColor: 'white' },
+		headerTitleStyle: { color: 'white' },
     };
 
     state = {

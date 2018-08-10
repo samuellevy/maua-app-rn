@@ -11,13 +11,13 @@ import Sales from './components/sales';
 import History from './components/history';
 import rest from '../../services/rest';
 import Loading from '../../components/loading';
+import Header from '../../components/header';
 
 export default class Performance extends Component {
     static navigationOptions = {
-        header: null,
-        tabBarIcon: ({ focused, tintColor }) => {
-            return <NavIcon title={'Desempenho'} icon={'today'}/>;
-        },
+        // header: null,
+        title: 'Home',
+        header: (<Header/>)
     };
 
     constructor(props){

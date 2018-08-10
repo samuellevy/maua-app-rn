@@ -8,10 +8,14 @@ import Title from '../../components/title/primary';
 
 import Video from './components/videobox';
 import api from '../../services/api';
+import Header from '../../components/header';
 
 export default class ListCurso extends Component {
     static navigationOptions = {
-        header: null,
+        // header: null,
+        title: 'Curso',
+        header: ({ navigation }) => (<Header navigation={navigation} backTo={null}/>),
+        transition: null
     };
     state={
         courses: [],

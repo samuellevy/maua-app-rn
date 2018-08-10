@@ -31,8 +31,9 @@ import rest from '../../services/rest';
 
 export default class Home extends Component {
     static navigationOptions = {
-        title: 'products',
-        headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
+        // header: null,
+        title: 'Home',
+        header: (<Header/>)
     };
     
     state = {
@@ -251,7 +252,7 @@ export default class Home extends Component {
                         </Card>
                     </TouchableOpacity>
                     
-                    <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.navigate('Curso');}}>
+                    <TouchableOpacity activeOpacity={1} onPress={() => {}}>
                         <Card title={'Blog'} icon={'public'} color={colors.purple}>
                         <Blog item={this.state.dataSource.post}/>
                             <View style={{paddingTop: 10, paddingBottom: 20}}>

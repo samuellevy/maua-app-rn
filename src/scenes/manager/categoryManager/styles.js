@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         width: 200,
     },
     select: {
-        padding: 20
+
     },
 
     //---------- style list user--------------

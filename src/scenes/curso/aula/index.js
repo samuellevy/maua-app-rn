@@ -18,7 +18,7 @@ import api from '../../../services/api';
 
 export default class Curso extends Component {
     static navigationOptions = {
-        header: null,
+        header: ({ navigation }) => (<Header navigation={navigation} backTo={'Curso'}/>),
         tabBarIcon: ({ focused, tintColor }) => {
             return <NavIcon title={'Curso'} icon={'school'}/>;
         },

@@ -16,8 +16,10 @@ import Loading from '../../components/loading';
 
 export default class AboutCourse extends Component {
     static navigationOptions = {
-        title: 'products',
-        headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
+		title: '',
+		headerTintColor: 'white',
+		headerStyle: { backgroundColor: '#00985B', borderWidth: 1, borderBottomColor: 'white' },
+		headerTitleStyle: { color: 'white' },
     };
     constructor(props){
         super(props);

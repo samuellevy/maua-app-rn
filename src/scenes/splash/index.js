@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, AsyncStorage } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../styles';
+import rest from '../../services/rest';
 const timer = require('react-native-timer');
 
 export default class Splash extends Component {
@@ -11,7 +12,34 @@ export default class Splash extends Component {
     };
 
     state = {
-		percentValue: 0,
+        percentValue: 0,
+        isLoading: true,
+    }
+
+    getData(navigation, token){
+        rest.get('/public/basics').then((rest)=>{
+            this.setState({
+                isLoading: false,
+                dataSource: rest,
+                user: rest.user,
+                typeUser: rest.user.role
+            });
+            if(rest.user.role=='comercial'){
+                navigateTo = 'Manager';
+            }else{
+                navigateTo = 'Default';
+            }
+            if(rest.user.force_login==1){
+                this.clearStorage();
+                navigateTo = 'Login';
+            }
+            this.props.navigation.navigate(navigateTo);
+            console.log(rest);
+        })
+    }
+
+    clearStorage(){
+        AsyncStorage.clear();
     }
     
     componentWillMount(){
@@ -35,14 +63,16 @@ export default class Splash extends Component {
         const token = await AsyncStorage.getItem('@CodeApi:token');
         const remember = await AsyncStorage.getItem('@CodeApi:remember'); 
         if(token && remember == 'true') {
-            navigateTo = 'Home'; //or home to instantly enter
+            // navigateTo = 'Default'; //or home to instantly enter
+            this.getData(this.props.navigation, token);
         } else {
             navigateTo = 'Login';
+            this.props.navigation.navigate(navigateTo);
         }
         timer.setTimeout(
             this, 'fakeLoading', () => 
             {
-                this.props.navigation.navigate(navigateTo);
+                
                 timer.clearInterval(this);
             }
             , 1000

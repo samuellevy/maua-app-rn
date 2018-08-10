@@ -19,8 +19,12 @@ import rest from '../../services/rest';
 
 export default class Profile extends Component {
   	static navigationOptions = {
-    	title: 'products',
-    	headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
+    	// title: 'products',
+        // headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
+        title: '',
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: '#00985B', borderWidth: 1, borderBottomColor: 'white' },
+        headerTitleStyle: { color: 'white' },
     };
 
     state={

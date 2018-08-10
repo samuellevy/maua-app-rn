@@ -11,6 +11,13 @@ import rest from '../../services/rest';
 import styles from './styles';
 
 export default class Contact extends Component {
+  static navigationOptions = {
+		title: '',
+		headerTintColor: 'white',
+		headerStyle: { backgroundColor: '#00985B', borderWidth: 1, borderBottomColor: 'white' },
+		headerTitleStyle: { color: 'white' },
+  };
+
   constructor(props) {
     super(props);
     this.state = { text: '' };
