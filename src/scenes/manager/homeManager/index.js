@@ -28,9 +28,11 @@ import rest from '../../../services/rest';
 
 export default class HomeManage extends Component {
     static navigationOptions = {
-        title: '',
+        // header: null,
+        title: 'Home',
+        header: (<Header/>)
     };
-    
+
     state = {
         accessFirst: true,
         nameLojista: null,
@@ -156,23 +158,23 @@ export default class HomeManage extends Component {
                     <LastUpdate/>
 
                     <Card icon={'today'} color={'#EAA203'} colorBg={'#14CC82'}> 
-                        <ListCat categoria={'amarelo'} colorBg={'#FCB415'} colorBgIcon={'#EAA203'}/>
-                        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
+                        <ListCat categoria={'amarelo'} colorBg={'#FCB415'} colorBgIcon={'#EAA203'} category={'p'}/>
+                        <TouchableOpacity onPress={() => {this.props.navigation.navigate('CategoryManager', {category:'p'});}}>
                             <CardFooter color={'#FCB415'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>
 
                     <Card icon={'today'} color={'#00985B'} colorBg={'#14CC82'}>
-                        <ListCat categoria={'VERDE'} colorBg={'#14CC82'} colorBgIcon={'#00985B'}/>
-                        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
+                        <ListCat categoria={'VERDE'} colorBg={'#14CC82'} colorBgIcon={'#00985B'} category={'m'}/>
+                        <TouchableOpacity onPress={() => {this.props.navigation.navigate('CategoryManager', {category:'m'});}}>
                             <CardFooter color={'#14CC82'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>
 
                     <Card icon={'today'} color={'#161F1E'} colorBg={'#14CC82'}>
-                        <ListCat categoria={'preto'} colorBg={'#243331'} colorBgIcon={'#161F1E'}/>
+                        <ListCat categoria={'preto'} colorBg={'#243331'} colorBgIcon={'#161F1E'} category={'g'}/>
 
-                        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
+                        <TouchableOpacity onPress={() => {this.props.navigation.navigate('CategoryManager', {category:'g'});}}>
                             <CardFooter color={'#243331'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>

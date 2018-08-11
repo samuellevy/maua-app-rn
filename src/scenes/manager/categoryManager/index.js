@@ -57,33 +57,66 @@ export default class categoryManager extends Component {
         isLoading: true,
     };
     
-    constructor (){ 
-        super();
-        this.componentDidMount();
-    }
-    
-    componentDidMount(){
-        this.getData();
+    constructor(props){ 
+        super(props);
+        this.getData(props.navigation.state.params.category);
+        switch(props.navigation.state.params.category){
+            case 'p':
+                this.setState({selectNav: 'amarelo'})
+            break;
+            case 'm':
+                this.setState({selectNav: 'verde'})
+            break;
+            case 'g':
+                this.setState({selectNav: 'preto'})
+            break;
+        }
     }
 
-    getData(){
-        rest.get('/public/infos').then((rest)=>{
+    getData(category){
+        this.setState({
+            isLoading: true,
+
+        });
+        rest.get('/manager/all_ranking/'+category).then((rest)=>{
             this.setState({
                 isLoading: false,
                 dataSource: rest,
                 user: rest.user,
-                typeUser: rest.user.role
+                typeUser: rest.user.role,
+                dataRanking: rest.ranking
             });
         })
-    }
-
-    componentWillReceiveProps(){
-        this.getData();
         this.forceUpdate();
     }
 
     trunc(text) {
         return text.length > 20 ? `${text.substr(0, 27)}...` : text;
+    }
+
+    renderItem(key, item){
+        return (
+            <View key={key} style={styles.items}>
+                <View style={styles.position}>
+                {item.total==0?
+                    <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>:
+                    <Text style={styles.textPosition}>{item.position}º</Text>
+                }
+                </View>
+                <View style={styles.nameUser}>
+                    <Text style={styles.textItem}>{this.trunc(item.name)}</Text>
+                </View>
+                <View style={styles.ponts}>
+                {item.total==0?
+                    <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
+                    <View>
+                        <Text style={[styles.textItem]}>{item.total} pt</Text>
+                        <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
+                    </View>
+                }
+                </View>
+            </View>
+        )
     }
 
     render() {
@@ -96,13 +129,13 @@ export default class categoryManager extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.navTop}>
-                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'verde')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'verde'})}}>
-                        <Text style={styles.colorTxt}>VERDE</Text>
-                    </TouchableOpacity> 
-                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'amarelo')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'amarelo'})}}>
+                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'amarelo')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'amarelo'});this.getData('p');}}>
                         <Text style={styles.colorTxt}>AMARELO</Text>
                     </TouchableOpacity> 
-                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'preto')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'preto'})}}>
+                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'verde')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'verde'});this.getData('m');}}>
+                        <Text style={styles.colorTxt}>VERDE</Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'preto')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'preto'});this.getData('g');}}>
                         <Text style={styles.colorTxt}>PRETO</Text>
                     </TouchableOpacity> 
                 </View>
@@ -118,8 +151,7 @@ export default class categoryManager extends Component {
                                     onValueChange={itemValue => this.setState({ category: itemValue })}
                                     style={this.pickerStyle}
                                     items={[
-                                        { label: 'Novembro', value: 'Novembro' },
-                                        { label: 'Dezembro', value: 'Dezembro' },
+                                        { label: 'Agosto', value: 'Agosto' },
                                     ]}
                                 />
                             </View>
@@ -131,61 +163,13 @@ export default class categoryManager extends Component {
                         <View style={styles.boxList}>
                             <View style={[styles.boxListTop, { backgroundColor: '#E6F2F0'}]}>
                                 <MaterialIcon name="store" size={16} style={[styles.iconInfo, {color: '#14CC82'}]}></MaterialIcon>
-                                <Text style={styles.textListTop}>10 LOJAS</Text>
+                                <Text style={styles.textListTop}>{this.state.dataSource.count_stores} LOJAS</Text>
                                 <MaterialIcon name="event-available" size={16} style={[styles.iconInfo, styles.iconInfoRight, {color: '#14CC82'}]}></MaterialIcon>
-                                <Text style={styles.textListTop}>6 CADASTRADAS</Text>
+                                <Text style={styles.textListTop}>{this.state.dataSource.count_stores_enabled} CADASTRADAS</Text>
                             </View>
 
                             <View style={styles.viewBox}>
-                                <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home');}}>
-                                    <View style={styles.items}>
-                                        <View style={styles.position}>
-                                            <Text style={styles.textPosition}>1º</Text>
-                                        </View>
-                                        <View style={styles.nameUser}>
-                                            <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos Sonhos')}</Text>
-                                        </View>
-                                        <View style={styles.ponts}>
-                                            <Text style={styles.textItem}>100 pt</Text>
-                                            <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                                <View style={styles.items}>
-                                    <View style={styles.position}>
-                                        <Text style={styles.textPosition}>2º</Text>
-                                    </View>
-                                    <View style={styles.nameUser}>
-                                        <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos Sonhos')}</Text>
-                                    </View>
-                                    <View style={styles.ponts}>
-                                        <Text style={[styles.textItem]}>100 pt</Text>
-                                        <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
-                                    </View>
-                                </View>
-                                <View style={styles.items}>
-                                    <View style={styles.position}>
-                                        <Text style={styles.textPosition}>2º</Text>
-                                    </View>
-                                    <View style={styles.nameUser}>
-                                        <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos Sonhos')}</Text>
-                                    </View>
-                                    <View style={styles.ponts}>
-                                        <Text style={[styles.textItem]}>100 pt</Text>
-                                        <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
-                                    </View>
-                                </View>
-                                <View style={styles.items}>
-                                    <View style={styles.position}>
-                                        <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>
-                                    </View>
-                                    <View style={styles.nameUser}>
-                                        <Text style={styles.textItem}>{this.trunc('Rede MJ Oliveira Mundo dos Sonhos')}</Text>
-                                    </View>
-                                    <View style={styles.ponts}>
-                                        <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>
-                                    </View>
-                                </View>
+                                {this.state.dataRanking.map((item, key) => this.renderItem(key,item))}
                             </View>
                         </View>
                     </View>

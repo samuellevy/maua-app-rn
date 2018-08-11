@@ -53,6 +53,7 @@ class Default extends Component {
 
 const DefaultStack = StackNavigator({
   Home: HomeManager,
+  CategoryManager: CategoryManager,
   Curso: Curso,
   Aula: Aula,
   Performance: {screen: Performance},
