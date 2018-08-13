@@ -18,17 +18,18 @@ export default class categoryManager extends Component {
         title: 'products',
         headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
     };
+
     pickerStyle = {
         inputIOS: {
-            color: 'black',
+            color: '#00985B',
             paddingTop: 13,
             paddingHorizontal: 10,
             paddingBottom: 12,
         },
         inputAndroid: {
-            color: 'black',
+            color: '#00985B',
         },
-        placeholderColor: 'black',
+        placeholderColor: '#00985B',
         underline: { borderTopWidth: 0 },
         icon: {
             position: 'absolute',
@@ -91,7 +92,7 @@ export default class categoryManager extends Component {
     }
 
     trunc(text) {
-        return text.length > 20 ? `${text.substr(0, 27)}...` : text;
+        return text.length > 20 ? `${text.substr(0, 20)}...` : text;
     }
 
     renderItem(key, item, owner){
@@ -111,7 +112,7 @@ export default class categoryManager extends Component {
                         <View style={styles.ponts}>
                         {item.total==0?
                             <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
-                            <View>
+                            <View style={styles.boxIcon}>
                                 <Text style={[styles.textItem]}>{item.total} pt</Text>
                                 <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                             </View>
@@ -125,19 +126,19 @@ export default class categoryManager extends Component {
                 <View key={key} style={[styles.items, item.user_id==this.state.user.id && styles.myItems]}>
                     <View style={styles.position}>
                     {item.total==0?
-                        <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>:
-                        <Text style={styles.textPosition}>{item.position}º</Text>
+                        <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert, item.user_id==this.state.user.id && styles.focusItem]}></MaterialIcon>:
+                        <Text style={[styles.textPosition, item.user_id==this.state.user.id && styles.focusItem]}>{item.position}º</Text>
                     }
                     </View>
                     <View style={styles.nameUser}>
-                        <Text style={styles.textItem}>{this.trunc(item.name)}</Text>
+                        <Text style={[styles.textItem, item.user_id==this.state.user.id && styles.focusItem]}>{this.trunc(item.name)}</Text>
                     </View>
                     <View style={styles.ponts}>
                     {item.total==0?
-                        <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
-                        <View>
-                            <Text style={[styles.textItem]}>{item.total} pt</Text>
-                            <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
+                        <Text style={[styles.textItem,styles.alertRed, item.user_id==this.state.user.id && styles.focusItem]}>INATIVO</Text>:
+                        <View style={styles.boxIcon}>
+                            <Text style={[styles.textItem, item.user_id==this.state.user.id && styles.focusItem]}>{item.total} pt</Text>
+                            <MaterialIcon name="chevron-right" size={18} style={[styles.iconArrow, item.user_id==this.state.user.id && styles.focusItem]}></MaterialIcon>
                         </View>
                     }
                     </View>
@@ -184,7 +185,11 @@ export default class categoryManager extends Component {
                                 />
                             </View>
 
-                            <LastUpdate/>
+                            <View style={styles.boxFilter}>
+                                <LastUpdate/>
+                            </View>
+
+                            {/* <LastUpdate/> */}
                         </View>
 
                         {/* {(this.state.selectNav == preto)} */}
