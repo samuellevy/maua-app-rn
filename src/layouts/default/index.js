@@ -63,6 +63,7 @@ const DefaultStack = StackNavigator({
   AboutCourse: AboutCourse,
   Rule: Rule,
   Contact: Contact,
+  addEmployee: addEmployee,
 });
 
 const CursoStack = StackNavigator({

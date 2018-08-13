@@ -3,14 +3,38 @@ import { View, Text } from 'react-native';
 
 import styles from './styles';
 import Pie from '../../../../../components/pie';
+import Loading from '../../../../../components/loading';
+
 
 export default class Performance extends Component {
     static navigationOptions = {
         header: null
     };
 
+    state ={
+        percent: 0,
+        isLoading: true,
+    }
+
+    constructor(props){
+        super(props);
+    }
+
+    componentWillReceiveProps(props){
+        this.setState({
+            percent: props.item.percent,
+            isLoading: false,
+        });
+    }
+
     render() {
         let item = this.props.item;
+        if(this.state.isLoading){
+            return(
+                <Loading/>
+            )
+        }
+
         return (
             <View style={styles.container}>
                 <View style={styles.splitLeft}>
@@ -22,13 +46,13 @@ export default class Performance extends Component {
                             <Text style={styles.tableText}>{item.goal} sacos</Text>
                         </View>
                         <View>
-                            <Text style={styles.tableTitle}>Vendas</Text>
+                            <Text style={styles.tableTitle}>Vendas {item.percent}</Text>
                             <Text style={styles.tableText}>{item.quantity} sacos</Text>
                         </View>
                     </View>
                 </View>
                 <View style={styles.splitRight}>
-                    <Pie percent={item.percent} />
+                    <Pie percent={parseInt(this.state.percent)} />
                 </View>
             </View>
         );

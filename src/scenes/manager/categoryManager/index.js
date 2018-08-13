@@ -101,6 +101,8 @@ export default class categoryManager extends Component {
     }
 
     renderItem(key, item, owner, navigation){
+        console.log('category');
+        console.log(item);
         owner = true;
         if(owner){
             if(item.user_id == this.state.user.id){
@@ -119,7 +121,7 @@ export default class categoryManager extends Component {
                             <View style={styles.ponts}>
                             {item.total==0?
                                 <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
-                                <View>
+                                <View style={{flexDirection: 'row',}}>
                                     <Text style={[styles.textItem]}>{item.total} pt</Text>
                                     <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                                 </View>
@@ -131,7 +133,7 @@ export default class categoryManager extends Component {
             } 
         }else{
             return (
-                <TouchableOpacity onPress={() => {navigation.navigate('StoreManager')}}>
+                <TouchableOpacity onPress={() => {navigation.navigate('StoreManager', {item: item})}}>
                     <View key={key} style={[styles.items, item.user_id==this.state.user.id && styles.myItems]}>
                         <View style={styles.position}>
                         {item.total==0?
@@ -208,7 +210,7 @@ export default class categoryManager extends Component {
                             </View>
 
                             <View style={styles.viewBox}>
-                                {this.state.dataRanking.map((item, key) => this.renderItem(key,item, this.props.navigation.state.params.owner, this.props.navigation))}
+                                {this.state.dataRanking.map((item, key) => this.renderItem(key, item, this.props.navigation.state.params.owner, this.props.navigation))}
                             </View>
                         </View>
                     </View>

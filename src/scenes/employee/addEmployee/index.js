@@ -18,10 +18,13 @@ import TitleTop from '../../../components/title/primary';
 const nameUser =  null;
 
 export default class addEmployee extends Component {
-  	static navigationOptions = {
-    	title: 'products',
-    	headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
-      };
+    static navigationOptions = {
+        // header: ({ navigation }) => (<Header navigation={navigation}/>),
+        title: 'Funcionários',
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: '#00985B', borderWidth: 1, borderBottomColor: 'white' },
+        headerTitleStyle: { color: 'white' },
+    };
       
     constructor(props) {
         super(props);
