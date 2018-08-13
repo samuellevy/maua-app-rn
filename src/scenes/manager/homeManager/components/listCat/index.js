@@ -31,7 +31,7 @@ export default class Blog extends Component {
     
 
     trunc(text) {
-        return text.length > 20 ? `${text.substr(0, 27)}...` : text;
+        return text.length > 20 ? `${text.substr(0, 20)}...` : text;
     }
 
     componentDidMount(){
