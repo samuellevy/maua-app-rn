@@ -158,21 +158,21 @@ export default class HomeManage extends Component {
                     {/* <LastUpdate/> */}
 
                     <Card icon={'today'} color={'#EAA203'} colorBg={'#14CC82'}> 
-                        <ListCat categoria={'amarelo'} colorBg={'#FCB415'} colorBgIcon={'#EAA203'} category={'p'}/>
+                        <ListCat categoria={'amarelo'} colorBg={'#FCB415'} colorBgIcon={'#EAA203'} category={'p'} navigation={this.props.navigation}/>
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate('CategoryManager', {category:'p', owner: true});}}>
                             <CardFooter color={'#FCB415'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>
 
                     <Card icon={'today'} color={'#00985B'} colorBg={'#14CC82'}>
-                        <ListCat categoria={'VERDE'} colorBg={'#14CC82'} colorBgIcon={'#00985B'} category={'m'}/>
+                        <ListCat categoria={'VERDE'} colorBg={'#14CC82'} colorBgIcon={'#00985B'} category={'m'} navigation={this.props.navigation}/>
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate('CategoryManager', {category:'m', owner: true});}}>
                             <CardFooter color={'#14CC82'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>
                         </TouchableOpacity>
                     </Card>
 
                     <Card icon={'today'} color={'#161F1E'} colorBg={'#14CC82'}>
-                        <ListCat categoria={'preto'} colorBg={'#243331'} colorBgIcon={'#161F1E'} category={'g'}/>
+                        <ListCat categoria={'preto'} colorBg={'#243331'} colorBgIcon={'#161F1E'} category={'g'} navigation={this.props.navigation}/>
 
                         <TouchableOpacity onPress={() => {this.props.navigation.navigate('CategoryManager', {category:'g', owner: true});}}>
                             <CardFooter color={'#243331'}>{'VEJA TODAS AS LOJAS DA CATEGORIA'.toUpperCase()}</CardFooter>

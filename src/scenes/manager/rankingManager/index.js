@@ -105,33 +105,34 @@ export default class HomeManage extends Component {
         return text.length > 20 ? `${text.substr(0, 27)}...` : text;
     }
 
-    renderItem(key, item, owner){
-        if(owner){
-            if(item.user_id == this.state.user.id){
-                return (
-                    <View key={key} style={styles.items}>
+    renderItem(key, item, owner, navigation, user_id){
+        if(item.user_id==user_id){
+            return (
+                <TouchableOpacity key={key} onPress={() => {navigation.navigate('StoreManager', {item: item})}}>
+                    <View key={key} style={[styles.items, item.user_id==this.state.user.id && {backgroundColor: this.state.color}]}>
                         <View style={styles.position}>
                         {item.total==0?
                             <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>:
-                            <Text style={styles.textPosition}>{item.position}º</Text>
+                            <Text style={[styles.textPosition,item.user_id==this.state.user.id && {color: '#FFFFFF'}]}>{item.position}º</Text>
                         }
                         </View>
                         <View style={styles.nameUser}>
-                            <Text style={styles.textItem}>{this.trunc(item.name)}</Text>
+                            <Text style={[styles.textItem, item.user_id==this.state.user.id && {color: '#FFFFFF'}]}>{this.trunc(item.name)}</Text>
                         </View>
                         <View style={styles.ponts}>
                         {item.total==0?
                             <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
-                            <View>
-                                <Text style={[styles.textItem]}>{item.total} pt</Text>
+                            <View style={{flexDirection: 'row',}}>
+                                <Text style={[styles.textItem, item.user_id==this.state.user.id && {color: '#FFFFFF'}]}>{item.total} pt</Text>
                                 <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                             </View>
                         }
                         </View>
                     </View>
-                )
-            } 
-        }else{
+                </TouchableOpacity>
+            )
+        }
+        else{
             return (
                 <View key={key} style={[styles.items, item.user_id==this.state.user.id && {backgroundColor: this.state.color}]}>
                     <View style={styles.position}>
@@ -146,7 +147,7 @@ export default class HomeManage extends Component {
                     <View style={styles.ponts}>
                     {item.total==0?
                         <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
-                        <View>
+                        <View style={{flexDirection: 'row',}}>
                             <Text style={[styles.textItem, item.user_id==this.state.user.id && {color: '#FFFFFF'}]}>{item.total} pt</Text>
                             <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                         </View>
@@ -155,6 +156,7 @@ export default class HomeManage extends Component {
                 </View>
             )
         }
+            
         
     }
 
@@ -202,7 +204,7 @@ export default class HomeManage extends Component {
 
                         <View style={styles.boxList}>
                             <View style={styles.viewBox}>
-                            {this.state.dataRanking.map((item, key) => this.renderItem(key,item, this.props.navigation.state.params.owner))}
+                            {this.state.dataRanking.map((item, key) => this.renderItem(key,item, this.props.navigation.state.params.owner, this.props.navigation, this.state.user.id))}
                             </View>
                         </View>
                     </View>

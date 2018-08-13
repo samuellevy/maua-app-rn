@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, WebView } from 'react-native';
+import { View, Text, WebView, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
@@ -23,6 +23,7 @@ export default class Blog extends Component {
         dataRanking: [],
         dataSource: [],
         typeUser: null,
+        quantity: 0,
         user:{
             name: null
         },
@@ -50,21 +51,25 @@ export default class Blog extends Component {
         })
     }
 
-    renderItem(key, item){
-        return (
-            <View key={key} style={styles.items}>
-                <View style={styles.position}>
-                    <Text style={styles.textPosition}>{item.position}º</Text>
-                </View>
-                <View style={styles.nameUser}>
-                    <Text style={styles.textItem}>{this.trunc(item.name)}</Text>
-                </View>
-                <View style={styles.ponts}>
-                    <Text style={styles.textItem}>{item.total} pt</Text>
-                    <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
-                </View>
-            </View> 
-        )
+    renderItem(key, item, navigation){
+        if(this.state.user.id == item.user_id){
+            return (
+                <TouchableOpacity key={key} onPress={() => {navigation.navigate('StoreManager', {item: item})}}>
+                    <View key={key} style={styles.items}>
+                        <View style={styles.position}>
+                            <Text style={styles.textPosition}>{item.position}º</Text>
+                        </View>
+                        <View style={styles.nameUser}>
+                            <Text style={styles.textItem}>{this.trunc(item.name)}</Text>
+                        </View>
+                        <View style={{flexDirection: 'row',}}>
+                            <Text style={styles.textItem}>{item.total} pt</Text>
+                            <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            )
+        }
     }
 
     render() {
@@ -72,6 +77,7 @@ export default class Blog extends Component {
         let colorBg = this.props.colorBg;
         let colorBgIcon = this.props.colorBgIcon;
         var ranking = this.props.ranking;
+        var navigation = this.props.navigation;
 
         if(this.state.isLoading){
             return(
@@ -90,7 +96,7 @@ export default class Blog extends Component {
                     </View>
                 </View>
                 <View style={styles.viewBox}>
-                    {this.state.dataRanking.map((item, key) => this.state.user.id == item.user_id && this.renderItem(key,item))}
+                    {this.state.dataRanking.map((item, key) => this.renderItem(key, item, navigation))}
                 </View>
             </View>
         );
