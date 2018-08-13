@@ -16,7 +16,7 @@ export default class NavIcon extends Component {
     let fontIcon = this.props.fontIcon;
     return (
       <View style={styles.tabBtn}>
-        {(fontIcon==true)?<MaterialIcon name={icon} size={30} style={styles.icon} color={"#ddd"}></MaterialIcon>:<LaFargeIcon icon={icon} size={size} color={active?activeColor:color} active={active}/>}
+        {(fontIcon==true)?<MaterialIcon name={icon} size={30} style={[styles.icon, {color: active?activeColor:color}]} />:<LaFargeIcon icon={icon} size={size} color={active?activeColor:color} active={active}/>}
         {/* <MaterialIcon name={icon} size={30} style={styles.icon} color={"#ddd"}></MaterialIcon> */}
         <Text style={[styles.title, {color: active?activeColor:color}]}>{title}</Text>
       </View>

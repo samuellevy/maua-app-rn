@@ -86,9 +86,7 @@ export default class storeManager extends Component {
 				{this.state.dataListUser.map((user, index) => {
 					return(
 						<View key={index}>
-							<TouchableOpacity style={styles.button} onPress={() => {this.props.navigation.navigate('addEmployee', {userId: user.id})} }>
-								<ListUser user={user} />
-							</TouchableOpacity>
+                            <ListUser user={user} />
 						</View>
 					)
 				})}

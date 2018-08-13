@@ -17,7 +17,7 @@ export default class SmallProfile extends Component {
                     Olá, {user.name}!
                 </Text>
                 <Text style={styles.store}>
-                    {user.loja}
+                    {user.loja!='Sem loja' && user.loja}
                 </Text>
             </View>
         );

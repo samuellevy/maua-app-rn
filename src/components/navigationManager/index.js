@@ -9,7 +9,7 @@ import styles from '../navigation/styles';
 
 export default class Navigation extends Component {
     state={
-        screen: 'home'
+        screen: 'Home'
     }
 
     changeScreen = (navigation, to) => {
@@ -27,7 +27,7 @@ export default class Navigation extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => {this.changeScreen(this.props.navigation, 'CategoryManager');}}>
-                    <NavIcon title={'Lojas'} icon={'store-mall-directory'} fontIcon={true} active={this.state.screen=='Lojas'?true:false}/>
+                    <NavIcon title={'Lojas'} icon={'store-mall-directory'} fontIcon={true} active={this.state.screen=='CategoryManager'?true:false}/>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => {this.changeScreen(this.props.navigation, 'Ranking');}}>
