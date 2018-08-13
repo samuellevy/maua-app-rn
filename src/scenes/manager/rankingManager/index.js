@@ -102,7 +102,7 @@ export default class HomeManage extends Component {
     }
 
     trunc(text) {
-        return text.length > 20 ? `${text.substr(0, 27)}...` : text;
+        return text.length > 20 ? `${text.substr(0, 23)}...` : text;
     }
 
     renderItem(key, item, owner, navigation, user_id){
@@ -123,7 +123,7 @@ export default class HomeManage extends Component {
                         {item.total==0?
                             <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
                             <View style={{flexDirection: 'row',}}>
-                                <Text style={[styles.textItem, item.user_id==this.state.user.id && {color: '#FFFFFF'}]}>{item.total} pt</Text>
+                                <Text style={[styles.textItem]}>{item.total} pt</Text>
                                 <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                             </View>
                         }

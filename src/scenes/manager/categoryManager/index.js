@@ -53,10 +53,11 @@ export default class categoryManager extends Component {
     };
 
     state = {
-        selectNav: true,
         dataSource: null,
         typeUser: null,
         selectNav: 'amarelo',
+        colorSelect: null,
+        teste: this.props.navigation.state.params.category,
         user:{
             name: null
         },
@@ -66,6 +67,7 @@ export default class categoryManager extends Component {
     
     constructor(props){ 
         super(props);
+        // this.setState({colorSelect: props.navigation.state.params.category})
         this.getData(props.navigation.state.params.category);
         switch(props.navigation.state.params.category){
             case 'p':
@@ -101,8 +103,6 @@ export default class categoryManager extends Component {
     }
 
     renderItem(key, item, owner, navigation){
-        console.log('category');
-        console.log(item);
         owner = true;
         if(owner){
             if(item.user_id == this.state.user.id){
@@ -167,16 +167,18 @@ export default class categoryManager extends Component {
             )
         }
 
+        let categorySelect = this.state.teste;
+
         return (
             <View style={styles.container}>
                 <View style={styles.navTop}>
-                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'amarelo')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'amarelo'});this.getData('p', true);}}>
+                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'amarelo')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'amarelo', teste: 'p'});this.getData('p', true);}}>
                         <Text style={styles.colorTxt}>AMARELO</Text>
                     </TouchableOpacity> 
-                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'verde')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'verde'});this.getData('m', true);}}>
+                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'verde')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'verde', teste: 'm'});this.getData('m', true);}}>
                         <Text style={styles.colorTxt}>VERDE</Text>
                     </TouchableOpacity> 
-                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'preto')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'preto'});this.getData('g', true);}}>
+                    <TouchableOpacity style={[styles.itemTxt, (this.state.selectNav == 'preto')?styles.itemTxtActive:'']} onPress={() => {this.setState({selectNav: 'preto', teste: 'g'});this.getData('g', true);}}>
                         <Text style={styles.colorTxt}>PRETO</Text>
                     </TouchableOpacity> 
                 </View>
@@ -202,10 +204,12 @@ export default class categoryManager extends Component {
 
                         {/* {(this.state.selectNav == preto)} */}
                         <View style={styles.boxList}>
-                            <View style={[styles.boxListTop, { backgroundColor: '#E6F2F0'}]}>
-                                <MaterialIcon name="store" size={16} style={[styles.iconInfo, {color: '#14CC82'}]}></MaterialIcon>
+                            {console.log('this.state.colorSelect')}
+                            {console.log(this.state.selectNav)}
+                            <View style={[styles.boxListTop, {backgroundColor: categorySelect=='p'?'#FDEDC9':categorySelect=='m'?'#E6F2F0':'#E5E5E5'}]}>
+                                <MaterialIcon name="store" size={16} style={[styles.iconInfo, {color:  categorySelect=='p'?'#FCB415':categorySelect=='m'?'#14CC82':'#161F1E'}]}></MaterialIcon>
                                 <Text style={styles.textListTop}>{this.state.dataSource.count_stores} LOJAS</Text>
-                                <MaterialIcon name="event-available" size={16} style={[styles.iconInfo, styles.iconInfoRight, {color: '#14CC82'}]}></MaterialIcon>
+                                <MaterialIcon name="event-available" size={16} style={[styles.iconInfo, styles.iconInfoRight, {color: categorySelect=='p'?'#FCB415':categorySelect=='m'?'#14CC82':'#161F1E'}]}></MaterialIcon>
                                 <Text style={styles.textListTop}>{this.state.dataSource.count_stores_enabled} CADASTRADAS</Text>
                             </View>
 
