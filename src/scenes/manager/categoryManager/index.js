@@ -26,15 +26,15 @@ export default class categoryManager extends Component {
 
     pickerStyle = {
         inputIOS: {
-            color: 'black',
+            color: '#00985B',
             paddingTop: 13,
             paddingHorizontal: 10,
             paddingBottom: 12,
         },
         inputAndroid: {
-            color: 'black',
+            color: '#00985B',
         },
-        placeholderColor: 'black',
+        placeholderColor: '#00985B',
         underline: { borderTopWidth: 0 },
         icon: {
             position: 'absolute',
@@ -97,7 +97,7 @@ export default class categoryManager extends Component {
     }
 
     trunc(text) {
-        return text.length > 20 ? `${text.substr(0, 27)}...` : text;
+        return text.length > 20 ? `${text.substr(0, 20)}...` : text;
     }
 
     renderItem(key, item, owner, navigation){
@@ -145,7 +145,7 @@ export default class categoryManager extends Component {
                         <View style={styles.ponts}>
                         {item.total==0?
                             <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
-                            <View>
+                            <View style={styles.boxIcon}>
                                 <Text style={[styles.textItem]}>{item.total} pt</Text>
                                 <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                             </View>

@@ -36,6 +36,12 @@ const styles = StyleSheet.create({
     allList: {
         padding: 10,
     },
+    filter: {
+        width: '40%',
+    },
+    boxFilter: {
+        paddingTop: 9,
+    },
     contentTopList: {
         paddingLeft: 10,
         paddingRight: 10,
@@ -110,9 +116,11 @@ const styles = StyleSheet.create({
     nameUser: { 
         width: '65%',
     },
-    textItem: {
+    boxIcon: {
         flexDirection: 'row', 
         justifyContent: 'space-between',
+    },
+    textItem: {
         color: colors.fontColor,
         fontSize: metrics.fonts.medium,
         fontFamily: fonts.main,
@@ -135,7 +143,13 @@ const styles = StyleSheet.create({
     },
     iconArrow: {
         color: colors.regular,
-    }
+    },
+    focusItem: {
+        color: colors.white
+    },
+    amarelo: {
+        color: "#cccccc"
+    },
 });
 
 export default styles;
