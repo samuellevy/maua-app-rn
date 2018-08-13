@@ -111,6 +111,8 @@ const styles = StyleSheet.create({
         width: '65%',
     },
     textItem: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
         color: colors.fontColor,
         fontSize: metrics.fonts.medium,
         fontFamily: fonts.main,
