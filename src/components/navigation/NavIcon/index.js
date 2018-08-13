@@ -12,11 +12,12 @@ export default class NavIcon extends Component {
     let size = 27;
     let color = colors.gray;
     let activeColor = colors.primary;
-    let active = this.props.active
+    let active = this.props.active;
+    let fontIcon = this.props.fontIcon;
     return (
       <View style={styles.tabBtn}>
+        {(fontIcon==true)?<MaterialIcon name={icon} size={30} style={styles.icon} color={"#ddd"}></MaterialIcon>:<LaFargeIcon icon={icon} size={size} color={active?activeColor:color} active={active}/>}
         {/* <MaterialIcon name={icon} size={30} style={styles.icon} color={"#ddd"}></MaterialIcon> */}
-        <LaFargeIcon icon={icon} size={size} color={active?activeColor:color} active={active}/>
         <Text style={[styles.title, {color: active?activeColor:color}]}>{title}</Text>
       </View>
     );

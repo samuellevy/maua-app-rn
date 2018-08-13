@@ -56,6 +56,7 @@ export default class categoryManager extends Component {
         selectNav: true,
         dataSource: null,
         typeUser: null,
+        selectNav: 'amarelo',
         user:{
             name: null
         },
