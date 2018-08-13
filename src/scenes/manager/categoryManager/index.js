@@ -195,7 +195,7 @@ export default class categoryManager extends Component {
                                 />
                             </View>
 
-                            <LastUpdate/>
+                            {/* <LastUpdate/> */}
                         </View>
 
                         {/* {(this.state.selectNav == preto)} */}

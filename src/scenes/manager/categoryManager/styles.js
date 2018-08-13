@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         paddingBottom: 15,
         paddingTop: 15,
-        backgroundColor: '#f7f9fa'
+        backgroundColor: '#14CC82'
     },
     textPosition: {
         color: colors.light,

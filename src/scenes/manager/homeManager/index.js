@@ -155,7 +155,7 @@ export default class HomeManage extends Component {
                     
                     <SmallProfile user={this.state.user}/>
                     {/* <RankingBox user={this.state.user}/> */}
-                    <LastUpdate/>
+                    {/* <LastUpdate/> */}
 
                     <Card icon={'today'} color={'#EAA203'} colorBg={'#14CC82'}> 
                         <ListCat categoria={'amarelo'} colorBg={'#FCB415'} colorBgIcon={'#EAA203'} category={'p'}/>

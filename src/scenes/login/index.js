@@ -45,7 +45,13 @@ export default class Login extends Component {
                 ['@CodeApi:remember', JSON.stringify(this.state.remember)]
             ]);
 
-            this.props.navigation.navigate('Home');
+            if(response.data.data.role_id==8){
+                navigateTo = 'Manager';
+            }else{
+                navigateTo = 'Default';
+            }
+            this.props.navigation.navigate(navigateTo);
+
         } catch (response){
             this.setState({ errorMessage: response.data.message });
         }

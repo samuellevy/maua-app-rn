@@ -11,7 +11,7 @@ export default class LastUpdate extends Component {
     render() {
         return (
             <Text style={styles.lastUpdate}>
-                Última atualização: 11/05/18, 12h34.
+                {/* Última atualização: 11/05/18, 12h34. */}
             </Text>
         );
     }

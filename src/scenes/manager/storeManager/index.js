@@ -53,7 +53,7 @@ export default class storeManager extends Component {
     componentWillReceiveProps(){
         this.getData(props.navigation.state.params.item.id);
         this.userList(props.navigation.state.params.item.id);
-        this.forceUpdate();
+        // this.forceUpdate();
     }
 
     getData(store_id){
