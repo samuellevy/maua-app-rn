@@ -9,7 +9,9 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RankingBox from './components/rankingbox';
 import ListUser from './components/listEmployee';
 import Performance from './components/performance';
-//import RNPickerSelect from 'react-native-picker-select';
+// import RNPickerSelect from 'react-native-picker-select';
+
+import Header from '../../../components/header';
 
 import { colors, metrics, fonts } from '../../../styles';
 
@@ -18,15 +20,22 @@ import rest from '../../../services/rest';
 
 export default class storeManager extends Component {
     static navigationOptions = {
-        title: 'products',
-        headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
+        // header: ({ navigation }) => (<Header navigation={navigation}/>),
+        title: 'Dados da Loja',
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: '#00985B', borderWidth: 1, borderBottomColor: 'white' },
+        headerTitleStyle: { color: 'white' },
     };
-    
+
     state = {
 		id: 1,
         dataSource: [],
         dataListUser: [],
         typeUser: null,
+        store: [],
+        points: [],
+        sales: [],
+        ranking: null,
         user:{
             name: null
         },
@@ -34,36 +43,36 @@ export default class storeManager extends Component {
         modalScene: 'regulamento'
     };
     
-    constructor (){ 
-        super();
-        this.componentDidMount();
-        this.userList();
-    }
-    
-    componentDidMount(){
-        this.getData();
-        this.userList();
+    constructor (props){ 
+        super(props);
+        console.log(props.navigation.state.params);
+        this.userList(props.navigation.state.params.item.id);
+        this.getData(props.navigation.state.params.item.id);
     }
 
     componentWillReceiveProps(){
-        this.userList();
-        this.getData();
+        this.getData(props.navigation.state.params.item.id);
+        this.userList(props.navigation.state.params.item.id);
         this.forceUpdate();
     }
 
-    getData(){
-        rest.get('/public/infos').then((rest)=>{
+    getData(store_id){
+        rest.get('/manager/infos/'+store_id).then((rest)=>{
             this.setState({
                 isLoading: false,
                 dataSource: rest,
                 user: rest.user,
-                typeUser: rest.user.role
+                store: rest.store,
+                ranking: rest.ranking,
+                typeUser: rest.user.role,
+                points: rest.points,
+                sales: rest.sales
             });
         })
     }
 
-    userList(){
-		rest.get('/users/list').then((rest)=>{
+    userList(store_id){
+		rest.get('/users/list/'+store_id).then((rest)=>{
 			this.setState({
 			  	isLoading: false,
 			  	dataListUser: rest.users
@@ -101,10 +110,10 @@ export default class storeManager extends Component {
             <View style={styles.container}>
                 <ScrollView style={styles.scrollview}>
                     <View styles={styles.titleScene}>
-                        <Text style={styles.titleSceneTxt}>Duas Irmãs Materiais de Construção</Text>
+                        <Text style={styles.titleSceneTxt}>{this.state.store.name}</Text>
                     </View>
                     <View style={styles.filter}>
-                        <Text style={styles.textSelect}>{this.state.category}</Text>
+                        {/* <Text style={styles.textSelect}>{this.state.category}</Text> */}
 
                         {/* <RNPickerSelect
                             selectedValue={this.state.category}
@@ -124,7 +133,7 @@ export default class storeManager extends Component {
                     <Text style={styles.titleItem}>Vendas do mês</Text>
 
                     <View style={styles.desempenho}>
-                        <Performance item={this.state.dataSource.sales} />
+                        <Performance item={this.state.sales} />
                     </View>
 
                     <Text style={styles.titleItem}>Equipe</Text>

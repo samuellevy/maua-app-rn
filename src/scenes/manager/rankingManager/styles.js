@@ -95,6 +95,15 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
         paddingTop: 15,
     },
+    myItems: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
+        borderBottomColor: colors.graylight,
+        borderBottomWidth: 1,
+        paddingBottom: 15,
+        paddingTop: 15,
+        backgroundColor: '#f7f9fa'
+    },
     textPosition: {
         color: colors.light,
         fontSize: metrics.fonts.medium,

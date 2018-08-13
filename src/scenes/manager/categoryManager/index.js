@@ -10,14 +10,20 @@ import RNPickerSelect from 'react-native-picker-select';
 
 import { colors, metrics, fonts } from '../../../styles';
 
+import Header from '../../../components/header';
+
 import api from '../../../services/api';
 import rest from '../../../services/rest';
 
 export default class categoryManager extends Component {
-    static navigationOptions = {
-        title: 'products',
-        headerRight:<View style={{flex:1, backgroundColor: 'black', height: 50}}><Text>HOME</Text></View>
+       static navigationOptions = {
+        header: ({ navigation }) => (<Header navigation={navigation}/>),
+        title: 'Lojas',
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: '#00985B', borderWidth: 1, borderBottomColor: 'white' },
+        headerTitleStyle: { color: 'white' },
     };
+
     pickerStyle = {
         inputIOS: {
             color: 'black',
@@ -62,13 +68,13 @@ export default class categoryManager extends Component {
         this.getData(props.navigation.state.params.category);
         switch(props.navigation.state.params.category){
             case 'p':
-                this.setState({selectNav: 'amarelo'})
+                this.state.selectNav = 'amarelo';
             break;
             case 'm':
-                this.setState({selectNav: 'verde'})
+                this.state.selectNav = 'verde';
             break;
             case 'g':
-                this.setState({selectNav: 'preto'})
+                this.state.selectNav = 'preto';
             break;
         }
     }
@@ -93,11 +99,39 @@ export default class categoryManager extends Component {
         return text.length > 20 ? `${text.substr(0, 27)}...` : text;
     }
 
-    renderItem(key, item, owner){
+    renderItem(key, item, owner, navigation){
+        owner = true;
         if(owner){
             if(item.user_id == this.state.user.id){
                 return (
-                    <View key={key} style={styles.items}>
+                    <TouchableOpacity key={key} onPress={() => {navigation.navigate('StoreManager', {item: item})}}>
+                        <View key={key} style={styles.items}>
+                            <View style={styles.position}>
+                            {item.total==0?
+                                <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>:
+                                <Text style={styles.textPosition}>{item.position}º</Text>
+                            }
+                            </View>
+                            <View style={styles.nameUser}>
+                                <Text style={styles.textItem}>{this.trunc(item.name)}</Text>
+                            </View>
+                            <View style={styles.ponts}>
+                            {item.total==0?
+                                <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
+                                <View>
+                                    <Text style={[styles.textItem]}>{item.total} pt</Text>
+                                    <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
+                                </View>
+                            }
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                )
+            } 
+        }else{
+            return (
+                <TouchableOpacity onPress={() => {navigation.navigate('StoreManager')}}>
+                    <View key={key} style={[styles.items, item.user_id==this.state.user.id && styles.myItems]}>
                         <View style={styles.position}>
                         {item.total==0?
                             <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>:
@@ -117,30 +151,7 @@ export default class categoryManager extends Component {
                         }
                         </View>
                     </View>
-                )
-            } 
-        }else{
-            return (
-                <View key={key} style={[styles.items, item.user_id==this.state.user.id && styles.myItems]}>
-                    <View style={styles.position}>
-                    {item.total==0?
-                        <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>:
-                        <Text style={styles.textPosition}>{item.position}º</Text>
-                    }
-                    </View>
-                    <View style={styles.nameUser}>
-                        <Text style={styles.textItem}>{this.trunc(item.name)}</Text>
-                    </View>
-                    <View style={styles.ponts}>
-                    {item.total==0?
-                        <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
-                        <View>
-                            <Text style={[styles.textItem]}>{item.total} pt</Text>
-                            <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
-                        </View>
-                    }
-                    </View>
-                </View>
+                </TouchableOpacity>
             )
         }
         
@@ -196,7 +207,7 @@ export default class categoryManager extends Component {
                             </View>
 
                             <View style={styles.viewBox}>
-                                {this.state.dataRanking.map((item, key) => this.renderItem(key,item, this.props.navigation.state.params.owner))}
+                                {this.state.dataRanking.map((item, key) => this.renderItem(key,item, this.props.navigation.state.params.owner, this.props.navigation))}
                             </View>
                         </View>
                     </View>
