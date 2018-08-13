@@ -5,7 +5,7 @@ const api = create({
     // baseURL: 'http://192.168.2.71/rest/api',
     // baseURL: 'http://dev2.3aww.com.br/lafargemaua/api',
     // baseURL: 'http://192.168.0.27/lafarge-backend/api',
-    baseURL: __DEV__?'http://192.168.2.71/rest/api':'http://dev2.3aww.com.br/lafargemaua/api',
+    baseURL: __DEV__?'http://192.168.0.27/lafarge-backend/api':'http://dev2.3aww.com.br/lafargemaua/api',
 });
 
 api.addAsyncRequestTransform(request => async () => {

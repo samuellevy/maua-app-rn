@@ -2,11 +2,6 @@ import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { colors, metrics, fonts } from '../../../styles';
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.white,
-        height: '100%'
-    },
-
     //---------- style nav -------------------
     navTop: {
         backgroundColor: '#00985B',
@@ -32,15 +27,23 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
 
-    //---------- Filter and update -----------
+
+    // list and filter
+    
     allList: {
         padding: 10,
     },
     contentTopList: {
-        paddingLeft: 10,
-        paddingRight: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        paddingLeft: 10,
+        paddingRight: 10,
+    },
+    filter: {
+        width: '40%',
+    },
+    boxFilter: {
+        paddingTop: 9,
     },
     boxList: {
         flex: 1,
@@ -91,15 +94,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         paddingBottom: 15,
         paddingTop: 15,
-    },
-    myItems: {
-        flexDirection: 'row', 
-        justifyContent: 'space-between',
-        borderBottomColor: colors.graylight,
-        borderBottomWidth: 1,
-        paddingBottom: 15,
-        paddingTop: 15,
-        backgroundColor: '#f7f9fa'
     },
     textPosition: {
         color: colors.light,

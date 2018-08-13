@@ -5,6 +5,7 @@ import { createBottomTabNavigator, TabNavigator, StackNavigator } from 'react-na
 
 // Load components
 import Nav from '../../components/navigation';
+import NavigationManager from '../../components/navigationManager';
 import Header from '../../components/header';
 
 // Load scenes
@@ -33,6 +34,7 @@ import StatusSend from '../../scenes/statusSend';
 import FirstLogin from '../../scenes/firstlogin';
 import HomeManager from '../../scenes/manager/homeManager';
 import CategoryManager from '../../scenes/manager/categoryManager';
+import RankingManager from '../../scenes/manager/rankingManager';
 import StoreManager from '../../scenes/manager/storeManager';
 // import styles from './styles';
 
@@ -54,10 +56,11 @@ class Default extends Component {
 const DefaultStack = StackNavigator({
   Home: HomeManager,
   CategoryManager: CategoryManager,
+  StoreManager: StoreManager,
   Curso: Curso,
   Aula: Aula,
   Performance: {screen: Performance},
-  Ranking: {screen: Ranking},
+  Ranking: {screen: RankingManager},
   More: {screen: More},
   Profile: Profile,
   Employe: Employe,
@@ -74,7 +77,7 @@ const RootScene = TabNavigator({
   Home: {screen: DefaultStack},
   Curso: {screen: CursoStack},
 }, {
-  tabBarComponent: ({navigation}) => <Nav navigation={navigation} router={RootScene.router} />,
+  tabBarComponent: ({navigation}) => <NavigationManager navigation={navigation} router={RootScene.router} />,
   initialRouteName: 'Home',
   animationEnabled: true,
   mode: "card",
