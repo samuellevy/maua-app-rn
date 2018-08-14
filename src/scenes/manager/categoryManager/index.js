@@ -122,7 +122,10 @@ export default class categoryManager extends Component {
                             {item.total==0?
                                 <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
                                 <View style={{flexDirection: 'row',}}>
-                                    <Text style={[styles.textItem]}>{item.total} pt</Text>
+                                    <View style={{flexDirection: 'row',}}>
+                                        <Text style={[styles.textItem, {color: "#000000"}]}>{item.total} </Text>
+                                        <Text style={[styles.textItem]}>pt</Text>
+                                    </View>
                                     <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                                 </View>
                             }

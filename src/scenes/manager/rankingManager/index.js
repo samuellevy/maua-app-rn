@@ -123,7 +123,10 @@ export default class HomeManage extends Component {
                         {item.total==0?
                             <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
                             <View style={{flexDirection: 'row',}}>
-                                <Text style={[styles.textItem]}>{item.total} pt</Text>
+                                <View style={{flexDirection: 'row',}}>
+                                    <Text style={[styles.textItem, {color: "#000000"}]}>{item.total} </Text>
+                                    <Text style={[styles.textItem]}>pt</Text>
+                                </View>
                                 <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                             </View>
                         }
@@ -138,7 +141,7 @@ export default class HomeManage extends Component {
                     <View style={styles.position}>
                     {item.total==0?
                         <MaterialIcon name="warning" size={15} style={[styles.alertRed, styles.iconAlert]}></MaterialIcon>:
-                        <Text style={[styles.textPosition,item.user_id==this.state.user.id && {color: '#FFFFFF'}]}>{item.position}º</Text>
+                        <Text style={[styles.textPosition,item.user_id==this.state.user.id?{color: '#FFFFFF'}:this.state.selectNav == 'amarelo'?{color: '#FCB415'}:this.state.selectNav == 'verde'?{color: '#14CC82'}:{color: '#4D6662'}]}>{item.position}º</Text>
                     }
                     </View>
                     <View style={styles.nameUser}>
@@ -148,7 +151,11 @@ export default class HomeManage extends Component {
                     {item.total==0?
                         <Text style={[styles.textItem,styles.alertRed]}>INATIVO</Text>:
                         <View style={{flexDirection: 'row',}}>
-                            <Text style={[styles.textItem, item.user_id==this.state.user.id && {color: '#FFFFFF'}]}>{item.total} pt</Text>
+                            <View style={{flexDirection: 'row',}}>
+                                <Text style={[styles.textItem, {color: "#000000"}]}>{item.total} </Text>
+                                <Text style={[styles.textItem]}>pt</Text>
+                            </View>
+                            {/* <Text style={[styles.textItem, item.user_id==this.state.user.id && {color: '#FFFFFF'}]}>{item.total} pt</Text> */}
                             <MaterialIcon name="chevron-right" size={18} style={styles.iconArrow}></MaterialIcon>
                         </View>
                     }
