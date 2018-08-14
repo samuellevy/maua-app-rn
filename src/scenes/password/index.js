@@ -5,6 +5,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import styles from './styles';
 import { colors } from '../../styles';
 import rest from '../../services/rest';
+import { TextInputMask } from 'react-native-masked-text'
 
 export default class Password extends Component {
     static navigationOptions = {
@@ -68,6 +69,13 @@ export default class Password extends Component {
         }
     }
 
+
+    isValid() {
+        let valid = this.myDateText.isValid();
+        let rawValue = this.myDateText.getRawValue();
+    }
+
+
     render() {
         if(this.state.page == 0){
             return (
@@ -81,6 +89,7 @@ export default class Password extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.content}>
+                        <ScrollView>
                             <View style={styles.boxWelcome}>
                                 <Text style={styles.txtWelcome}>Esqueceu sua senha?</Text>
                                     <Text style={styles.txtInitial}>Insira seu e-mail abaixo para poder redefinir sua senha.</Text>
@@ -93,7 +102,9 @@ export default class Password extends Component {
                                 </View>
                                 <View style={styles.inputBox}>
                                     <MaterialCommunityIcon name="phone" size={20} style={[styles.inputIcon, this.state.errorMessage && this.state.phone != null? styles.inputIconError : '']} />
-                                    <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} placeholder='Telefone cadastrado' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={phone => this.setState({phone})} />
+                                    {/* <TextInputMask type={'cel-phone'} underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} placeholder='Telefone cadastrado'  placeholderTextColor={colors.light} onChangeText={phone => this.setState({phone})} /> */}
+                                    <TextInputMask type={'cel-phone'} underlineColorAndroid='transparent' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} onChangeText={(phone) => this.setState({phone})}placeholder='Telefone cadastrado' placeholderTextColor={colors.light} value={this.state.phone!=null?this.state.phone:''} value={this.state.phone} />
+
                                     { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
                                 </View>
                                 <TouchableOpacity onPress={()=>{this.verify()}} disabled={this.state.email != null? false : true} >
@@ -105,6 +116,7 @@ export default class Password extends Component {
                             {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate('Finish'); this.setState({ screen: 'Finish' }) }}>
                                 <Text>VER Finish</Text>
                             </TouchableOpacity> */}
+                        </ScrollView>
                     </View>
                 </View>
             );
@@ -121,6 +133,7 @@ export default class Password extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.content}>
+                        <ScrollView>
                             <View style={styles.boxWelcome}>
                                 <Text style={styles.txtWelcome}>Nova senha</Text>
                                     <Text style={styles.txtInitial}>Insira sua nova senha abaixo</Text>
@@ -145,6 +158,7 @@ export default class Password extends Component {
                             {/* <TouchableOpacity onPress={() => { this.props.navigation.navigate('Finish'); this.setState({ screen: 'Finish' }) }}>
                                 <Text>VER Finish</Text>
                             </TouchableOpacity> */}
+                        </ScrollView>
                     </View>
                 </View>
             );
