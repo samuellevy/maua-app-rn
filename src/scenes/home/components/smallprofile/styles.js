@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: metrics.headerPadding,
         height: 40,
         justifyContent: 'space-between',
-        alignItems: 'center',
-        flexDirection: 'row',
+        flexDirection: 'column',
     },
     name: {
         fontSize: metrics.fonts.big,
