@@ -45,16 +45,17 @@ export default class storeManager extends Component {
     
     constructor (props){ 
         super(props);
-        console.log(props.navigation.state.params);
         this.userList(props.navigation.state.params.item.id);
         this.getData(props.navigation.state.params.item.id);
     }
 
-    componentWillReceiveProps(){
-        this.getData(props.navigation.state.params.item.id);
-        this.userList(props.navigation.state.params.item.id);
-        // this.forceUpdate();
-    }
+    // componentWillReceiveProps(){
+    //     console.log('testeeee')
+    //     console.log(props.navigation.state.params.item.id)
+    //     // this.getData(props.navigation.state.params.item.id);
+    //     // this.userList(props.navigation.state.params.item.id);
+    //     // this.forceUpdate();
+    // }
 
     getData(store_id){
         rest.get('/manager/infos/'+store_id).then((rest)=>{
@@ -100,9 +101,6 @@ export default class storeManager extends Component {
                 <Loading/>
             )
         }
-
-        console.log("mostrar dataSource")
-        console.log(this.state.dataSource)
 
         return (
             <View style={styles.container}>

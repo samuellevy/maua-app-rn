@@ -107,7 +107,7 @@ export default class categoryManager extends Component {
         if(owner){
             if(item.user_id == this.state.user.id){
                 return (
-                    <TouchableOpacity key={key} onPress={() => {navigation.navigate('StoreManager', {item: item})}}>
+                    <TouchableOpacity key={key} onPress={() => {navigation.navigate('StoreManager', {item: item}); console.log(item)}}>
                         <View key={key} style={styles.items}>
                             <View style={styles.position}>
                             {item.total==0?
@@ -133,7 +133,7 @@ export default class categoryManager extends Component {
             } 
         }else{
             return (
-                <TouchableOpacity onPress={() => {navigation.navigate('StoreManager', {item: item})}}>
+                <TouchableOpacity onPress={() => {navigation.navigate('StoreManager', {item: item}); console.log(item)}}>
                     <View key={key} style={[styles.items, item.user_id==this.state.user.id && styles.myItems]}>
                         <View style={styles.position}>
                         {item.total==0?
