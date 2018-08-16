@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         top: 0,
+        zIndex: 99,
     },
     turnBack:{
         flexDirection:'row',

@@ -62,7 +62,7 @@ export default class Performance extends Component {
                     <Text style={styles.subtitle}>Histórico</Text>
                     <View style={styles.historyBox}>
                         {this.state.dataSource.points.map((item,key) => (
-                            <History key={'history_'+key} child={key<this.state.points.length?'not-last':'last'} date={item.date} description={item.title} score={item.point}/>
+                            <History key={'history_'+key} child={key<this.state.points.length?'not-last':'last'} date={item.created} description={item.title} score={item.point}/>
                         ))}
                     </View>
                 </ScrollView>
