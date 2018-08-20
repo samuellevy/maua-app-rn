@@ -173,8 +173,6 @@ export default class HomeManage extends Component {
                 <Loading/>
             )
         }
-       
-        console.log(this.state.ranking)
 
         return (
             <View style={styles.container}>
