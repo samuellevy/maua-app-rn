@@ -51,7 +51,7 @@ export default class History extends Component {
 				</View>
 				<View style={styles.introCell}>
 					<Text style={styles.description}>{this.trunc(description)}</Text>
-					<Text style={styles.score}>+<Text style={styles.bold}>{score}</Text> pts</Text>
+					<Text style={styles.score}>{score>0 && '+'}<Text style={styles.bold}>{score}</Text> pts</Text>
 				</View>
 			</View>
 		);
