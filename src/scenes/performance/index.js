@@ -39,6 +39,7 @@ export default class Performance extends Component {
                 dataSource: rest,
             });
         })
+        this.forceUpdate();
     }
 
     render() {
