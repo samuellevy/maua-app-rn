@@ -28,38 +28,39 @@ export default class addEmployee extends Component {
       
     constructor(props) {
         super(props);
-        this.getData();
-    }
+        this.getData(props.navigation.state.params.userId);
 
-    state = {
-        arrayUserT: [],
-        viewSection :false,
-        idUser: 0,
-        nome: null,
-        email: null,
-        nomeNew: null,
-        emailNew: null,
-        phoneNew: null,
-        arrayUser: [],
+        console.log(props.navigation.state.params.userId);
 
-        user:{
-            id: null,
-            name: null,
+        this.state = {
+            arrayUserT: [],
+            viewSection :false,
+            idUser: 0,
+            nome: null,
             email: null,
-            phone: null,
-        }
-    } 
-
-    componentWillReceiveProps(){
-        
+            phoneUser: null,
+            nomeNew: null,
+            emailNew: null,
+            phoneNew: null,
+            idUserEdit: null,
+            arrayUser: [],
+    
+            user:{
+                id: null,
+                name: null,
+                email: null,
+                phone: null,
+            }
+        } 
     }
 
-
-    getData = async () => {
-		rest.get('/users/list').then((rest)=>{
+    getData(id) {
+		rest.get('/users/get/'+id).then((rest)=>{
 			this.setState({
 			  	isLoading: false,
-			  	arrayUser: rest.users
+                nome: rest.user.name,  
+                email: rest.user.email,  
+                phone: rest.user.phone,  
             });
 		})
     }
@@ -73,32 +74,36 @@ export default class addEmployee extends Component {
     }
 
     formData(userId) {
+        // for(let i = 0; i <= this.state.arrayUser.length; i++) {
+        //     console.log(this.state.arrayUser[i])
+        //     // if(this.state.arrayUser[i].id == userId) {
+        //     //     this.setState({
+        //     //         nome: this.state.arrayUser[i].name,
+        //     //         email: this.state.arrayUser[i].email,
+        //     //         phoneUser: this.state.arrayUser[i].phone,
+        //     //     })
+        //     //     // console.log(this.state.arrayUser[i].id)
+        //     // }
+        // }
+
         return (
             <View style={styles.contentAddUser}>
-                {this.state.arrayUser.map((arrayUser, index) => {
-                    // this.setState({nameUser: arrayUser.name})
-                    return (
-                        <View key={index}>
-                            {arrayUser.id == userId &&
-                                <View>
-                                    {/* {nameUser = arrayUser.name} */}
-                                    <View style={styles.boxInput}> 
-                                        <Text style={styles.inputText}>NOME</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nome) => this.setState({nome})} placeholder={arrayUser.name} placeholderTextColor={colors.textColor}/>
-                                    </View>
-                                    <View style={styles.boxInput}> 
-                                        <Text style={styles.inputText}>E-MAIL</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} placeholder={arrayUser.email} placeholderTextColor={colors.textColor}/>
-                                    </View>
-                                    <View style={styles.boxInput}> 
-                                        <Text style={styles.inputText}>TELEFONE</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(phone) => this.setState({phone})} placeholder={arrayUser.phone} value={arrayUser.phone!=null?arrayUser.phone:''} placeholderTextColor={colors.textColor}/>
-                                    </View>
-                                </View>
-                            }
+                <View>
+                    <View>
+                        <View style={styles.boxInput}> 
+                            <Text style={styles.inputText}>NOME</Text>
+                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nome) => this.setState({nome})} value={this.state.nome} placeholderTextColor={colors.textColor}/>
                         </View>
-                    )
-                })}
+                        <View style={styles.boxInput}> 
+                            <Text style={styles.inputText}>E-MAIL</Text>
+                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} value={this.state.email} placeholderTextColor={colors.textColor}/>
+                        </View>
+                        <View style={styles.boxInput}> 
+                            <Text style={styles.inputText}>TELEFONE</Text>
+                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(phone) => this.setState({phone})} value={this.state.phone} placeholderTextColor={colors.textColor}/>
+                        </View>
+                    </View>
+                </View>
             </View>
         );
     }
@@ -176,11 +181,6 @@ export default class addEmployee extends Component {
     isValid() {
         let valid = this.myDateText.isValid();
         let rawValue = this.myDateText.getRawValue();
-    }
-
-    componentWillReceiveProps(){
-		this.getData();
-        this.forceUpdate();
     }
 
   	render() {
