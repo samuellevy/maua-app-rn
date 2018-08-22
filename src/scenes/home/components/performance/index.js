@@ -12,10 +12,10 @@ export default class Performance extends Component {
     generateMessage(percent){
         var message;
         if(percent>=60 && percent <= 100){
-            message = <Text style={styles.text}>Quase lá! Falta apenas<Text style={{ fontWeight: "bold" }}>{100 - percent}%</Text> para sua loja completar a meta do mês!</Text>
+            message = <Text style={styles.text}>Quase lá! Falta apenas <Text style={{ fontWeight: "bold" }}>{100 - percent}%</Text> para sua loja completar a meta do mês!</Text>
         }
         else if(percent<60){
-            message = <Text style={styles.text}>Vamos lá! Falta<Text style={{ fontWeight: "bold" }}>{100 - percent}%</Text> para sua loja completar a meta do mês!</Text>
+            message = <Text style={styles.text}>Vamos lá! Falta <Text style={{ fontWeight: "bold" }}>{100 - percent}%</Text> para sua loja completar a meta do mês!</Text>
         }
         else if(percent>=100 && percent <=115) {
             message = <Text style={styles.text}>Sonhando alto! Sua loja está perto de atingir 115% da meta mensal e acumular mais 50 pontos no ranking</Text>
