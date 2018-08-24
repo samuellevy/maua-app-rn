@@ -68,6 +68,13 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
 
+    inputIconRight:{
+        position: 'absolute',
+        right: 0,
+        color: colors.light,
+        marginTop: 10,
+    },
+
     input:{
         height: 40, borderColor: colors.lighter, borderBottomWidth: 1,
         backgroundColor: colors.transparent,

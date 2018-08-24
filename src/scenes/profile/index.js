@@ -35,6 +35,7 @@ export default class Profile extends Component {
         senha:null,
         isLoading: true,
         reloading: false,
+        secureText: true,
     }
 
     
@@ -124,9 +125,9 @@ export default class Profile extends Component {
 
                         <View style={styles.boxInput}>  
                             <Text style={styles.inputTextGreen}>SENHA</Text>
-                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(senha) => this.setState({senha})} value={this.state.senha} placeholderTextColor={colors.textColor} returnKeyType='done'/>
-                            <TouchableOpacity style={styles.btnVisible}> 
-                                <MaterialIcon name="remove-red-eye" size={15} style={styles.iconDeleteTransparent}></MaterialIcon>
+                            <TextInput style={styles.input} underlineColorAndroid='transparent' autoCapitalize='none' secureTextEntry={this.state.secureText} onChangeText={(senha) => this.setState({senha})} value={this.state.senha} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                            <TouchableOpacity style={styles.btnVisible} onPress={() => { this.state.secureText ? this.setState({ secureText: false }) : this.setState({ secureText: true })}}> 
+                                <MaterialIcon name="remove-red-eye"  size={15} style={styles.iconDeleteTransparent}></MaterialIcon>
                             </TouchableOpacity>
                         </View>
 

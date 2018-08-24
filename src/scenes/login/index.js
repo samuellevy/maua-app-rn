@@ -15,7 +15,8 @@ export default class Login extends Component {
         username: null,
         password: null,
         errorMessage: null,
-        remember: false
+        remember: false,
+        secureText: true,
     };
 
     componentDidMount = async () => {
@@ -84,7 +85,8 @@ export default class Login extends Component {
                             </View>
                             <View style={styles.inputBox}>
                                 <MaterialIcon name="lock" size={25} style={styles.inputIcon} />
-                                <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={password => !!password?this.setState({password: password}):this.setState({password: null})} secureTextEntry={true} returnKeyType='done'/>
+                                <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={password => !!password?this.setState({password: password}):this.setState({password: null})} secureTextEntry={this.state.secureText} returnKeyType='done'/>
+                                <MaterialIcon name="visibility" size={20} style={styles.inputIconRight} onPress={() => { this.state.secureText ? this.setState({ secureText: false }) : this.setState({ secureText: true })}}/>
                             </View>
                             <TouchableOpacity onPress={this.clickRemember}>
                                 <View style={styles.boxCheck}>

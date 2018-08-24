@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     btnVisible: {
         position: "absolute",
         right: 0,
-        top: 34,
+        top: 44,
     }
 });
 
