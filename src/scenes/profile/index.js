@@ -125,11 +125,11 @@ export default class Profile extends Component {
                         </View>
                         <View style={styles.boxInput}> 
                             <Text style={styles.inputTextGreen}>E-MAIL</Text>
-                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} value={this.state.email} placeholderTextColor={colors.textColor} autoCorrect='false' autoCapitalize='none'/>
+                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} value={this.state.email} placeholderTextColor={colors.textColor} autoCorrect={false} autoCapitalize='none'/>
                         </View>
                         <View style={styles.boxInput}> 
                             <Text style={styles.inputTextGreen}>NOME</Text>
-                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(name) => this.setState({name})} value={this.state.name} placeholderTextColor={colors.textColor} returnKeyType='done'  autoCorrect='false' autoCapitalize='words'/>
+                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(name) => this.setState({name})} value={this.state.name} placeholderTextColor={colors.textColor} returnKeyType='done'  autoCorrect={false} autoCapitalize='words'/>
                         </View>
                         
                         <View style={styles.boxInput}> 

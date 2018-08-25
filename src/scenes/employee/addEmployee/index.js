@@ -92,11 +92,11 @@ export default class addEmployee extends Component {
                     <View>
                         <View style={styles.boxInput}> 
                             <Text style={styles.inputText}>NOME</Text>
-                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nome) => this.setState({nome})} value={this.state.nome} placeholderTextColor={colors.textColor}  autoCorrect='false' autoCapitalize='words'/>
+                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nome) => this.setState({nome})} value={this.state.nome} placeholderTextColor={colors.textColor}  autoCorrect={false} autoCapitalize='words'/>
                         </View>
                         <View style={styles.boxInput}> 
                             <Text style={styles.inputText}>E-MAIL</Text>
-                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} value={this.state.email} placeholderTextColor={colors.textColor}  autoCorrect='false' autoCapitalize='none'/>
+                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(email) => this.setState({email})} value={this.state.email} placeholderTextColor={colors.textColor}  autoCorrect={false} autoCapitalize='none'/>
                         </View>
                         <View style={styles.boxInput}> 
                             <Text style={styles.inputText}>TELEFONE</Text>
@@ -132,25 +132,37 @@ export default class addEmployee extends Component {
             email: this.state.emailNew,
             phone: this.state.phoneNew,
         });
-        
-        rest.post('/users/add', newUser).then((rest)=>{
 
-        });
-
-        Alert.alert(
-            "Usuário cadastrado!",
-            "Um novo funcionário foi cadastrado",
-                [
-                    {text: 'OK', onPress: () => {this.props.navigation.navigate('Employe', {reloading: true})}}
-                ],
-            { cancelable: false }
-        )
-
-        this.setState({
-            nomeNew: null,
-            emailNew: null,
-            phoneNew: null
-        });
+        if(
+            this.state.nomeNew == null || this.state.nomeNew == '' ||
+            this.state.emailNew == null || this.state.emailNew == '' ||
+            this.state.phoneNew == null || this.state.phoneNew == ''
+        ){
+            Alert.alert(
+                "Algo aconteceu",
+                "Por favor, preencha todos os campos.",
+                    [
+                        {text: 'OK', onPress: () => {}}
+                    ],
+                { cancelable: false }
+            )
+        } else{
+            rest.post('/users/add', newUser).then((rest)=>{
+                Alert.alert(
+                    "Usuário cadastrado!",
+                    "Um novo funcionário foi cadastrado",
+                        [
+                            {text: 'OK', onPress: () => {this.props.navigation.navigate('Employe', {reloading: true})}}
+                        ],
+                    { cancelable: false }
+                )
+            });
+            this.setState({
+                nomeNew: null,
+                emailNew: null,
+                phoneNew: null
+            });
+        }
     }
 
     editUser(userId){
@@ -228,7 +240,7 @@ export default class addEmployee extends Component {
                                 <View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>NOME</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nomeNew) => this.setState({nomeNew})} value={this.state.nomeNew} placeholderTextColor={colors.textColor} autoCorrect='false' autoCapitalize='words'/>
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(nomeNew) => this.setState({nomeNew})} value={this.state.nomeNew} placeholderTextColor={colors.textColor} autoCorrect={false} autoCapitalize='words'/>
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>TELEFONE</Text>
@@ -236,7 +248,7 @@ export default class addEmployee extends Component {
                                     </View>
                                     <View style={styles.boxInput}> 
                                         <Text style={styles.inputText}>E-MAIL</Text>
-                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(emailNew) => this.setState({emailNew})} placeholderTextColor={colors.textColor} value={this.state.emailNew}  autoCorrect='false' autoCapitalize='none'/>
+                                        <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(emailNew) => this.setState({emailNew})} placeholderTextColor={colors.textColor} value={this.state.emailNew}  autoCorrect={false} autoCapitalize='none'/>
                                     </View>
                                     <View style={{flexDirection: 'row'}}>
                                         <Text style={{fontSize: 11, paddingTop: 10,}}>A senha do seu funcionário é </Text><Text style={{fontWeight: 'bold',fontSize: 11, paddingTop: 10,}}>quementendevende</Text>

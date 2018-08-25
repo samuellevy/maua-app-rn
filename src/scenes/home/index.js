@@ -210,19 +210,19 @@ export default class Home extends Component {
                                     <View style={formLojista.contentForm}>
                                         <View style={formLojista.boxInput}> 
                                             <Text style={formLojista.inputText}>Nome</Text>
-                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu nome"} onChangeText={(nameLojista) => this.setState({nameLojista})} value={this.state.nameLojista} placeholderTextColor={colors.textColor} returnKeyType='done' autoCorrect='false' autoCapitalize='words' />
+                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu nome"} onChangeText={(nameLojista) => this.setState({nameLojista})} value={this.state.nameLojista} placeholderTextColor={colors.textColor} returnKeyType={'done'} autoCapitalize={'words'} autoCorrect={false} />
                                         </View>
                                         <View style={formLojista.boxInput}> 
                                             <Text style={formLojista.inputText}>E-mail</Text>
-                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu email"} onChangeText={(emailLojista) => this.setState({emailLojista})} value={this.state.emailLojista} placeholderTextColor={colors.textColor} returnKeyType='done' autoCapitalize='none'  autoCorrect='false' />
+                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu email"} onChangeText={(emailLojista) => this.setState({emailLojista})} value={this.state.emailLojista} placeholderTextColor={colors.textColor} returnKeyType={'done'} autoCapitalize={'none'}  autoCorrect={false} />
                                         </View>
                                         <View style={formLojista.boxInput}> 
                                             <Text style={formLojista.inputText}>Celular</Text>
-                                            <TextInputMask type={'cel-phone'} style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu celular"} onChangeText={(celularLojista) => {this.setState({celularLojista});}} value={this.state.celularLojista} placeholderTextColor={colors.textColor} returnKeyType='done' />
+                                            <TextInputMask type={'cel-phone'} style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu celular"} onChangeText={(celularLojista) => {this.setState({celularLojista});}} value={this.state.celularLojista} placeholderTextColor={colors.textColor} returnKeyType={'done'} />
                                         </View>
                                         <View style={formLojista.boxInput}> 
                                             <Text style={formLojista.inputText}>Nova Senha</Text>
-                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite sua nova senha"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done' autoCapitalize='none'  autoCorrect='false'  secureTextEntry={this.state.secureText} />
+                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite sua nova senha"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType={'done'} autoCapitalize={'none'}  autoCorrect={false}  secureTextEntry={this.state.secureText} />
                                             <MaterialIcon name="visibility" size={20} style={styles.inputIconRight} onPress={() => { this.state.secureText ? this.setState({ secureText: false }) : this.setState({ secureText: true })}}/>
                                         </View>
                                     </View>

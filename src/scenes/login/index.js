@@ -82,11 +82,11 @@ export default class Login extends Component {
                     <View style={styles.boxLogin}>
                             <View style={styles.inputBox}>
                                 <MaterialIcon name="person" size={25} style={styles.inputIcon} />
-                                <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Login' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={username => this.setState({username})} value={this.state.username!=null?this.state.username:''} returnKeyType='done'/>
+                                <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Login' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={username => this.setState({username})} value={this.state.username!=null?this.state.username:''} returnKeyType='done' autoCorrect={false}/>
                             </View>
                             <View style={styles.inputBox}>
                                 <MaterialIcon name="lock" size={25} style={styles.inputIcon} />
-                                <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={password => !!password?this.setState({password: password}):this.setState({password: null})} secureTextEntry={this.state.secureText} returnKeyType='done'/>
+                                <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={styles.input} placeholder='Senha' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={password => !!password?this.setState({password: password}):this.setState({password: null})} secureTextEntry={this.state.secureText} returnKeyType='done' autoCorrect={false}/>
                                 <MaterialIcon name="visibility" size={20} style={styles.inputIconRight} onPress={() => { this.state.secureText ? this.setState({ secureText: false }) : this.setState({ secureText: true })}}/>
                             </View>
                             <TouchableOpacity onPress={this.clickRemember}>

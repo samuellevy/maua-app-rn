@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { View, Text, Image, TextInput, TouchableOpacity, AsyncStorage, ScrollView, Platform } from 'react-native';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
 import { colors } from '../../styles';
 import rest from '../../services/rest';
@@ -92,18 +93,18 @@ export default class Password extends Component {
                         <ScrollView>
                             <View style={styles.boxWelcome}>
                                 <Text style={styles.txtWelcome}>Esqueceu sua senha?</Text>
-                                    <Text style={styles.txtInitial}>Insira seu e-mail abaixo para poder redefinir sua senha.</Text>
+                                    <Text style={styles.txtInitial}>Insira seu login abaixo para poder redefinir sua senha.</Text>
                             </View>
                             <View style={styles.boxLogin}>
                                 <View style={styles.inputBox}>
-                                    <MaterialCommunityIcon name="email" size={20} style={[styles.inputIcon, this.state.errorMessage && this.state.email != null? styles.inputIconError : '']} />
-                                    <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} placeholder='E-mail' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={email => this.setState({email})} />
+                                    <MaterialIcon name="person" size={20} style={[styles.inputIcon, this.state.errorMessage && this.state.email != null? styles.inputIconError : '']} />
+                                    <TextInput underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} placeholder='Login' autoCapitalize='none' placeholderTextColor={colors.light} onChangeText={email => this.setState({email})} autoCorrect={false} autoCapitalize='none'/>
                                     { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
                                 </View>
                                 <View style={styles.inputBox}>
                                     <MaterialCommunityIcon name="phone" size={20} style={[styles.inputIcon, this.state.errorMessage && this.state.phone != null? styles.inputIconError : '']} />
                                     {/* <TextInputMask type={'cel-phone'} underlineColorAndroid='rgba(0,0,0,0)' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} placeholder='Telefone cadastrado'  placeholderTextColor={colors.light} onChangeText={phone => this.setState({phone})} /> */}
-                                    <TextInputMask type={'cel-phone'} underlineColorAndroid='transparent' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} onChangeText={(phone) => this.setState({phone})}placeholder='Telefone cadastrado' placeholderTextColor={colors.light} value={this.state.phone!=null?this.state.phone:''} value={this.state.phone} />
+                                    <TextInputMask type={'cel-phone'} underlineColorAndroid='transparent' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} onChangeText={(phone) => this.setState({phone})}placeholder='Telefone cadastrado' placeholderTextColor={colors.light} value={this.state.phone!=null?this.state.phone:''} value={this.state.phone} autoCorrect={false} autoCapitalize='none'/>
 
                                     { !!this.state.errorMessage && <Text style={styles.txtError}>{ this.state.errorMessage }</Text>}
                                 </View>
