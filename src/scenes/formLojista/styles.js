@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     },
     modalTop: {
         paddingBottom: 15,
+        paddingTop: 20,
     },
     contentPie: {  
         height: 200, 

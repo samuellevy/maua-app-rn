@@ -38,11 +38,12 @@ export default class Login extends Component {
                 password: this.state.password
             });
             
-            const { user, token } = response.data.data;
-            console.log(this.state.remember);
+            const { user, token, role_id } = response.data.data;
+            console.log(this.state.role_id);
             await AsyncStorage.multiSet([
                 ['@CodeApi:token', token],
                 ['@CodeApi:user', user],
+                ['@CodeApi:role_id', JSON.stringify(role_id)],
                 ['@CodeApi:remember', JSON.stringify(this.state.remember)]
             ]);
 

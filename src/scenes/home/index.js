@@ -48,7 +48,8 @@ export default class Home extends Component {
             name: null
         },
         isLoading: true,
-        modalScene: 'regulamento'
+        modalScene: 'regulamento',
+        secureText: true,
     };
     
     constructor (){ 
@@ -102,7 +103,26 @@ export default class Home extends Component {
     }
     
     sendLojista() {
-        if(this.state.nameLojista !== null && this.state.emailLojista !== null && this.state.celularLojista !== null) {
+        if(
+            this.state.nameLojista == null || 
+            this.state.emailLojista == null ||
+            this.state.celularLojista == null ||
+            this.state.passwordLojista == null ||
+            this.state.nameLojista == '' || 
+            this.state.emailLojista == '' ||
+            this.state.celularLojista == '' ||
+            this.state.passwordLojista == ''
+        ) {
+            Alert.alert(
+                "Algo aconteceu!",
+                "Nem todos os campos foram preenchido corretamente.",
+                [
+                    {text: 'OK', onPress: () => console.log('OK Pressed')}
+                ],
+                { cancelable: false }
+            )
+            
+        } else {
             let lojista = JSON.stringify({
                 name: this.state.nameLojista,
                 email: this.state.emailLojista,
@@ -121,15 +141,6 @@ export default class Home extends Component {
                 "Seus dados foram atualizados com sucesso.",
                 [
                     {text: 'OK', onPress: () => {this.setState({visibleModal: false, modalScene: 'home'});this.getData();}}
-                ],
-                { cancelable: false }
-            )
-        } else {
-            Alert.alert(
-                "Algo aconteceu!",
-                "Nem todos os campos foram preenchido corretamente.",
-                [
-                    {text: 'OK', onPress: () => console.log('OK Pressed')}
                 ],
                 { cancelable: false }
             )
@@ -199,11 +210,11 @@ export default class Home extends Component {
                                     <View style={formLojista.contentForm}>
                                         <View style={formLojista.boxInput}> 
                                             <Text style={formLojista.inputText}>Nome</Text>
-                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu nome"} onChangeText={(nameLojista) => this.setState({nameLojista})} value={this.state.nameLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu nome"} onChangeText={(nameLojista) => this.setState({nameLojista})} value={this.state.nameLojista} placeholderTextColor={colors.textColor} returnKeyType='done' autoCorrect='false' autoCapitalize='words' />
                                         </View>
                                         <View style={formLojista.boxInput}> 
                                             <Text style={formLojista.inputText}>E-mail</Text>
-                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu email"} onChangeText={(emailLojista) => this.setState({emailLojista})} value={this.state.emailLojista} placeholderTextColor={colors.textColor} returnKeyType='done' />
+                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite seu email"} onChangeText={(emailLojista) => this.setState({emailLojista})} value={this.state.emailLojista} placeholderTextColor={colors.textColor} returnKeyType='done' autoCapitalize='none'  autoCorrect='false' />
                                         </View>
                                         <View style={formLojista.boxInput}> 
                                             <Text style={formLojista.inputText}>Celular</Text>
@@ -211,7 +222,8 @@ export default class Home extends Component {
                                         </View>
                                         <View style={formLojista.boxInput}> 
                                             <Text style={formLojista.inputText}>Nova Senha</Text>
-                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite sua nova senha"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                                            <TextInput style={formLojista.input} underlineColorAndroid='transparent' placeholder={"Digite sua nova senha"} onChangeText={(passwordLojista) => this.setState({passwordLojista})} value={this.state.passwordLojista} placeholderTextColor={colors.textColor} returnKeyType='done' autoCapitalize='none'  autoCorrect='false'  secureTextEntry={this.state.secureText} />
+                                            <MaterialIcon name="visibility" size={20} style={styles.inputIconRight} onPress={() => { this.state.secureText ? this.setState({ secureText: false }) : this.setState({ secureText: true })}}/>
                                         </View>
                                     </View>
                                     

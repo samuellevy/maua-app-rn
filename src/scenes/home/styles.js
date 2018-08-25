@@ -15,7 +15,13 @@ const styles = StyleSheet.create({
     image: {
         width: ((Dimensions.get('window').width - 20)),
         height: 180,
-    }
+    },
+    inputIconRight:{
+        position: 'absolute',
+        right: 0,
+        color: colors.light,
+        marginTop: 10,
+    },
 });
 
 export default styles;

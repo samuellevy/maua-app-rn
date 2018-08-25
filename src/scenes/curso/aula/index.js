@@ -13,8 +13,9 @@ import Nav from '../../../components/navigation';
 import ModalBox from '../../../components/modal/alert';
 import Player from '../../player';
 import NavIcon from '../../../components/navigation/NavIcon';
+import Loading from '../../../components/loading';
 
-import api from '../../../services/api';
+import rest from '../../../services/rest';
 
 export default class Curso extends Component {
     static navigationOptions = {
@@ -23,8 +24,23 @@ export default class Curso extends Component {
             return <NavIcon title={'Curso'} icon={'school'}/>;
         },
     };
+    
     state={
+        isLoading: true,
+    }
 
+    constructor(props) {
+        super(props); 
+        this.getData();
+    }
+
+    getData(){
+        if(this.state.reloading){
+            this.setState({isLoading: true});
+        }
+        rest.get('/users/me').then((rest)=>{
+            this.setState({dataSource: rest, isLoading: false, role_id: rest.user.role_id});
+        });
     }
 
     clickCurse() {
@@ -41,14 +57,16 @@ export default class Curso extends Component {
     }
 
     btnCurso(item, navigation) {
-        if(item.progress !== "Completo") {
-            return(
-                <View style={styles.boxTest}>
-                    <TouchableOpacity style={styles.startTest} onPress={() => { navigation.navigate('Question', {item: item.id});}}>
-                        <Text style={styles.textBtn}>RESPONDER QUIZ</Text> 
-                    </TouchableOpacity>
-                </View>
-            );
+        if(this.state.role_id == 6){
+            if(item.progress != "Completo") {
+                return(
+                    <View style={styles.boxTest}>
+                        <TouchableOpacity style={styles.startTest} onPress={() => { navigation.navigate('Question', {item: item.id});}}>
+                            <Text style={styles.textBtn}>RESPONDER QUIZ</Text> 
+                        </TouchableOpacity>
+                    </View>
+                );
+            }
         }
     }
 
@@ -56,7 +74,13 @@ export default class Curso extends Component {
         const { navigation } = this.props;
         const item = navigation.getParam('item', 'NO-ID');
         const testStart = null;
-        
+
+        if(this.state.isLoading){
+            return(
+                <Loading/>
+            )
+        }
+
         return (
             <View style={styles.container}>
                 <ScrollView contentContainerStyle={[styles.cursoInfo]}>
