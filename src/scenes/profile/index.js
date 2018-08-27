@@ -15,6 +15,7 @@ import Loading from '../../components/loading';
 
 import api from '../../services/api';
 import rest from '../../services/rest';
+import { TextInputMask } from 'react-native-masked-text';  
 
 
 export default class Profile extends Component {
@@ -134,7 +135,8 @@ export default class Profile extends Component {
                         
                         <View style={styles.boxInput}> 
                             <Text style={styles.inputTextGreen}>TEL.</Text>
-                            <TextInput style={styles.input} underlineColorAndroid='transparent' onChangeText={(tel) => this.setState({tel})} value={this.state.tel} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                            <TextInputMask type={'cel-phone'} style={styles.input} underlineColorAndroid='transparent' onChangeText={(tel) => this.setState({tel})} value={this.state.tel} placeholderTextColor={colors.textColor} returnKeyType='done'/>
+                            {/* <TextInputMask type={'cel-phone'} underlineColorAndroid='transparent' style={[styles.input, this.state.errorMessage ? styles.inputError : '']} onChangeText={(phone) => this.setState({phone})}placeholder='Telefone cadastrado' placeholderTextColor={colors.light} value={this.state.phone!=null?this.state.phone:''} value={this.state.phone} autoCorrect={false} autoCapitalize='none'/> */}
                             
                             {/* <TextInputMask
                             refInput={ref => { this.input = ref }}
