@@ -13,12 +13,13 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     image: {
-        width: ((Dimensions.get('window').width - 20)),
-        height: 180,
+        width: "95%",
+        // width: ((Dimensions.get('window').width - 20)),
+        
     },
     inputIconRight:{
         position: 'absolute',
-        right: 0,
+        right: 0, 
         color: colors.light,
         marginTop: 10,
     },
