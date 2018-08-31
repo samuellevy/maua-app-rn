@@ -61,7 +61,7 @@ export default class categoryManager extends Component {
         user:{
             name: null
         },
-        category: 'Agosto',
+        category: 'agosto',
         isLoading: true,
     };
     
@@ -86,7 +86,7 @@ export default class categoryManager extends Component {
         this.setState({
             isLoading: true,
         });
-        rest.get('/manager/all_ranking/'+category).then((rest)=>{
+        rest.get('/manager/all_ranking/'+category+"/"+this.state.category).then((rest)=>{
             this.setState({
                 isLoading: false,
                 dataSource: rest,
@@ -190,14 +190,15 @@ export default class categoryManager extends Component {
                         <View style={styles.contentTopList}>
                             <View style={styles.filter}>
                                 {/* <Text style={styles.textSelect}>{this.state.category}</Text> */}
-
+                                {console.log(this.state.category)}
                                 <RNPickerSelect
                                     selectedValue={this.state.category}
                                     placeholder={{}}
                                     onValueChange={itemValue => this.setState({ category: itemValue })}
                                     style={this.pickerStyle}
                                     items={[
-                                        { label: 'Agosto', value: 'Agosto' },
+                                        { label: 'Agosto', value: 'agosto' },
+                                        { label: 'Setembro', value: 'setembro' },
                                     ]}
                                 />
                             </View>

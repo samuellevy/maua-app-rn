@@ -9,7 +9,7 @@ import styles from './styles';
 
 export default class Navigation extends Component {
     state={
-        screen: 'home'
+        screen: 'Home'
     }
 
     changeScreen = (navigation, to) => {
@@ -19,7 +19,7 @@ export default class Navigation extends Component {
     }
 
     render() {
-    return (
+    return ( 
         <View style={styles.container}>
             <View style={styles.navBar}>
                 <TouchableOpacity onPress={() => {this.changeScreen(this.props.navigation, 'Home')}}>
