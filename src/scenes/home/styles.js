@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     image: {
         width: "95%",
         // width: ((Dimensions.get('window').width - 20)),
+        // height: Dimensions.get('window').width,
         
     },
     inputIconRight:{

@@ -247,6 +247,7 @@ export default class Home extends Component {
                 <ScrollView style={styles.scrollview}>
                     <View style={styles.contentImage}>
                         <Image resizeMode="contain" style={styles.image} source={require('../../../assets/img/banner3.png')} />
+                        {/* <Image style={styles.image} source={require('../../../assets/img/banner3.png')} /> */}
                     </View>
                     
                     <SmallProfile user={this.state.user}/>
