@@ -54,6 +54,7 @@ export default class Home extends Component {
     
     constructor (){ 
         super();
+        this.forceUpdate();
         this.componentDidMount();
     }
     
@@ -157,8 +158,8 @@ export default class Home extends Component {
     }
 
     componentWillReceiveProps(){
-        this.getData();
         this.forceUpdate();
+        this.getData();
     }
 
     render() {
@@ -245,7 +246,8 @@ export default class Home extends Component {
                 {this.modalFirst()}
                 <ScrollView style={styles.scrollview}>
                     <View style={styles.contentImage}>
-                        <Image style={styles.image} source={require('../../../assets/img/banner3.png')} />
+                        <Image resizeMode="contain" style={styles.image} source={require('../../../assets/img/banner3.png')} />
+                        {/* <Image style={styles.image} source={require('../../../assets/img/banner3.png')} /> */}
                     </View>
                     
                     <SmallProfile user={this.state.user}/>

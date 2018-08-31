@@ -71,8 +71,10 @@ const styles = StyleSheet.create({
     inputIconRight:{
         position: 'absolute',
         right: 0,
+        padding: 5,
         color: colors.light,
-        marginTop: 10,
+        marginTop: 5,
+        // backgroundColor: "#ccc",
     },
 
     input:{

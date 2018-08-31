@@ -148,14 +148,25 @@ export default class addEmployee extends Component {
             )
         } else{
             rest.post('/users/add', newUser).then((rest)=>{
-                Alert.alert(
-                    "Usuário cadastrado!",
-                    "Um novo funcionário foi cadastrado",
-                        [
-                            {text: 'OK', onPress: () => {this.props.navigation.navigate('Employe', {reloading: true})}}
-                        ],
-                    { cancelable: false }
-                )
+                if(rest.success) {
+                    Alert.alert(
+                        "Usuário cadastrado!",
+                        rest.success,
+                            [
+                                {text: 'OK', onPress: () => {this.props.navigation.navigate('Employe', {reloading: true})}}
+                            ],
+                        { cancelable: false }
+                    )
+                } else {
+                    Alert.alert(
+                        "Ops!",
+                        rest.success,
+                            [
+                                {text: 'OK', onPress: () => {}}
+                            ],
+                        { cancelable: false }
+                    )
+                }
             });
             this.setState({
                 nomeNew: null,
