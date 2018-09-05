@@ -29,6 +29,9 @@ import CardFooter from './components/cardfooter';
 import api from '../../services/api';
 import rest from '../../services/rest';
 
+import ModalPorcentagem from '../../components/modal/modalPorcentagem';
+import ModalRank from '../../components/modal/modalRank';
+
 export default class Home extends Component {
     static navigationOptions = {
         // header: null,
@@ -50,6 +53,8 @@ export default class Home extends Component {
         isLoading: true,
         modalScene: 'regulamento',
         secureText: true,
+        modalPush: false,
+        push: []
     };
     
     constructor (){ 
@@ -80,7 +85,9 @@ export default class Home extends Component {
                 isLoading: false,
                 dataSource: rest,
                 user: rest.user,
-                typeUser: rest.user.role
+                typeUser: rest.user.role,
+                modalPush: rest.push.exist,
+                push: rest.push
             });
         })
     }
@@ -99,6 +106,16 @@ export default class Home extends Component {
         if(this.state.accessFirst) {
             return (
                 <FirstVideo />
+            )
+        }
+    }
+
+    modalPush(){
+        if(this.state.modalPush) {
+            return(
+                <View>
+                    <ModalRank data={this.state.push}/>
+                </View>
             )
         }
     }
@@ -244,6 +261,7 @@ export default class Home extends Component {
         return (
             <View style={styles.container}>
                 {this.modalFirst()}
+                {this.modalPush()}
                 <ScrollView style={styles.scrollview}>
                     <View style={styles.contentImage}>
                         <Image resizeMode="contain" style={styles.image} source={require('../../../assets/img/banner3.png')} />

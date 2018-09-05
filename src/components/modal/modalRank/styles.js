@@ -24,7 +24,7 @@ const modal_styles = StyleSheet.create({
         alignItems: 'center', 
     },
     titleTop: {
-        paddingTop: 10,
+        paddingVertical: 10,
         color: colors.white,
         fontFamily: fonts.main,
         fontSize: 18,
@@ -93,8 +93,8 @@ const modal_styles = StyleSheet.create({
         },
     },
     imageBg: {
-        width: 300,
-        height: 200,
+        width: (Dimensions.get('screen').width - 40),
+        height: (Dimensions.get('screen').width - 40)* 0.65
     },
     textReg: {
         lineHeight: 20,
@@ -103,7 +103,7 @@ const modal_styles = StyleSheet.create({
     titleDescription: {
         fontFamily: fonts.main,
         fontWeight: 'bold',
-        color: "#14CC82",
+        color: colors.gray,
         fontSize: 14,
         paddingBottom: 10,
     },

@@ -53,6 +53,8 @@ export default class ModalTeste extends Component {
         let description = this.props.description;
         let numberRank = this.props.numberRank;
 
+        let data = this.props.data;
+
         return(
             <View>
                 <Modal animationType="fade"      
@@ -60,10 +62,10 @@ export default class ModalTeste extends Component {
                 visible={this.state.visibleModal}
                 onRequestClose={() => { this.visibleModal(false); } }> 
                     <View style={styles.contentModal}>
-                        <View style={styles.modalTop}>
+                        <View style={[styles.modalTop, {backgroundColor: data.color}]}>
                             <View style={styles.boxTitleTop}>
                                 {/* <Text style={styles.titleTop}>QUASE LÁ!</Text> */}
-                                <Text style={styles.titleTop}>{title}</Text>
+                                <Text style={styles.titleTop}>{data.title}</Text>
 
                                 <TouchableOpacity style={styles.clearBtn} onPress={() => {this.setState({visibleModal: false});}}>
                                     <MaterialIcon name="clear" size={25} style={styles.iconClear}></MaterialIcon> 
@@ -72,7 +74,7 @@ export default class ModalTeste extends Component {
 
                             <View style={styles.contentIcon}>
                                 <View style={styles.iconBox}>
-                                    {this.imageRank(numberRank)}
+                                    {this.imageRank(data.number_ranking)}
                                     {/* <Image
                                         style={styles.imageBg}
                                         source={require('../../../../assets/img/push-'+numberRank+'l.png')}
@@ -82,14 +84,15 @@ export default class ModalTeste extends Component {
                         </View>
 
                         <View style={styles.modalBottom}>
-                            <Text style={styles.textReg}>{description}</Text>
+                            <Text style={styles.titleDescription}>{data.subtitle}</Text>
+                            <Text style={styles.textReg}>{data.description}</Text>
                             {/* <Text style={styles.textReg}>Sua loja está perto de atingir a meta! Falta apenas 10% para sua loja completar a meta do mês.</Text> */}
 
-                            <View style={styles.contentBtn}>
+                            {/* <View style={styles.contentBtn}>
                                 <TouchableOpacity style={styles.acessMod} onPress={() => {this.setState({visibleModal: false});}}>
                                     <Text style={styles.textBtn}>ACOMPANHAR RANKING</Text> 
                                 </TouchableOpacity> 
-                            </View>
+                            </View> */}
                         </View> 
                     </View>
                 </Modal>
