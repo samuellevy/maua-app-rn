@@ -33,6 +33,7 @@ import Questions from './scenes/questions';
 import FinishCourse from './scenes/finishCourse'; 
 import Result from './scenes/questions/components/result'; 
 import StatusSend from './scenes/statusSend';
+import ValidadeCpf from './scenes/ValidadeCpf';
 import FirstLogin from './scenes/firstlogin';
 import HomeManager from './scenes/manager/homeManager';
 import CategoryManager from './scenes/manager/categoryManager';
@@ -50,6 +51,7 @@ console.disableYellowBox = true;
 // Main navigator
 
 defaultNavigator = StackNavigator({
+  ValidadeCpf: {screen: ValidadeCpf},
   Splash: {screen: Splash},
   Default: {screen: Default},
   Manager: {screen: Manager},
@@ -63,7 +65,7 @@ defaultNavigator = StackNavigator({
   FinishCourse: {screen: FinishCourse},
   FirstLogin: {screen: FirstLogin},
 }, {
-  initialRouteName: 'Splash',
+  initialRouteName: 'ValidadeCpf',
   headerMode: 'none',
   mode: 'modal',
   swipeEnabled: false,  
