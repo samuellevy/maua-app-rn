@@ -23,7 +23,7 @@ export default class Performance extends Component {
         else if(percent>=116 && percent <=144) {
             message = <Text style={styles.text}>Só mais um pouco! Sua loja está perto de passar os 145% da meta mensal e acumular mais 100 pontos no ranking!</Text>
         }
-        else if(percent>=145) {
+        else if(percent>145) {
             message = <Text style={styles.text}>Ao infinito e além! Vocês garantiram mais 100 pontos.</Text>
         }
         return(
