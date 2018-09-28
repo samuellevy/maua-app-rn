@@ -51,7 +51,6 @@ console.disableYellowBox = true;
 // Main navigator
 
 defaultNavigator = StackNavigator({
-  ValidadeCpf: {screen: ValidadeCpf},
   Splash: {screen: Splash},
   Default: {screen: Default},
   Manager: {screen: Manager},
@@ -65,7 +64,7 @@ defaultNavigator = StackNavigator({
   FinishCourse: {screen: FinishCourse},
   FirstLogin: {screen: FirstLogin},
 }, {
-  initialRouteName: 'ValidadeCpf',
+  initialRouteName: 'Splash',
   headerMode: 'none',
   mode: 'modal',
   swipeEnabled: false,  

@@ -54,7 +54,8 @@ export default class Home extends Component {
         modalScene: 'regulamento',
         secureText: true,
         modalPush: false,
-        push: []
+        push: [],
+        cpf: null,
     };
     
     constructor (){ 
@@ -87,8 +88,10 @@ export default class Home extends Component {
                 user: rest.user,
                 typeUser: rest.user.role,
                 modalPush: rest.push.exist,
-                push: rest.push
+                push: rest.push,
+                cpf_validated: rest.user.cpf
             });
+            console.log(rest.user);
         })
     }
     
@@ -174,6 +177,73 @@ export default class Home extends Component {
         });
     }
 
+    validarCPF(cpf) {
+        console.log('cpf');
+        console.log(cpf)
+        if(cpf==null){
+            cpf = '';
+        }
+        cpf = cpf.replace(/[^\d]+/g, '');
+
+        if (cpf == '' || cpf == null) return false;
+        // Elimina CPFs invalidos conhecidos	
+        if (cpf.length != 11 ||
+            cpf == "00000000000" ||
+            cpf == "11111111111" ||
+            cpf == "22222222222" ||
+            cpf == "33333333333" ||
+            cpf == "44444444444" ||
+            cpf == "55555555555" ||
+            cpf == "66666666666" ||
+            cpf == "77777777777" ||
+            cpf == "88888888888" ||
+            cpf == "99999999999")
+            return false;
+        // Valida 1o digito	
+        add = 0;
+        for (i = 0; i < 9; i++)
+            add += parseInt(cpf.charAt(i)) * (10 - i);
+        rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11)
+            rev = 0;
+        if (rev != parseInt(cpf.charAt(9)))
+            return false;
+        // Valida 2o digito	
+        add = 0;
+        for (i = 0; i < 10; i++)
+            add += parseInt(cpf.charAt(i)) * (11 - i);
+        rev = 11 - (add % 11);
+        if (rev == 10 || rev == 11)
+            rev = 0;
+        if (rev != parseInt(cpf.charAt(10)))
+            return false;
+        return true;
+    }
+
+    postDataCpf(cpf){
+        let user = JSON.stringify({
+            cpf: this.state.cpf,
+        });
+
+        try{
+            rest.post('/users/edit/me', user).then((rest)=>{
+                if(rest.success) {
+                    Alert.alert(
+                        "Obrigado!",
+                        "Seus dados foram atualizados com sucesso.",
+                        [
+                            {text: 'OK', onPress: () => {this.setState({visibleModal: false, modalScene: 'home'});this.getData();}}
+                        ],
+                        { cancelable: false }
+                    )
+                }
+            });
+        } catch (response){
+            this.setState({ errorMessage: response.data.message });
+        }
+    }
+
+
     componentWillReceiveProps(){
         this.forceUpdate();
         this.getData();
@@ -258,11 +328,21 @@ export default class Home extends Component {
             )
         }
 
-        if(this.state.user.cpf==null){
+        if(!this.state.cpf_validated){
             return(
-                <View>
-                    <Text>Teste</Text>
-                </View>
+                <Modal>
+                    <View style={styles.cpf_container}>
+                        <ScrollView>
+                            <View style={styles.cpf_body}>
+                                <Text style={styles.cpf_txtTitle}>Valide seu CPF</Text>
+                                <Text style={styles.cpf_txtDescription}>É muito importante que o CPF seja preenchido corretamente, pois este será utilizado em caso de premiação.</Text>
+                                <TextInputMask type={'cpf'} style={styles.cpf_input} onChangeText={(cpf) => this.setState({ cpf })} placeholder='Digite seu CPF' value={this.state.cpf} autoCorrect={false} autoCapitalize='none' />
+
+                                <Text style={styles.cpf_btnValidade} onPress={() => this.validarCPF(this.state.cpf)?this.postDataCpf(this.state.cpf):alert("CPF inválido")}>Validar</Text>
+                            </View>
+                        </ScrollView>
+                    </View>
+                </Modal>
             )
         }
         
