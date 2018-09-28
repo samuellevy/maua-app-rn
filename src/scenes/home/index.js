@@ -257,6 +257,14 @@ export default class Home extends Component {
                 </View>
             )
         }
+
+        if(this.state.user.cpf==null){
+            return(
+                <View>
+                    <Text>Teste</Text>
+                </View>
+            )
+        }
         
         return (
             <View style={styles.container}>
