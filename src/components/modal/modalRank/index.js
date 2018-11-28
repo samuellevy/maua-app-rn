@@ -7,6 +7,7 @@ import styles from './styles';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '../../../services/rest';
+import { colors } from '../../../styles';
 
 export default class ModalTeste extends Component {
     state = {
@@ -48,11 +49,19 @@ export default class ModalTeste extends Component {
         }
     }
 
+    renderImage(url){
+        return(
+            <Image
+                style={styles.imageBg}
+                source={{uri: url}}
+            />
+        );
+    }
+
     render() {
         let title = this.props.title;
         let description = this.props.description;
         let numberRank = this.props.numberRank;
-
         let data = this.props.data;
 
         return(
@@ -68,13 +77,13 @@ export default class ModalTeste extends Component {
                                 <Text style={styles.titleTop}>{data.title}</Text>
 
                                 <TouchableOpacity style={styles.clearBtn} onPress={() => {this.setState({visibleModal: false});}}>
-                                    <MaterialIcon name="clear" size={25} style={styles.iconClear}></MaterialIcon> 
+                                    <MaterialIcon name="clear" size={25} color={colors.white} style={styles.iconClear}></MaterialIcon> 
                                 </TouchableOpacity>
                             </View>
 
                             <View style={styles.contentIcon}>
                                 <View style={styles.iconBox}>
-                                    {this.imageRank(data.number_ranking)}
+                                    {data.image_type=='external'?this.renderImage(data.image):this.imageRank(data.number_ranking)}
                                     {/* <Image
                                         style={styles.imageBg}
                                         source={require('../../../../assets/img/push-'+numberRank+'l.png')}

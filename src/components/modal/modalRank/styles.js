@@ -63,7 +63,7 @@ const modal_styles = StyleSheet.create({
     clearBtn: {
         position: 'absolute',
         right: 0,
-        top: 5,   
+        top: 15,   
         width: '10%', 
     },
     viewVideo: {
