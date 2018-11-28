@@ -35,6 +35,20 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         backgroundColor: 'tomato',
     },
+    tabs:{
+        flexDirection: "row",
+    },
+    tab:{
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        backgroundColor: colors.primary,
+        width: "50%",
+        alignItems: "center",
+        borderBottomWidth: 5,
+    },
+    txtTab: {
+        fontWeight: "bold"
+    }
 });
 
 export default styles;
